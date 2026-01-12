@@ -3,7 +3,18 @@
   margin: 0;
   padding: 0;
 }
+@keyframes titlePulse {
+  0%, 100% {
+    text-shadow: 0 0 18px rgba(255,45,45,.35);
+  }
+  50% {
+    text-shadow: 0 0 32px rgba(255,45,45,.55);
+  }
+}
 
+.hero h1 {
+  animation: titlePulse 4s ease-in-out infinite;
+}
 body {
   font-family: "Segoe UI", system-ui, sans-serif;
   background: radial-gradient(circle at top, #140000, #000);
@@ -124,4 +135,32 @@ footer {
   padding: 30px;
   font-size: .9rem;
   opacity: .55;
+}
+.embers {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.embers span {
+  position: absolute;
+  bottom: -10px;
+  width: 4px;
+  height: 4px;
+  background: rgba(255,80,60,.8);
+  border-radius: 50%;
+  animation: rise linear infinite;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120vh) scale(0);
+    opacity: 0;
+  }
 }
