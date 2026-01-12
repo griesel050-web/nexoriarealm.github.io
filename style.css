@@ -1,1 +1,102 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #020617, #000);
+  color: #e5e7eb;
+  min-height: 100vh;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  letter-spacing: 4px;
+  color: #38bdf8;
+}
+
+.hero p {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
+
+.ip-box {
+  margin: 30px auto;
+  display: inline-flex;
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ip-box span {
+  padding: 14px 20px;
+  font-weight: bold;
+}
+
+.ip-box button {
+  background: #38bdf8;
+  border: none;
+  padding: 14px 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.buttons {
+  margin-top: 30px;
+}
+
+.buttons a {
+  display: inline-block;
+  margin: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: bold;
+  background: #38bdf8;
+  color: #000;
+}
+
+.buttons .secondary {
+  background: transparent;
+  border: 2px solid #38bdf8;
+  color: #38bdf8;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.info h2 {
+  margin-bottom: 10px;
+  color: #38bdf8;
+}
+
+.info ul {
+  list-style: none;
+}
+
+.info li {
+  margin-bottom: 8px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
 
