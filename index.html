@@ -15,6 +15,7 @@
 <body>
 
 <header class="hero">
+  <div class="embers"></div>
   <h1>NEXORIA REALM</h1>
   <p class="subtitle">Forge Your Legacy</p>
 
@@ -39,13 +40,13 @@
   </div>
 
   <div class="card">
-    <h2>🌍 Server Info</h2>
-    <ul>
-      <li><b>IP:</b> play.nexoriarealm.xyz</li>
-      <li><b>Version:</b> 1.21.4+</li>
-      <li><b>Platform:</b> Java</li>
-      <li><b>Status:</b> Online</li>
-    </ul>
+  <h2>🌍 Server Info</h2>
+  <ul>
+    <li><b>IP:</b> play.nexoriarealm.xyz</li>
+    <li><b>Version:</b> 1.21.4+</li>
+    <li><b>Status:</b> <span id="status">Loading...</span></li>
+    <li><b>Players:</b> <span id="players">-- / --</span></li>
+  </ul>
   </div>
 </section>
 
@@ -60,6 +61,28 @@
     text.textContent = "Copied!";
     setTimeout(() => text.textContent = "Click to copy", 1500);
   }
+  fetch("https://api.mcsrvstat.us/2/play.nexoriarealm.xyz")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("status").textContent =
+      data.online ? "Online" : "Offline";
+
+    document.getElementById("players").textContent =
+      data.online ? `${data.players.online} / ${data.players.max}` : "0 / 0";
+  })
+  .catch(() => {
+    document.getElementById("status").textContent = "Offline";
+    document.getElementById("players").textContent = "0 / 0";
+  });
+  const emberContainer = document.querySelector(".embers");
+
+for (let i = 0; i < 40; i++) {
+  const ember = document.createElement("span");
+  ember.style.left = Math.random() * 100 + "vw";
+  ember.style.animationDuration = 6 + Math.random() * 6 + "s";
+  ember.style.animationDelay = Math.random() * 6 + "s";
+  emberContainer.appendChild(ember);
+}
 </script>
 
 </body>
