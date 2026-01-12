@@ -5,98 +5,123 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at top, #020617, #000);
-  color: #e5e7eb;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #140000, #000);
+  color: #e5e5e5;
   min-height: 100vh;
 }
 
+/* HERO */
 .hero {
   text-align: center;
-  padding: 100px 20px;
+  padding: 110px 20px 90px;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 3.6rem;
   letter-spacing: 4px;
-  color: #38bdf8;
+  color: #ff2d2d;
+  text-shadow: 0 0 25px rgba(255,45,45,.35);
 }
 
-.hero p {
-  margin-top: 15px;
-  font-size: 1.2rem;
+.subtitle {
+  margin-top: 14px;
+  font-size: 1.25rem;
   opacity: 0.85;
 }
 
+/* IP BOX */
 .ip-box {
-  margin: 30px auto;
-  display: inline-flex;
-  background: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 10px;
-  overflow: hidden;
+  margin: 40px auto;
+  display: inline-block;
+  padding: 18px 26px;
+  border-radius: 14px;
+  background: rgba(20,0,0,.85);
+  border: 1px solid #3a0000;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.ip-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(255,45,45,.25);
 }
 
 .ip-box span {
-  padding: 14px 20px;
-  font-weight: bold;
+  display: block;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
-.ip-box button {
-  background: #38bdf8;
-  border: none;
-  padding: 14px 20px;
-  cursor: pointer;
-  font-weight: bold;
+.ip-box small {
+  display: block;
+  margin-top: 4px;
+  font-size: .85rem;
+  opacity: .7;
 }
 
+/* BUTTONS */
 .buttons {
   margin-top: 30px;
 }
 
 .buttons a {
   display: inline-block;
-  margin: 10px;
-  padding: 14px 28px;
+  margin: 8px;
+  padding: 14px 30px;
   border-radius: 999px;
   text-decoration: none;
-  font-weight: bold;
-  background: #38bdf8;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff2d2d, #b30000);
   color: #000;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.buttons a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255,45,45,.4);
 }
 
 .buttons .secondary {
   background: transparent;
-  border: 2px solid #38bdf8;
-  color: #38bdf8;
+  border: 2px solid #ff2d2d;
+  color: #ff2d2d;
 }
 
+/* INFO SECTION */
 .info {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  padding: 60px 20px;
   max-width: 1100px;
   margin: auto;
+  padding: 60px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
 
-.info h2 {
-  margin-bottom: 10px;
-  color: #38bdf8;
+.card {
+  background: rgba(15,0,0,.75);
+  border: 1px solid #3a0000;
+  border-radius: 16px;
+  padding: 30px;
 }
 
-.info ul {
+.card h2 {
+  margin-bottom: 12px;
+  color: #ff2d2d;
+}
+
+.card ul {
   list-style: none;
 }
 
-.info li {
+.card li {
   margin-bottom: 8px;
 }
 
+/* FOOTER */
 footer {
   text-align: center;
   padding: 30px;
-  font-size: 0.9rem;
-  opacity: 0.6;
+  font-size: .9rem;
+  opacity: .55;
 }
-
