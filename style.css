@@ -1,166 +1,78 @@
+/* Basic Reset */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-@keyframes titlePulse {
-  0%, 100% {
-    text-shadow: 0 0 18px rgba(255,45,45,.35);
-  }
-  50% {
-    text-shadow: 0 0 32px rgba(255,45,45,.55);
-  }
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.hero h1 {
-  animation: titlePulse 4s ease-in-out infinite;
-}
 body {
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: radial-gradient(circle at top, #140000, #000);
-  color: #e5e5e5;
-  min-height: 100vh;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 110px 20px 90px;
-}
-
-.hero h1 {
-  font-size: 3.6rem;
-  letter-spacing: 4px;
-  color: #ff2d2d;
-  text-shadow: 0 0 25px rgba(255,45,45,.35);
-}
-
-.subtitle {
-  margin-top: 14px;
-  font-size: 1.25rem;
-  opacity: 0.85;
-}
-
-/* IP BOX */
-.ip-box {
-  margin: 40px auto;
-  display: inline-block;
-  padding: 18px 26px;
-  border-radius: 14px;
-  background: rgba(20,0,0,.85);
-  border: 1px solid #3a0000;
-  cursor: pointer;
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-
-.ip-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(255,45,45,.25);
-}
-
-.ip-box span {
-  display: block;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.ip-box small {
-  display: block;
-  margin-top: 4px;
-  font-size: .85rem;
-  opacity: .7;
-}
-
-/* BUTTONS */
-.buttons {
-  margin-top: 30px;
-}
-
-.buttons a {
-  display: inline-block;
-  margin: 8px;
-  padding: 14px 30px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 700;
-  background: linear-gradient(135deg, #ff2d2d, #b30000);
-  color: #000;
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-
-.buttons a:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(255,45,45,.4);
-}
-
-.buttons .secondary {
-  background: transparent;
-  border: 2px solid #ff2d2d;
-  color: #ff2d2d;
-}
-
-/* INFO SECTION */
-.info {
-  max-width: 1100px;
-  margin: auto;
-  padding: 60px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-.card {
-  background: rgba(15,0,0,.75);
-  border: 1px solid #3a0000;
-  border-radius: 16px;
-  padding: 30px;
-}
-
-.card h2 {
-  margin-bottom: 12px;
-  color: #ff2d2d;
-}
-
-.card ul {
-  list-style: none;
-}
-
-.card li {
-  margin-bottom: 8px;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  font-size: .9rem;
-  opacity: .55;
-}
-.embers {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
+  background: linear-gradient(160deg, #1a1a1a, #330000);
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  padding: 2rem 3rem;
+  background: rgba(50, 0, 0, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #ff4444;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 5px #ff4444, 0 0 10px #ff4444; }
+  100% { text-shadow: 0 0 20px #ff8888, 0 0 40px #ff5555; }
+}
+
+p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #ff9999;
+}
+
+.player-count {
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  color: #ff2222;
+}
+
+/* Particle canvas */
+#particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
   z-index: 0;
 }
 
-.embers span {
-  position: absolute;
-  bottom: -10px;
-  width: 4px;
-  height: 4px;
-  background: rgba(255,80,60,.8);
-  border-radius: 50%;
-  animation: rise linear infinite;
+a.button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 2rem;
+  background: #ff0000;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: 0.3s;
 }
 
-@keyframes rise {
-  from {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-120vh) scale(0);
-    opacity: 0;
-  }
+a.button:hover {
+  background: #ff5555;
+  box-shadow: 0 0 15px #ff5555;
 }
