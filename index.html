@@ -3,58 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <title>Nexoria Realm</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Nexoria Realm • Minecraft 1.21.4+ • Play now">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <header class="hero">
-    <h1>NEXORIA REALM</h1>
-    <p>A Next-Generation Minecraft Experience</p>
+<header class="hero">
+  <h1>NEXORIA REALM</h1>
+  <p class="subtitle">Forge Your Legacy</p>
 
-    <div class="ip-box">
-      <span>play.nexoriarealm.xyz</span>
-      <button onclick="copyIP()">COPY</button>
-    </div>
+  <div class="ip-box" onclick="copyIP()">
+    <span>play.nexoriarealm.xyz</span>
+    <small id="copy-text">Click to copy</small>
+  </div>
 
-    <div class="buttons">
-      <a href="https://discord.gg/YOURINVITE" target="_blank">Discord</a>
-      <a href="#" class="secondary">Store (Soon)</a>
-    </div>
-  </header>
+  <div class="buttons">
+    <a href="https://discord.gg/rJZGA2bq7c" target="_blank">Join Discord</a>
+    <a href="#" class="secondary">Store Soon</a>
+  </div>
+</header>
 
-  <section class="info">
-    <div>
-      <h2>⚔️ Survival • Economy • Ranks</h2>
-      <p>
-        Custom features, balanced economy, daily rewards, and premium ranks.
-      </p>
-    </div>
+<section class="info">
+  <div class="card">
+    <h2>⚔️ Gameplay</h2>
+    <p>
+      Survival-focused experience with economy, ranks, daily rewards,
+      and long-term progression.
+    </p>
+  </div>
 
-    <div>
-      <h2>🌍 Server Info</h2>
-      <ul>
-        <li><b>Version:</b> 1.21.4+</li>
-        <li><b>Platform:</b> Java</li>
-        <li><b>Status:</b> Online</li>
-      </ul>
-    </div>
-  </section>
+  <div class="card">
+    <h2>🌍 Server Info</h2>
+    <ul>
+      <li><b>IP:</b> play.nexoriarealm.xyz</li>
+      <li><b>Version:</b> 1.21.4+</li>
+      <li><b>Platform:</b> Java</li>
+      <li><b>Status:</b> Online</li>
+    </ul>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2026 Nexoria Realm • Not affiliated with Mojang</p>
-  </footer>
+<footer>
+  © 2026 Nexoria Realm • Not affiliated with Mojang
+</footer>
 
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText("play.nexoriarealm.xyz");
-      alert("IP copied to clipboard!");
-    }
-  </script>
+<script>
+  function copyIP() {
+    navigator.clipboard.writeText("play.nexoriarealm.xyz");
+    const text = document.getElementById("copy-text");
+    text.textContent = "Copied!";
+    setTimeout(() => text.textContent = "Click to copy", 1500);
+  }
+</script>
 
 </body>
 </html>
-
