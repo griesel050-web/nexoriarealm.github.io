@@ -211,7 +211,7 @@ footer {
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: -1; /* behind content */
+  z-index: 0; /* changed from -1 to 0 so embers appear above background but below content */
 }
 
 .embers span {
