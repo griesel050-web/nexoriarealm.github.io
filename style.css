@@ -101,8 +101,7 @@ body {
 /* Visible focus for keyboard users */
 .ip-box:focus-visible,
 .buttons a:focus-visible,
-.refresh-btn:focus-visible,
-.players-btn:focus-visible {
+.refresh-btn:focus-visible {
   box-shadow: 0 0 0 4px rgba(255,45,45,0.12);
   border-radius: 12px;
 }
@@ -168,18 +167,6 @@ body {
 
 .card li {
   margin-bottom: 8px;
-}
-
-/* Players button */
-.players-btn {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  background: rgba(255,255,255,0.03);
-  color: var(--muted);
-  cursor: pointer;
 }
 
 /* Status styles */
@@ -248,75 +235,6 @@ footer {
   }
 }
 
-/* Modal */
-.modal {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
-}
-
-.modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(2px);
-}
-
-.modal-panel {
-  position: relative;
-  background: rgba(20,0,0,0.95);
-  border: 1px solid #3a0000;
-  border-radius: 12px;
-  width: min(720px, 95%);
-  max-height: 80vh;
-  padding: 18px;
-  z-index: 60;
-  overflow: auto;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-}
-
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.modal-close {
-  background: transparent;
-  color: var(--muted);
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 4px 8px;
-}
-
-.modal-body {
-  margin-top: 12px;
-}
-
-/* Player list styling */
-.player-list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 8px;
-}
-
-.player-list li {
-  padding: 8px 10px;
-  background: rgba(255,255,255,0.02);
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-/* muted text */
-.muted {
-  color: rgba(255,255,255,0.7);
-}
-
 /* Small screens */
 @media (max-width: 600px) {
   .hero h1 {
@@ -324,9 +242,6 @@ footer {
   }
   .subtitle {
     font-size: 1rem;
-  }
-  .player-list {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
 
