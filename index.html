@@ -6,6 +6,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Nexoria Realm • Minecraft 1.21.4+ • Play now">
+  <meta name="theme-color" content="#140000">
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Performance: preconnect to the status API -->
+  <link rel="preconnect" href="https://api.mcsrvstat.us" crossorigin>
 
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
@@ -14,23 +21,43 @@
 
 <body>
 
-<header class="hero">
-  <div class="embers"></div>
-  <h1>NEXORIA REALM</h1>
+<header class="hero" aria-labelledby="site-title">
+  <div class="embers" aria-hidden="true"></div>
+  <h1 id="site-title">NEXORIA REALM</h1>
   <p class="subtitle">Forge Your Legacy</p>
 
-  <div class="ip-box" onclick="copyIP()">
+  <!-- Use a real button for accessibility instead of clickable div -->
+  <button id="ip-box" class="ip-box" type="button" aria-label="Copy server IP">
     <span>play.nexoriarealm.xyz</span>
-    <small id="copy-text">Click to copy</small>
-  </div>
+    <small id="copy-text" aria-live="polite">Click or press enter to copy</small>
+  </button>
 
   <div class="buttons">
-    <a href="https://discord.gg/fFQfgK3gqQ" target="_blank">Join Discord</a>
-    <a href="store.nexoriarealm.xyz" class="secondary">Store Soon</a>
+    <a href="https://discord.gg/fFQfgK3gqQ" target="_blank" rel="noopener noreferrer" aria-label="Join Discord">
+      <!-- Discord SVG -->
+      <span class="icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+          <path fill="#000" d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.07.07 0 00-.075.035c-.21.375-.444.864-.608 1.249-1.84-.276-3.68-.276-5.486 0-.164-.405-.418-.874-.63-1.249a.066.066 0 00-.076-.035 19.736 19.736 0 00-4.886 1.515.062.062 0 00-.028.021C2.68 9.03 1.58 13.55 2.11 17.972a.082.082 0 00.03.056 19.9 19.9 0 006.073 3.09.07.07 0 00.077-.026c.47-.645.888-1.327 1.244-2.043a.061.061 0 00-.03-.084 13.8 13.8 0 01-1.985-1.06.062.062 0 01-.006-.103c.133-.1.266-.204.393-.31a.06.06 0 01.064-.01c4.163 1.898 8.675 1.898 12.835 0a.061.061 0 01.065.01c.127.106.26.21.393.31.02.015.01.038-.005.052-1.026.746-2.116 1.378-3.249 1.997a.06.06 0 00-.03.084c.36.715.78 1.398 1.25 2.043a.07.07 0 00.077.026 19.898 19.898 0 006.073-3.09.082.082 0 00.03-.056c.5-4.421-.559-8.94-3.641-13.582a.061.061 0 00-.03-.021z"/>
+        </svg>
+      </span>
+      Join Discord
+    </a>
+
+    <a href="https://store.nexoriarealm.xyz" class="secondary" target="_blank" rel="noopener noreferrer" aria-label="Open store">
+      <!-- Store SVG (cart) -->
+      <span class="icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+          <path fill="#ff2d2d" d="M7 4h-2l-1 2v2h2l1 6h10l1.4-5.6A1 1 0 0018.5 7H8.1L7 4zM7 20a2 2 0 100-4 2 2 0 000 4zM17 20a2 2 0 100-4 2 2 0 000 4z"/>
+        </svg>
+      </span>
+      Store Soon
+    </a>
   </div>
 </header>
 
-<section class="info">
+<section class="info" aria-labelledby="info-heading">
+  <h2 id="info-heading" class="sr-only">Server information and gameplay</h2>
+
   <div class="card">
     <h2>⚔️ Gameplay</h2>
     <p>
@@ -39,21 +66,52 @@
     </p>
   </div>
 
-  <div class="card">
-  <h2>🌍 Server Info</h2>
-  <ul>
-    <li><b>IP:</b> play.nexoriarealm.xyz</li>
-    <li><b>Version:</b> 1.21.4+</li>
-    <li><b>Status:</b> <span id="status">Loading...</span></li>
-    <li><b>Players:</b> <span id="players">-- / --</span></li>
-  </ul>
+  <div class="card" aria-live="polite">
+    <h2>🌍 Server Info</h2>
+    <ul>
+      <li><b>IP:</b> play.nexoriarealm.xyz</li>
+      <li><b>Version:</b> <span id="version">—</span></li>
+      <li><b>Status:</b> <span id="status">Loading...</span></li>
+      <li>
+        <b>Players:</b>
+        <!-- Players button opens modal -->
+        <button id="players-btn" class="players-btn" type="button" aria-haspopup="dialog" aria-controls="players-modal">
+          <span id="players">-- / --</span>
+        </button>
+      </li>
+      <li><small id="last-updated" class="last-updated">Last updated: —</small></li>
+    </ul>
+    <button id="refresh-btn" class="refresh-btn" type="button" aria-label="Refresh server status">Refresh</button>
   </div>
 </section>
+
+<!-- Player list modal -->
+<div id="players-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="players-modal-title" hidden>
+  <div class="modal-panel" role="document">
+    <header class="modal-header">
+      <h3 id="players-modal-title">Players online</h3>
+      <button id="close-modal-btn" class="modal-close" aria-label="Close player list">&times;</button>
+    </header>
+    <div class="modal-body" id="players-list">
+      <!-- Filled by JS -->
+      <p class="muted">Loading…</p>
+    </div>
+    <footer class="modal-footer">
+      <button id="modal-refresh" class="refresh-btn" type="button">Refresh</button>
+    </footer>
+  </div>
+  <div class="modal-backdrop" data-dismiss="modal" tabindex="-1"></div>
+</div>
 
 <footer>
   © 2026 Nexoria Realm • Not affiliated with Mojang
 </footer>
 
-<script src="script.js"></script>
+<noscript>
+  <div class="noscript">This site works best with JavaScript enabled (server status, copy-to-clipboard, PWA and player list features require JavaScript).</div>
+</noscript>
+
+<!-- Defer loading of interactive JS -->
+<script src="script.js" defer></script>
 </body>
 </html>
