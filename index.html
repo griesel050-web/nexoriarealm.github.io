@@ -72,43 +72,19 @@
       <li><b>IP:</b> play.nexoriarealm.xyz</li>
       <li><b>Version:</b> <span id="version">—</span></li>
       <li><b>Status:</b> <span id="status">Loading...</span></li>
-      <li>
-        <b>Players:</b>
-        <!-- Players button opens modal -->
-        <button id="players-btn" class="players-btn" type="button" aria-haspopup="dialog" aria-controls="players-modal">
-          <span id="players">-- / --</span>
-        </button>
-      </li>
+      <li><b>Players:</b> <span id="players">-- / --</span></li>
       <li><small id="last-updated" class="last-updated">Last updated: —</small></li>
     </ul>
     <button id="refresh-btn" class="refresh-btn" type="button" aria-label="Refresh server status">Refresh</button>
   </div>
 </section>
 
-<!-- Player list modal -->
-<div id="players-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="players-modal-title" hidden>
-  <div class="modal-panel" role="document">
-    <header class="modal-header">
-      <h3 id="players-modal-title">Players online</h3>
-      <button id="close-modal-btn" class="modal-close" aria-label="Close player list">&times;</button>
-    </header>
-    <div class="modal-body" id="players-list">
-      <!-- Filled by JS -->
-      <p class="muted">Loading…</p>
-    </div>
-    <footer class="modal-footer">
-      <button id="modal-refresh" class="refresh-btn" type="button">Refresh</button>
-    </footer>
-  </div>
-  <div class="modal-backdrop" data-dismiss="modal" tabindex="-1"></div>
-</div>
-
 <footer>
   © 2026 Nexoria Realm • Not affiliated with Mojang
 </footer>
 
 <noscript>
-  <div class="noscript">This site works best with JavaScript enabled (server status, copy-to-clipboard, PWA and player list features require JavaScript).</div>
+  <div class="noscript">This site works best with JavaScript enabled (server status and copy-to-clipboard features require JavaScript).</div>
 </noscript>
 
 <!-- Defer loading of interactive JS -->
