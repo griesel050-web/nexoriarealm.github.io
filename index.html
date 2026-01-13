@@ -54,36 +54,6 @@
   © 2026 Nexoria Realm • Not affiliated with Mojang
 </footer>
 
-<script>
-  function copyIP() {
-    navigator.clipboard.writeText("play.nexoriarealm.xyz");
-    const text = document.getElementById("copy-text");
-    text.textContent = "Copied!";
-    setTimeout(() => text.textContent = "Click to copy", 1500);
-  }
-  fetch("https://api.mcsrvstat.us/2/play.nexoriarealm.xyz")
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("status").textContent =
-      data.online ? "Online" : "Offline";
-
-    document.getElementById("players").textContent =
-      data.online ? `${data.players.online} / ${data.players.max}` : "0 / 0";
-  })
-  .catch(() => {
-    document.getElementById("status").textContent = "Offline";
-    document.getElementById("players").textContent = "0 / 0";
-  });
-  const emberContainer = document.querySelector(".embers");
-
-for (let i = 0; i < 40; i++) {
-  const ember = document.createElement("span");
-  ember.style.left = Math.random() * 100 + "vw";
-  ember.style.animationDuration = 6 + Math.random() * 6 + "s";
-  ember.style.animationDelay = Math.random() * 6 + "s";
-  emberContainer.appendChild(ember);
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
