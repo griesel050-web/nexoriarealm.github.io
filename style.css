@@ -4,39 +4,6 @@
   padding: 0;
 }
 
-:root {
-  --bg-start: #140000;
-  --bg-end: #000;
-  --accent: #ff2d2d;
-  --accent-dark: #b30000;
-  --muted: #e5e5e5;
-}
-
-/* Basic reset and fonts */
-body {
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: radial-gradient(circle at top, var(--bg-start), var(--bg-end));
-  color: var(--muted);
-  min-height: 100vh;
-}
-
-/* Accessibility helper */
-.sr-only {
-  position: absolute !important;
-  height: 1px; width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 110px 20px 90px;
-  position: relative;
-  z-index: 1; /* make sure content is above embers */
-}
-
 @keyframes titlePulse {
   0%, 100% {
     text-shadow: 0 0 18px rgba(255,45,45,.35);
@@ -50,10 +17,23 @@ body {
   animation: titlePulse 4s ease-in-out infinite;
 }
 
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #140000, #000);
+  color: #e5e5e5;
+  min-height: 100vh;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 110px 20px 90px;
+}
+
 .hero h1 {
   font-size: 3.6rem;
   letter-spacing: 4px;
-  color: var(--accent);
+  color: #ff2d2d;
   text-shadow: 0 0 25px rgba(255,45,45,.35);
 }
 
@@ -63,7 +43,7 @@ body {
   opacity: 0.85;
 }
 
-/* IP BOX (styled button) */
+/* IP BOX */
 .ip-box {
   margin: 40px auto;
   display: inline-block;
@@ -73,11 +53,6 @@ body {
   border: 1px solid #3a0000;
   cursor: pointer;
   transition: transform .15s ease, box-shadow .15s ease;
-  color: inherit;
-  text-align: center;
-  font: inherit;
-  outline: none;
-  border: none;
 }
 
 .ip-box:hover {
@@ -98,29 +73,19 @@ body {
   opacity: .7;
 }
 
-/* Visible focus for keyboard users */
-.ip-box:focus-visible,
-.buttons a:focus-visible,
-.refresh-btn:focus-visible {
-  box-shadow: 0 0 0 4px rgba(255,45,45,0.12);
-  border-radius: 12px;
-}
-
-/* Buttons */
+/* BUTTONS */
 .buttons {
   margin-top: 30px;
 }
 
 .buttons a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: inline-block;
   margin: 8px;
-  padding: 14px 18px;
+  padding: 14px 30px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  background: linear-gradient(135deg, #ff2d2d, #b30000);
   color: #000;
   transition: transform .15s ease, box-shadow .15s ease;
 }
@@ -132,12 +97,9 @@ body {
 
 .buttons .secondary {
   background: transparent;
-  border: 2px solid var(--accent);
-  color: var(--accent);
+  border: 2px solid #ff2d2d;
+  color: #ff2d2d;
 }
-
-/* icon inside button */
-.icon svg { display: block; }
 
 /* INFO SECTION */
 .info {
@@ -158,7 +120,7 @@ body {
 
 .card h2 {
   margin-bottom: 12px;
-  color: var(--accent);
+  color: #ff2d2d;
 }
 
 .card ul {
@@ -169,35 +131,7 @@ body {
   margin-bottom: 8px;
 }
 
-/* Status styles */
-#status.online {
-  color: #4EF47A;
-  font-weight: 700;
-}
-#status.offline {
-  color: #FF6B6B;
-  font-weight: 700;
-}
-
-.last-updated {
-  display: block;
-  margin-top: 8px;
-  font-size: 0.85rem;
-  opacity: 0.75;
-}
-
-/* Refresh button */
-.refresh-btn {
-  margin-top: 12px;
-  padding: 10px 14px;
-  background: transparent;
-  border: 1px solid rgba(255,45,45,.18);
-  color: var(--accent);
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* Footer */
+/* FOOTER */
 footer {
   text-align: center;
   padding: 30px;
@@ -205,13 +139,12 @@ footer {
   opacity: .55;
 }
 
-/* Embers visual */
 .embers {
   position: fixed;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 0; /* changed from -1 to 0 so embers appear above background but below content */
+  z-index: 0;
 }
 
 .embers span {
@@ -233,20 +166,4 @@ footer {
     transform: translateY(-120vh) scale(0);
     opacity: 0;
   }
-}
-
-/* Small screens */
-@media (max-width: 600px) {
-  .hero h1 {
-    font-size: 2.4rem;
-  }
-  .subtitle {
-    font-size: 1rem;
-  }
-}
-
-/* Respect user's reduced-motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .hero h1 { animation: none; text-shadow: none; }
-  .embers span { animation: none; display: none; }
 }
