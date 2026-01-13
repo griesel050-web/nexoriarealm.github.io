@@ -4,6 +4,39 @@
   padding: 0;
 }
 
+:root {
+  --bg-start: #140000;
+  --bg-end: #000;
+  --accent: #ff2d2d;
+  --accent-dark: #b30000;
+  --muted: #e5e5e5;
+}
+
+/* Basic reset and fonts */
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, var(--bg-start), var(--bg-end));
+  color: var(--muted);
+  min-height: 100vh;
+}
+
+/* Accessibility helper */
+.sr-only {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 110px 20px 90px;
+  position: relative;
+  z-index: 1; /* make sure content is above embers */
+}
+
 @keyframes titlePulse {
   0%, 100% {
     text-shadow: 0 0 18px rgba(255,45,45,.35);
@@ -17,23 +50,10 @@
   animation: titlePulse 4s ease-in-out infinite;
 }
 
-body {
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: radial-gradient(circle at top, #140000, #000);
-  color: #e5e5e5;
-  min-height: 100vh;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 110px 20px 90px;
-}
-
 .hero h1 {
   font-size: 3.6rem;
   letter-spacing: 4px;
-  color: #ff2d2d;
+  color: var(--accent);
   text-shadow: 0 0 25px rgba(255,45,45,.35);
 }
 
@@ -43,7 +63,7 @@ body {
   opacity: 0.85;
 }
 
-/* IP BOX */
+/* IP BOX (styled button) */
 .ip-box {
   margin: 40px auto;
   display: inline-block;
@@ -53,6 +73,11 @@ body {
   border: 1px solid #3a0000;
   cursor: pointer;
   transition: transform .15s ease, box-shadow .15s ease;
+  color: inherit;
+  text-align: center;
+  font: inherit;
+  outline: none;
+  border: none;
 }
 
 .ip-box:hover {
@@ -73,19 +98,30 @@ body {
   opacity: .7;
 }
 
-/* BUTTONS */
+/* Visible focus for keyboard users */
+.ip-box:focus-visible,
+.buttons a:focus-visible,
+.refresh-btn:focus-visible,
+.players-btn:focus-visible {
+  box-shadow: 0 0 0 4px rgba(255,45,45,0.12);
+  border-radius: 12px;
+}
+
+/* Buttons */
 .buttons {
   margin-top: 30px;
 }
 
 .buttons a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin: 8px;
-  padding: 14px 30px;
+  padding: 14px 18px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 700;
-  background: linear-gradient(135deg, #ff2d2d, #b30000);
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   color: #000;
   transition: transform .15s ease, box-shadow .15s ease;
 }
@@ -97,9 +133,12 @@ body {
 
 .buttons .secondary {
   background: transparent;
-  border: 2px solid #ff2d2d;
-  color: #ff2d2d;
+  border: 2px solid var(--accent);
+  color: var(--accent);
 }
+
+/* icon inside button */
+.icon svg { display: block; }
 
 /* INFO SECTION */
 .info {
@@ -120,7 +159,7 @@ body {
 
 .card h2 {
   margin-bottom: 12px;
-  color: #ff2d2d;
+  color: var(--accent);
 }
 
 .card ul {
@@ -131,7 +170,47 @@ body {
   margin-bottom: 8px;
 }
 
-/* FOOTER */
+/* Players button */
+.players-btn {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: rgba(255,255,255,0.03);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* Status styles */
+#status.online {
+  color: #4EF47A;
+  font-weight: 700;
+}
+#status.offline {
+  color: #FF6B6B;
+  font-weight: 700;
+}
+
+.last-updated {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* Refresh button */
+.refresh-btn {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid rgba(255,45,45,.18);
+  color: var(--accent);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Footer */
 footer {
   text-align: center;
   padding: 30px;
@@ -139,12 +218,13 @@ footer {
   opacity: .55;
 }
 
+/* Embers visual */
 .embers {
   position: fixed;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 0;
+  z-index: -1; /* behind content */
 }
 
 .embers span {
@@ -166,4 +246,92 @@ footer {
     transform: translateY(-120vh) scale(0);
     opacity: 0;
   }
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+}
+
+.modal-panel {
+  position: relative;
+  background: rgba(20,0,0,0.95);
+  border: 1px solid #3a0000;
+  border-radius: 12px;
+  width: min(720px, 95%);
+  max-height: 80vh;
+  padding: 18px;
+  z-index: 60;
+  overflow: auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-close {
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.modal-body {
+  margin-top: 12px;
+}
+
+/* Player list styling */
+.player-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.player-list li {
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* muted text */
+.muted {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .player-list {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+/* Respect user's reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 { animation: none; text-shadow: none; }
+  .embers span { animation: none; display: none; }
 }
