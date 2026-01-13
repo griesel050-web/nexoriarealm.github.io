@@ -2,20 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nexoria Realm</title>
-  <link rel="icon" type="image/png" href="favicon.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nexoria Realm • Minecraft 1.21.4+ • Play now">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <canvas id="particles"></canvas>
-  <div class="container">
-    <h1>Nexoria Realm</h1>
-    <p>Welcome to our Minecraft server! Join the adventure and explore a world like no other.</p>
-    <div class="player-count">Players Online: <span id="players">0</span></div>
-    <a href="minecraft://play.nexoriarealm.xyz:25684" class="button">Join Now</a>
+
+<header class="hero">
+  <div class="embers"></div>
+  <h1>NEXORIA REALM</h1>
+  <p class="subtitle">Forge Your Legacy</p>
+
+  <div class="ip-box" onclick="copyIP()">
+    <span>play.nexoriarealm.xyz</span>
+    <small id="copy-text">Click to copy</small>
   </div>
 
-  <script src="script.js"></script>
+  <div class="buttons">
+    <a href="https://discord.gg/YOURINVITE" target="_blank">Join Discord</a>
+    <a href="#" class="secondary">Store Soon</a>
+  </div>
+</header>
+
+<section class="info">
+  <div class="card">
+    <h2>⚔️ Gameplay</h2>
+    <p>
+      Survival-focused experience with economy, ranks, daily rewards,
+      and long-term progression.
+    </p>
+  </div>
+
+  <div class="card">
+  <h2>🌍 Server Info</h2>
+  <ul>
+    <li><b>IP:</b> play.nexoriarealm.xyz</li>
+    <li><b>Version:</b> 1.21.4+</li>
+    <li><b>Status:</b> <span id="status">Loading...</span></li>
+    <li><b>Players:</b> <span id="players">-- / --</span></li>
+  </ul>
+  </div>
+</section>
+
+<footer>
+  © 2026 Nexoria Realm • Not affiliated with Mojang
+</footer>
+
+<script>
+  function copyIP() {
+    navigator.clipboard.writeText("play.nexoriarealm.xyz");
+    const text = document.getElementById("copy-text");
+    text.textContent = "Copied!";
+    setTimeout(() => text.textContent = "Click to copy", 1500);
+  }
+  fetch("https://api.mcsrvstat.us/2/play.nexoriarealm.xyz")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("status").textContent =
+      data.online ? "Online" : "Offline";
+
+    document.getElementById("players").textContent =
+      data.online ? `${data.players.online} / ${data.players.max}` : "0 / 0";
+  })
+  .catch(() => {
+    document.getElementById("status").textContent = "Offline";
+    document.getElementById("players").textContent = "0 / 0";
+  });
+  const emberContainer = document.querySelector(".embers");
+
+for (let i = 0; i < 40; i++) {
+  const ember = document.createElement("span");
+  ember.style.left = Math.random() * 100 + "vw";
+  ember.style.animationDuration = 6 + Math.random() * 6 + "s";
+  ember.style.animationDelay = Math.random() * 6 + "s";
+  emberContainer.appendChild(ember);
+}
+</script>
+
 </body>
 </html>
