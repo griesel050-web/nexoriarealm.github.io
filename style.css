@@ -43,34 +43,49 @@ body {
   opacity: 0.85;
 }
 
+.ip-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap; /* makes it responsive on small screens */
+  margin-top: 1rem;
+}
+
 /* IP BOX */
 .ip-box {
-  margin: 40px auto;
-  display: inline-block;
-  padding: 18px 26px;
-  border-radius: 14px;
-  background: rgba(20,0,0,.85);
-  border: 1px solid #3a0000;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #ff5252;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  text-align: center;
   cursor: pointer;
-  transition: transform .15s ease, box-shadow .15s ease;
+  transition: all 0.3s;
+  min-width: 180px;
 }
 
 .ip-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(255,45,45,.25);
+  background: rgba(255, 82, 82, 0.1);
+  border-color: #ff0000;
 }
 
 .ip-box span {
   display: block;
-  font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
+  color: #ff9999;
+  margin-bottom: 0.3rem;
 }
 
 .ip-box small {
   display: block;
-  margin-top: 4px;
-  font-size: .85rem;
-  opacity: .7;
+  margin-top: 0.5rem;
+  color: #ccc;
+  font-size: 0.8rem;
+}
+
+.ip-box strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #fff;
 }
 
 /* BUTTONS */
