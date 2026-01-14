@@ -1,13 +1,20 @@
 // Copy server IP to clipboard
+function copyDomain() {
+  const domain = "play.nexoriarealm.xyz";
+  navigator.clipboard.writeText(domain).then(() => {
+    const text = document.getElementById("copy-domain-text");
+    text.textContent = "Copied!";
+    setTimeout(() => text.textContent = "Click to copy", 1500);
+  });
+}
+
 function copyIP() {
-  const ip = "play.nexoriarealm.xyz";
-  navigator.clipboard.writeText(ip)
-    .then(() => {
-      const text = document.getElementById("copy-text");
-      text.textContent = "Copied!";
-      setTimeout(() => text.textContent = "Click to copy", 1500);
-    })
-    .catch(err => console.error("Failed to copy IP:", err));
+  const ip = "88.198.13.101:25684";
+  navigator.clipboard.writeText(ip).then(() => {
+    const text = document.getElementById("copy-ip-text");
+    text.textContent = "Copied!";
+    setTimeout(() => text.textContent = "Click to copy", 1500);
+  });
 }
 
 // Fetch Minecraft server status and update DOM
