@@ -45,46 +45,47 @@ body {
 
 .ip-container {
   display: flex;
-  gap: 1rem;
   justify-content: center;
-  flex-wrap: wrap; /* makes it responsive on small screens */
-  margin-top: 1rem;
+  gap: 20px; /* space between boxes */
+  margin: 20px 0;
+  flex-wrap: wrap; /* stacks on smaller screens */
 }
 
 /* IP BOX */
 .ip-box {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #ff5252;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
+  flex: 1; /* equal width */
+  max-width: 250px; /* optional max width */
+  background: #1a0b0b;
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+  padding: 15px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s;
-  min-width: 180px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .ip-box:hover {
-  background: rgba(255, 82, 82, 0.1);
-  border-color: #ff0000;
+  transform: translateY(-3px);
+  box-shadow: 0 0 10px #ff0000;
 }
 
 .ip-box span {
   display: block;
   font-size: 0.9rem;
-  color: #ff9999;
-  margin-bottom: 0.3rem;
+  color: #ff5555;
 }
 
 .ip-box small {
   display: block;
-  margin-top: 0.5rem;
-  color: #ccc;
   font-size: 0.8rem;
+  color: #ccc;
+  margin-top: 3px;
 }
 
 .ip-box strong {
   display: block;
   font-size: 1.1rem;
+  margin: 5px 0;
   color: #fff;
 }
 
