@@ -16,10 +16,21 @@
       color: #f0f0f0;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
+    }
+    canvas#particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
     nav.navbar {
       background: #220000;
       padding: 1rem 2rem;
+      position: relative;
+      z-index: 2;
     }
     .nav-container {
       display: flex;
@@ -50,6 +61,8 @@
       padding: 4rem 1rem;
       background: linear-gradient(to bottom, #330000, #220000);
       color: #ff4444;
+      position: relative;
+      z-index: 1;
     }
     header.hero h1 {
       font-size: 3rem;
@@ -63,6 +76,8 @@
       max-width: 900px;
       margin: 2rem auto;
       padding: 0 1rem;
+      position: relative;
+      z-index: 1;
     }
     section {
       margin-bottom: 2rem;
@@ -87,6 +102,8 @@
       padding: 2rem 1rem;
       border-top: 1px solid #ff4444;
       color: #f0f0f0aa;
+      position: relative;
+      z-index: 1;
     }
     a {
       color: #ff4444;
@@ -99,6 +116,8 @@
 </head>
 
 <body>
+<canvas id="particles"></canvas>
+
 <nav class="navbar">
   <div class="nav-container">
     <a href="index.html" class="logo">Nexoria</a>
@@ -152,6 +171,59 @@
   © 2026 Nexoria Realm • Not affiliated with Mojang
 </footer>
 
-<script src="script.js"></script>
+<script>
+  // Simple particles script (like index)
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let particlesArray = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 3 + 1;
+      this.speedX = Math.random() * 1 - 0.5;
+      this.speedY = Math.random() * 1 - 0.5;
+      this.color = 'rgba(255,68,68,0.7)';
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+
+      if(this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+      if(this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+    draw() {
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    particlesArray = [];
+    for(let i = 0; i < 80; i++) {
+      particlesArray.push(new Particle());
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particlesArray.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+
+  initParticles();
+  animate();
+</script>
+
 </body>
 </html>
