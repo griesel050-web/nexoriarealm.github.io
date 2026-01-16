@@ -9,6 +9,18 @@ body {
   color: #fff;
 }
 
+.vote-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: #ff3b3b;
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
 .particle {
   position: absolute;
   bottom: 20px;
@@ -71,7 +83,13 @@ header h1 {
   background: radial-gradient(circle at center, #ff3b3b55, transparent 60%);
   opacity: 0;
   transition: opacity 0.25s ease;
+  pointer-events: none; /* ← THIS FIXES IT */
 }
+
+.vote-card:hover::before {
+  opacity: 1;
+}
+
 
 .vote-card:hover::before {
   opacity: 1;
