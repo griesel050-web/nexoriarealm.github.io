@@ -20,10 +20,13 @@ voteSites.forEach(site => {
 
   card.innerHTML = `
     <h3>${site.name}</h3>
-    <a href="${site.url}" target="_blank" rel="noopener noreferrer">
-      Vote Now
-    </a>
+    <span class="vote-btn">Vote Now</span>
   `;
+
+  card.addEventListener("click", () => {
+    window.open(site.url, "_blank", "noopener");
+  });
 
   grid.appendChild(card);
 });
+
