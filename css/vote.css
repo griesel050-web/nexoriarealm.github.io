@@ -9,6 +9,25 @@ body {
   color: #fff;
 }
 
+.particle {
+  position: absolute;
+  bottom: 20px;
+  width: 6px;
+  height: 6px;
+  background: #ff3b3b;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: floatUp ease-out forwards;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+}
+
+
 /* ===== NAVBAR ===== */
 .navbar {
   width: 100%;
