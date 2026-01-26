@@ -8,7 +8,6 @@ const voteSites = [
   { name: "MCList", url: "https://mclist.io/server/67761-play-nexoriarealm-xyz-survival-realmip-nexor/vote" },
   { name: "Minecraft Buzz", url: "https://minecraft.buzz/server/18581" },
   { name: "Play Minecraft Servers", url: "https://play-minecraft-servers.com/minecraft-servers/nexoria/" },
-  { name: "TopMinecraftServers", url: "https://topminecraftservers.org/vote/42550" },
 
   // Newly added
   { name: "Minecraft-ServerList", url: "https://minecraft-serverlist.com/server/4104" },
