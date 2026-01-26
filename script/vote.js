@@ -5,7 +5,6 @@ const voteSites = [
   { name: "Minecraft Server List", url: "https://minecraft-server-list.com/server/517241/" },
   { name: "Minecraft Menu", url: "https://minecraft.menu/server-nexoria.5696" },
   { name: "MC ServerTime", url: "https://mcservertime.com/server-nexoria.2784" },
-  { name: "MinecraftServers.me", url: "https://minecraftservers.me/server/nexoria.22037" },
   { name: "MCList", url: "https://mclist.io/server/67761-play-nexoriarealm-xyz-survival-realmip-nexor/vote" },
   { name: "Minecraft Buzz", url: "https://minecraft.buzz/server/18581" },
   { name: "Play Minecraft Servers", url: "https://play-minecraft-servers.com/minecraft-servers/nexoria/" },
