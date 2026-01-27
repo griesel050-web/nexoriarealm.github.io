@@ -2,22 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nexoria Realm</title>
+  <title>Commands • Nexoria Realm</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nexoria Realm • Minecraft 1.21.4+ • Play now">
+  <meta name="description" content="Nexoria Realm Commands • Learn all server commands">
 
   <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+
 <nav class="navbar">
   <div class="nav-container">
     <a href="index.html" class="logo">Nexoria</a>
     <ul class="nav-links">
       <li><a href="info.html">Info</a></li>
+      <li><a href="commands.html" class="active">Commands</a></li>
       <li><a href="vote.html">Vote</a></li>
       <li><a href="https://store.nexoriarealm.xyz" target="_blank">Store</a></li>
       <li><a href="https://discord.gg/fFQfgK3gqQ" target="_blank">Discord</a></li>
@@ -25,6 +26,17 @@
   </div>
 </nav>
 
-  
+<header class="page-header">
+  <h1>Server Commands</h1>
+  <p>Everything you need to play on Nexoria Realm</p>
+</header>
+
+<main class="commands-container">
+  <input type="text" id="commandSearch" placeholder="Search commands...">
+
+  <div id="commands"></div>
+</main>
+
+<script src="js/commands.js"></script>
 </body>
 </html>
