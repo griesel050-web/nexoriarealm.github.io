@@ -1,1 +1,135 @@
+:root {
+  --red-main: #e53935;
+  --red-glow: #ff4d4d;
+  --bg-dark: #0e0e0e;
+  --bg-card: #151515;
+  --text-main: #eaeaea;
+  --text-muted: #9e9e9e;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1a0000, var(--bg-dark));
+  color: var(--text-main);
+}
+
+/* NAVBAR */
+.navbar {
+  background: rgba(10, 0, 0, 0.85);
+  border-bottom: 1px solid #300;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--red-main);
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links a {
+  color: var(--text-main);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--red-main);
+}
+
+/* HEADER */
+.page-header {
+  text-align: center;
+  padding: 60px 20px 30px;
+}
+
+.page-header h1 {
+  font-size: 2.6rem;
+  color: var(--red-main);
+  text-shadow: 0 0 20px var(--red-glow);
+}
+
+.page-header p {
+  color: var(--text-muted);
+}
+
+/* COMMANDS */
+.commands-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+#commandSearch {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 25px;
+  background: #0f0f0f;
+  border: 1px solid #300;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.command-category {
+  margin-bottom: 40px;
+}
+
+.command-category h2 {
+  color: var(--red-main);
+  border-left: 4px solid var(--red-main);
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+.command-card {
+  background: var(--bg-card);
+  border: 1px solid #220000;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.command-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 18px rgba(255, 77, 77, 0.15);
+}
+
+.command-name {
+  font-weight: bold;
+  color: var(--red-glow);
+}
+
+.command-desc {
+  color: var(--text-muted);
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+
+.command-permission {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
 
