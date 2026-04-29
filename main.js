@@ -1,14 +1,26 @@
-// Simple scroll effect
-window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar");
+// MOBILE MENU
+const toggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".nav-links");
 
-    if (window.scrollY > 50) {
-        navbar.style.background = "#000";
-        navbar.style.boxShadow = "0 2px 10px rgba(139,0,0,0.5)";
-    } else {
-        navbar.style.boxShadow = "none";
-    }
+toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
 });
 
-// Example future functionality placeholder
-console.log("Nexoria site loaded ✔️");
+// SCROLL ANIMATION
+const cards = document.querySelectorAll(".card");
+
+window.addEventListener("scroll", () => {
+    cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if (top < window.innerHeight - 50) {
+            card.style.opacity = 1;
+            card.style.transform = "translateY(0)";
+        }
+    });
+});
+
+// INIT STATE
+cards.forEach(card => {
+    card.style.opacity = 0;
+    card.style.transform = "translateY(40px)";
+});
