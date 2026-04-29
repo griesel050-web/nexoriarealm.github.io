@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexoria | Home</title>
+
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">Nexoria</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="scripture.html">Scripture</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Jesus Christ Our Creator</h1>
+        <p>Created with faith by Nexus (Willem)</p>
+        <button class="btn" onclick="scrollToSection()">Explore Scripture</button>
+    </div>
+</section>
+
+<!-- SECTION -->
+<section class="section" id="explore">
+    <h2>Faith & Truth</h2>
+    <p>
+        This platform is dedicated to honoring Jesus Christ, our Creator and Savior.
+        May this space bring truth, peace, and spiritual growth to all who visit.
+    </p>
+</section>
+
+<footer>
+    <p>© 2026 Nexoria | Built by Nexus</p>
+</footer>
+
+<script src="main.js"></script>
+<script>
+function scrollToSection() {
+    document.getElementById("explore").scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>
