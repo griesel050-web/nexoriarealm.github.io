@@ -8,38 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .coming-soon {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-      z-index: 2;
-    }
-    .coming-soon-inner { max-width: 600px; }
-    .coming-soon h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 6vw, 4rem);
-      color: var(--text-bright);
-      margin-bottom: 1rem;
-    }
-    .coming-soon p {
-      color: var(--text-mid);
-      font-size: 1.1rem;
-      font-style: italic;
-      margin-bottom: 2rem;
-    }
-    .page-cross {
-      font-size: 5rem;
-      color: var(--gold);
-      filter: drop-shadow(0 0 20px rgba(201,168,76,0.6));
-      margin-bottom: 2rem;
-      display: block;
-    }
-  </style>
 </head>
 <body>
   <canvas id="particles"></canvas>
@@ -50,27 +18,131 @@
         <span class="brand-cross">✝</span>
         <span class="brand-text">NEXORIA</span>
       </a>
-      <button class="burger" id="burger" aria-label="Toggle menu">
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="scripture.html" class="nav-link">Scripture</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <main class="coming-soon" style="padding-top: var(--nav-h);">
-    <div class="coming-soon-inner">
-      <span class="page-cross">✝</span>
-      <h1>About Nexoria</h1>
-      <p>"For we are God's handiwork, created in Christ Jesus to do good works." — Ephesians 2:10</p>
-      <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom:2rem;">Willem (Nexus) is building this page to share his story and faith journey.</p>
-      <a href="index.html" class="btn btn-primary">← Back Home</a>
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <div class="hero-glow"></div>
+    <div class="page-hero-content">
+      <p class="hero-eyebrow reveal">Our Story</p>
+      <h1 class="hero-title reveal" style="--d:0.3s">About <span class="accent">Nexoria</span></h1>
+      <p class="hero-verse reveal" style="--d:0.5s">"For we are God's handiwork, created in Christ Jesus to do good works." <em>— Ephesians 2:10</em></p>
     </div>
-  </main>
+  </header>
+
+  <!-- MISSION -->
+  <section class="section">
+    <div class="container">
+      <div class="about-mission reveal">
+        <div class="mission-cross">✝</div>
+        <div class="mission-text">
+          <p class="eyebrow-label">Our Mission</p>
+          <h2 class="section-title">Why <span class="accent">Nexoria</span> Exists</h2>
+          <p>Nexoria was born out of one man's desire to honour Jesus Christ in every area of life — including online. In a world full of noise, distraction, and confusion, this is a place set apart: a digital sanctuary dedicated to the glory of God and the truth of His Word.</p>
+          <p>We believe Jesus is not a myth, not a concept, and not simply a good teacher. He is the Creator of all things, the Saviour of the world, and the Living God who rose from the dead. Every page on this website is an act of worship to Him.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <div class="orn-divider"><span class="orn-cross">✝</span></div>
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">What We <span class="accent">Believe</span></h2>
+        <p class="section-sub">Core convictions of the Nexoria faith</p>
+      </div>
+      <div class="beliefs-grid">
+        <div class="belief-card reveal" style="--d:0.05s">
+          <div class="belief-num">I</div>
+          <h3>The Trinity</h3>
+          <p>We believe in one God, eternally existing in three persons — Father, Son, and Holy Spirit. Each is fully God, co-equal and co-eternal. This is the foundation of all Christian faith.</p>
+        </div>
+        <div class="belief-card reveal" style="--d:0.1s">
+          <div class="belief-num">II</div>
+          <h3>Jesus Christ</h3>
+          <p>We believe Jesus is fully God and fully man. He was born of a virgin, lived a sinless life, died on the cross for our sins, rose bodily from the dead on the third day, and ascended to the Father.</p>
+        </div>
+        <div class="belief-card reveal" style="--d:0.15s">
+          <div class="belief-num">III</div>
+          <h3>The Bible</h3>
+          <p>We believe the Bible is the inspired, infallible Word of God — profitable for teaching, rebuking, correcting, and training in righteousness, so that the servant of God may be thoroughly equipped.</p>
+        </div>
+        <div class="belief-card reveal" style="--d:0.2s">
+          <div class="belief-num">IV</div>
+          <h3>Salvation by Grace</h3>
+          <p>We believe salvation is a free gift of God, received through faith in Jesus Christ alone — not by works, not by religion, not by being good enough. It is grace, from start to finish.</p>
+        </div>
+        <div class="belief-card reveal" style="--d:0.25s">
+          <div class="belief-num">V</div>
+          <h3>The Holy Spirit</h3>
+          <p>We believe the Holy Spirit dwells in every believer, convicting the world of sin, guiding God's people into truth, and empowering them to live in holiness and witness.</p>
+        </div>
+        <div class="belief-card reveal" style="--d:0.3s">
+          <div class="belief-num">VI</div>
+          <h3>The Return of Christ</h3>
+          <p>We believe Jesus will physically return to earth to judge the living and the dead. Every knee will bow, every tongue will confess that Jesus Christ is Lord, to the glory of God the Father.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT WILLEM -->
+  <div class="orn-divider"><span class="orn-cross">✝</span></div>
+  <section class="section personal-section">
+    <div class="container">
+      <div class="personal-inner reveal">
+        <div class="big-cross-wrap"><span class="big-cross">✝</span></div>
+        <div class="personal-text">
+          <p class="eyebrow-label">The Person Behind Nexoria</p>
+          <h2 class="section-title">Meet <span class="accent">Willem</span></h2>
+          <p>My name is <strong>Willem</strong>, known online as <strong>Nexus</strong>. I'm the founder of Nexoria — a name that represents my desire to be a nexus point, connecting people to the greatest truth in the universe: Jesus Christ.</p>
+          <p>I built this website with my own hands not to impress anyone, but because I believe Jesus deserves to be honoured in every space — including the internet. He gave me life, purpose, and salvation. The least I can do is build Him a home online.</p>
+          <p>If you're reading this and you've never encountered the real Jesus — not religion, not rules, but a living relationship with the Son of God — I would love to talk. Reach out on the contact page. I mean it.</p>
+          <blockquote class="personal-quote">"For to me, to live is Christ and to die is gain." — Philippians 1:21</blockquote>
+          <a href="contact.html" class="btn btn-primary" style="margin-top:1.5rem">Reach Out to Willem</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BANNER -->
+  <section class="quote-banner reveal">
+    <div class="qb-inner">
+      <span class="qmark">"</span>
+      <blockquote>For we are co-workers in God's service; you are God's field, God's building.</blockquote>
+      <cite>1 Corinthians 3:9</cite>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-cross">✝</span>
+        <span class="brand-text">NEXORIA</span>
+      </a>
+      <p class="footer-tagline">Honour &amp; Glory to Jesus Christ — Creator of All</p>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="scripture.html">Scripture</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2026 Nexoria &nbsp;·&nbsp; Built by Willem (Nexus) &nbsp;·&nbsp; All glory to God</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
