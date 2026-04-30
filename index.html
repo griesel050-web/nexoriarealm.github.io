@@ -1,67 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexoria | Home</title>
-
-<link rel="stylesheet" href="global.css">
-<link rel="stylesheet" href="home.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexoria | Jesus Our Creator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<nav class="navbar">
-    <div class="logo">Nexoria</div>
-    <div class="menu-toggle">☰</div>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="scripture.html">Scripture</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
+  <!-- ── PARTICLES CANVAS ── -->
+  <canvas id="particles"></canvas>
 
-<section class="hero">
+  <!-- ── NAVBAR ── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-cross">✝</span>
+        <span class="brand-text">NEXORIA</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="scripture.html" class="nav-link">Scripture</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-rays"></div>
+
     <div class="hero-content">
-        <h1>Jesus Christ <span class="highlight">Our Creator</span></h1>
-        <p>A digital sanctuary created by Nexus (Willem)</p>
-        <button class="btn" onclick="scrollToContent()">Explore</button>
+      <p class="hero-eyebrow" data-reveal>A Nexoria Tribute</p>
+      <h1 class="hero-title" data-reveal>
+        <span class="line">Jesus</span>
+        <span class="line accent">Our Creator</span>
+      </h1>
+      <p class="hero-verse" data-reveal>
+        "In the beginning was the Word, and the Word was with God,<br />
+        and the Word was God." — John 1:1
+      </p>
+      <div class="hero-actions" data-reveal>
+        <a href="scripture.html" class="btn btn-primary">Explore Scripture</a>
+        <a href="about.html" class="btn btn-ghost">Our Story</a>
+      </div>
     </div>
-</section>
 
-<section class="section" id="content">
-    <h2>Faith. Truth. Purpose.</h2>
-
-    <div class="card-container">
-        <div class="card">
-            <h3>Scripture</h3>
-            <p>Explore powerful verses that guide and inspire faith.</p>
-        </div>
-
-        <div class="card">
-            <h3>About Nexoria</h3>
-            <p>A mission to glorify Jesus Christ through technology.</p>
-        </div>
-
-        <div class="card">
-            <h3>Connect</h3>
-            <p>Reach out and be part of the journey.</p>
-        </div>
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
-</section>
+  </header>
 
-<footer>
-    <p>© 2026 Nexoria | Built by Nexus</p>
-</footer>
+  <!-- ── DIVIDER ── -->
+  <div class="divider">
+    <span class="divider-cross">✝</span>
+  </div>
 
-<script src="main.js"></script>
-<script>
-function scrollToContent() {
-    document.getElementById("content").scrollIntoView({ behavior: "smooth" });
-}
-</script>
+  <!-- ── PILLARS SECTION ── -->
+  <section class="pillars">
+    <div class="section-header" data-reveal>
+      <h2 class="section-title">The <span class="accent">Foundation</span></h2>
+      <p class="section-sub">Three eternal truths we stand upon</p>
+    </div>
 
+    <div class="pillars-grid">
+      <article class="pillar-card" data-reveal style="--delay:0.1s">
+        <div class="pillar-icon">☩</div>
+        <h3>The Word Made Flesh</h3>
+        <p>Jesus is the living Word of God — present at creation, the Alpha and Omega, the beginning and the end of all things seen and unseen.</p>
+        <a href="scripture.html" class="card-link">Read Scripture →</a>
+      </article>
+
+      <article class="pillar-card featured" data-reveal style="--delay:0.25s">
+        <div class="pillar-icon">✦</div>
+        <h3>Creator of All</h3>
+        <p>"For in Him all things were created: things in heaven and on earth, visible and invisible." Through Christ, the cosmos was spoken into being.</p>
+        <a href="scripture.html" class="card-link">Colossians 1:16 →</a>
+      </article>
+
+      <article class="pillar-card" data-reveal style="--delay:0.4s">
+        <div class="pillar-icon">♱</div>
+        <h3>Everlasting Love</h3>
+        <p>From the cross to the empty tomb — His love is the greatest force in existence. No power above, below, or beyond can separate us from it.</p>
+        <a href="scripture.html" class="card-link">Romans 8:38–39 →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── QUOTE BANNER ── -->
+  <section class="quote-banner" data-reveal>
+    <div class="quote-inner">
+      <blockquote>
+        "I am the way, the truth, and the life.<br />
+        No one comes to the Father except through me."
+      </blockquote>
+      <cite>— Jesus Christ &nbsp;|&nbsp; John 14:6</cite>
+    </div>
+  </section>
+
+  <!-- ── ATTRIBUTES SECTION ── -->
+  <section class="attributes">
+    <div class="section-header" data-reveal>
+      <h2 class="section-title">Who <span class="accent">He Is</span></h2>
+      <p class="section-sub">Names and attributes of our Lord</p>
+    </div>
+
+    <div class="attr-list">
+      <div class="attr-item" data-reveal style="--delay:0.05s"><span class="attr-num">01</span><span class="attr-name">The Alpha & Omega</span></div>
+      <div class="attr-item" data-reveal style="--delay:0.1s"><span class="attr-num">02</span><span class="attr-name">The Lamb of God</span></div>
+      <div class="attr-item" data-reveal style="--delay:0.15s"><span class="attr-num">03</span><span class="attr-name">King of Kings</span></div>
+      <div class="attr-item" data-reveal style="--delay:0.2s"><span class="attr-num">04</span><span class="attr-name">The Good Shepherd</span></div>
+      <div class="attr-item" data-reveal style="--delay:0.25s"><span class="attr-num">05</span><span class="attr-name">Light of the World</span></div>
+      <div class="attr-item" data-reveal style="--delay:0.3s"><span class="attr-num">06</span><span class="attr-name">The Resurrection</span></div>
+      <div class="attr-item" data-reveal style="--delay:0.35s"><span class="attr-num">07</span><span class="attr-name">Emmanuel — God With Us</span></div>
+      <div class="attr-item" data-reveal style="--delay:0.4s"><span class="attr-num">08</span><span class="attr-name">The Bread of Life</span></div>
+    </div>
+  </section>
+
+  <!-- ── PERSONAL SECTION ── -->
+  <section class="personal-section" data-reveal>
+    <div class="personal-inner">
+      <div class="personal-text">
+        <p class="personal-label">A Word from Nexus</p>
+        <h2>Built with <span class="accent">Faith</span></h2>
+        <p>
+          My name is <strong>Willem</strong> — known online as <strong>Nexus</strong>. This site was built
+          not as a project, but as an act of worship. Through Nexoria, I want to share
+          the love of Jesus Christ with anyone who finds their way here.
+        </p>
+        <p>
+          He is not just a historical figure — He is the Creator of every atom, every
+          galaxy, every breath we take. May these pages draw you closer to Him.
+        </p>
+        <a href="about.html" class="btn btn-primary" style="margin-top:1.5rem">Learn More About Us</a>
+      </div>
+      <div class="personal-cross-wrap">
+        <div class="big-cross">✝</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-cross">✝</span>
+        <span class="brand-text">NEXORIA</span>
+      </div>
+      <p class="footer-tagline">Honour & Glory to Jesus Christ — Creator of All</p>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="scripture.html">Scripture</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2026 Nexoria · Built by Willem (Nexus) · All glory to God</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
