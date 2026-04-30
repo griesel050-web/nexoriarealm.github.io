@@ -8,38 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .coming-soon {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-      z-index: 2;
-    }
-    .coming-soon-inner { max-width: 600px; }
-    .coming-soon h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 6vw, 4rem);
-      color: var(--text-bright);
-      margin-bottom: 1rem;
-    }
-    .coming-soon p {
-      color: var(--text-mid);
-      font-size: 1.1rem;
-      font-style: italic;
-      margin-bottom: 2rem;
-    }
-    .page-cross {
-      font-size: 5rem;
-      color: var(--red-vivid);
-      filter: drop-shadow(0 0 20px rgba(192,57,43,0.7));
-      margin-bottom: 2rem;
-      display: block;
-    }
-  </style>
 </head>
 <body>
   <canvas id="particles"></canvas>
@@ -50,27 +18,240 @@
         <span class="brand-cross">✝</span>
         <span class="brand-text">NEXORIA</span>
       </a>
-      <button class="burger" id="burger" aria-label="Toggle menu">
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="scripture.html" class="nav-link">Scripture</a></li>
+        <li><a href="scripture.html" class="nav-link active">Scripture</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <main class="coming-soon" style="padding-top: var(--nav-h);">
-    <div class="coming-soon-inner">
-      <span class="page-cross">✝</span>
-      <h1>Scripture</h1>
-      <p>"Your word is a lamp to my feet and a light to my path." — Psalm 119:105</p>
-      <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom:2rem;">This page is coming soon. Willem is preparing it with care.</p>
-      <a href="index.html" class="btn btn-primary">← Back Home</a>
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <div class="hero-glow"></div>
+    <div class="page-hero-content">
+      <p class="hero-eyebrow reveal">The Living Word</p>
+      <h1 class="hero-title reveal" style="--d:0.3s"><span class="accent">Scripture</span></h1>
+      <p class="hero-verse reveal" style="--d:0.5s">"Your word is a lamp to my feet and a light to my path." <em>— Psalm 119:105</em></p>
     </div>
-  </main>
+  </header>
+
+  <!-- FILTER TABS -->
+  <div class="filter-bar">
+    <div class="container">
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="creation">Creation</button>
+        <button class="filter-tab" data-filter="salvation">Salvation</button>
+        <button class="filter-tab" data-filter="love">Love</button>
+        <button class="filter-tab" data-filter="strength">Strength</button>
+        <button class="filter-tab" data-filter="peace">Peace</button>
+        <button class="filter-tab" data-filter="identity">Identity of Christ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTURE GRID -->
+  <section class="section">
+    <div class="container">
+      <div class="scripture-grid" id="scriptureGrid">
+
+        <!-- CREATION -->
+        <div class="scr-card reveal" data-cat="creation">
+          <span class="scr-tag">Creation</span>
+          <h3>John 1:1–3</h3>
+          <p>"In the beginning was the Word, and the Word was with God, and the Word was God. He was with God in the beginning. Through him all things were made; without him nothing was made that has been made."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="creation">
+          <span class="scr-tag">Creation</span>
+          <h3>Colossians 1:16–17</h3>
+          <p>"For in him all things were created: things in heaven and on earth, visible and invisible, whether thrones or powers or rulers or authorities; all things have been created through him and for him. He is before all things, and in him all things hold together."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="creation">
+          <span class="scr-tag">Creation</span>
+          <h3>Genesis 1:1</h3>
+          <p>"In the beginning God created the heavens and the earth."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="creation">
+          <span class="scr-tag">Creation</span>
+          <h3>Hebrews 1:2–3</h3>
+          <p>"…but in these last days he has spoken to us by his Son, whom he appointed heir of all things, and through whom also he made the universe. The Son is the radiance of God's glory and the exact representation of his being, sustaining all things by his powerful word."</p>
+        </div>
+
+        <!-- SALVATION -->
+        <div class="scr-card reveal" data-cat="salvation">
+          <span class="scr-tag">Salvation</span>
+          <h3>John 3:16</h3>
+          <p>"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="salvation">
+          <span class="scr-tag">Salvation</span>
+          <h3>Romans 10:9</h3>
+          <p>"If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="salvation">
+          <span class="scr-tag">Salvation</span>
+          <h3>John 14:6</h3>
+          <p>"Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'"</p>
+        </div>
+        <div class="scr-card reveal" data-cat="salvation">
+          <span class="scr-tag">Salvation</span>
+          <h3>Acts 4:12</h3>
+          <p>"Salvation is found in no one else, for there is no other name under heaven given to mankind by which we must be saved."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="salvation">
+          <span class="scr-tag">Salvation</span>
+          <h3>Ephesians 2:8–9</h3>
+          <p>"For it is by grace you have been saved, through faith — and this is not from yourselves, it is the gift of God — not by works, so that no one can boast."</p>
+        </div>
+
+        <!-- LOVE -->
+        <div class="scr-card reveal" data-cat="love">
+          <span class="scr-tag">Love</span>
+          <h3>Romans 8:38–39</h3>
+          <p>"For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="love">
+          <span class="scr-tag">Love</span>
+          <h3>1 John 4:9–10</h3>
+          <p>"This is how God showed his love among us: He sent his one and only Son into the world that we might live through him. This is love: not that we loved God, but that he loved us and sent his Son as an atoning sacrifice for our sins."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="love">
+          <span class="scr-tag">Love</span>
+          <h3>Jeremiah 31:3</h3>
+          <p>"The Lord appeared to us in the past, saying: 'I have loved you with an everlasting love; I have drawn you with unfailing kindness.'"</p>
+        </div>
+        <div class="scr-card reveal" data-cat="love">
+          <span class="scr-tag">Love</span>
+          <h3>John 15:13</h3>
+          <p>"Greater love has no one than this: to lay down one's life for one's friends."</p>
+        </div>
+
+        <!-- STRENGTH -->
+        <div class="scr-card reveal" data-cat="strength">
+          <span class="scr-tag">Strength</span>
+          <h3>Philippians 4:13</h3>
+          <p>"I can do all this through him who gives me strength."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="strength">
+          <span class="scr-tag">Strength</span>
+          <h3>Isaiah 40:31</h3>
+          <p>"But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="strength">
+          <span class="scr-tag">Strength</span>
+          <h3>Joshua 1:9</h3>
+          <p>"Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="strength">
+          <span class="scr-tag">Strength</span>
+          <h3>Psalm 46:1</h3>
+          <p>"God is our refuge and strength, an ever-present help in trouble."</p>
+        </div>
+
+        <!-- PEACE -->
+        <div class="scr-card reveal" data-cat="peace">
+          <span class="scr-tag">Peace</span>
+          <h3>John 14:27</h3>
+          <p>"Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="peace">
+          <span class="scr-tag">Peace</span>
+          <h3>Philippians 4:6–7</h3>
+          <p>"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="peace">
+          <span class="scr-tag">Peace</span>
+          <h3>Isaiah 26:3</h3>
+          <p>"You will keep in perfect peace those whose minds are steadfast, because they trust in you."</p>
+        </div>
+        <div class="scr-card reveal" data-cat="peace">
+          <span class="scr-tag">Peace</span>
+          <h3>Matthew 11:28–29</h3>
+          <p>"Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls."</p>
+        </div>
+
+        <!-- IDENTITY -->
+        <div class="scr-card reveal" data-cat="identity">
+          <span class="scr-tag">Identity of Christ</span>
+          <h3>Revelation 1:8</h3>
+          <p>"'I am the Alpha and the Omega,' says the Lord God, 'who is, and who was, and who is to come, the Almighty.'"</p>
+        </div>
+        <div class="scr-card reveal" data-cat="identity">
+          <span class="scr-tag">Identity of Christ</span>
+          <h3>John 8:12</h3>
+          <p>"When Jesus spoke again to the people, he said, 'I am the light of the world. Whoever follows me will never walk in darkness, but will have the light of life.'"</p>
+        </div>
+        <div class="scr-card reveal" data-cat="identity">
+          <span class="scr-tag">Identity of Christ</span>
+          <h3>John 11:25–26</h3>
+          <p>"Jesus said to her, 'I am the resurrection and the life. The one who believes in me will live, even though they die; and whoever lives by believing in me will never die. Do you believe this?'"</p>
+        </div>
+        <div class="scr-card reveal" data-cat="identity">
+          <span class="scr-tag">Identity of Christ</span>
+          <h3>John 6:35</h3>
+          <p>"Then Jesus declared, 'I am the bread of life. Whoever comes to me will never go hungry, and whoever believes in me will never be thirsty.'"</p>
+        </div>
+        <div class="scr-card reveal" data-cat="identity">
+          <span class="scr-tag">Identity of Christ</span>
+          <h3>John 10:11</h3>
+          <p>"'I am the good shepherd. The good shepherd lays down his life for the sheep.'"</p>
+        </div>
+
+      </div><!-- /scripture-grid -->
+    </div>
+  </section>
+
+  <!-- PSALM 23 FULL -->
+  <div class="orn-divider"><span class="orn-cross">✝</span></div>
+  <section class="section psalm-section">
+    <div class="container">
+      <div class="psalm-card reveal">
+        <h2 class="psalm-title">Psalm 23 <span class="accent">— The Lord is My Shepherd</span></h2>
+        <div class="psalm-text">
+          <p>The Lord is my shepherd, I lack nothing.<br />
+          He makes me lie down in green pastures,<br />
+          he leads me beside quiet waters,<br />
+          he refreshes my soul.</p>
+          <p>He guides me along the right paths<br />
+          for his name's sake.<br />
+          Even though I walk through the darkest valley,<br />
+          I will fear no evil,<br />
+          for you are with me;<br />
+          your rod and your staff, they comfort me.</p>
+          <p>You prepare a table before me<br />
+          in the presence of my enemies.<br />
+          You anoint my head with oil;<br />
+          my cup overflows.</p>
+          <p>Surely your goodness and love will follow me<br />
+          all the days of my life,<br />
+          and I will dwell in the house of the Lord forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="brand-cross">✝</span>
+        <span class="brand-text">NEXORIA</span>
+      </a>
+      <p class="footer-tagline">Honour &amp; Glory to Jesus Christ — Creator of All</p>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="scripture.html">Scripture</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="footer-copy">© 2026 Nexoria &nbsp;·&nbsp; Built by Willem (Nexus) &nbsp;·&nbsp; All glory to God</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
