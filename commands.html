@@ -4,11 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Commands — Nexoria</title>
-  <meta name="description" content="Full command list for Nexoria — economy, claims, homes, teleport and more." />
+  <meta name="description" content="Full command reference for Nexoria — economy, skills, claims, warps, cosmetics and more." />
   <link rel="stylesheet" href="global.css" />
 
   <style>
-    /* ── PAGE HERO ─────────────────────────────────── */
     .page-hero {
       padding: calc(var(--nav-height) + 5rem) 5% 4rem;
       text-align: center;
@@ -19,242 +18,94 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 40%,
-        rgba(232,0,13,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(232,0,13,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
     .page-hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(232,0,13,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232,0,13,0.04) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(232,0,13,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(232,0,13,0.04) 1px, transparent 1px);
       background-size: 60px 60px;
       pointer-events: none;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
     }
     .page-hero-content { position: relative; z-index: 1; }
-    .page-eyebrow {
-      display: inline-block;
-      font-family: var(--font-ui);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--red-primary);
-      margin-bottom: 1.2rem;
-    }
-    .page-hero h1 {
-      font-size: clamp(2.5rem, 7vw, 5rem);
-      font-weight: 900;
-      margin-bottom: 1rem;
-      animation: heroSlide 0.7s ease both;
-    }
-    .page-hero p {
-      max-width: 540px;
-      margin: 0 auto;
-      color: var(--text-muted);
-      font-size: 1rem;
-      animation: heroSlide 0.7s ease 0.15s both;
-    }
-    @keyframes heroSlide {
-      from { opacity:0; transform: translateY(20px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
+    .page-eyebrow { display: inline-block; font-family: var(--font-ui); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red-primary); margin-bottom: 1.2rem; }
+    .page-hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; margin-bottom: 1rem; animation: heroSlide 0.7s ease both; }
+    .page-hero p { max-width: 560px; margin: 0 auto; color: var(--text-muted); font-size: 1rem; animation: heroSlide 0.7s ease 0.15s both; }
+    @keyframes heroSlide { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
 
-    /* ── SEARCH BAR ────────────────────────────────── */
     #cmd-search-wrap {
-      max-width: 540px;
-      margin: 2rem auto 0;
-      position: relative;
+      max-width: 540px; margin: 2rem auto 0; position: relative;
       animation: heroSlide 0.7s ease 0.3s both;
     }
     #cmdSearch {
-      width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border-bright);
-      border-radius: var(--radius);
-      padding: 0.8rem 1rem 0.8rem 2.8rem;
-      color: var(--text-white);
-      font-family: var(--font-ui);
-      font-size: 1rem;
-      letter-spacing: 0.04em;
-      outline: none;
+      width: 100%; background: var(--bg-card); border: 1px solid var(--border-bright);
+      border-radius: var(--radius); padding: 0.8rem 1rem 0.8rem 2.8rem;
+      color: var(--text-white); font-family: var(--font-ui); font-size: 1rem;
+      letter-spacing: 0.04em; outline: none;
       transition: border-color var(--transition), box-shadow var(--transition);
     }
     #cmdSearch::placeholder { color: var(--text-muted); }
-    #cmdSearch:focus {
-      border-color: var(--red-primary);
-      box-shadow: 0 0 16px var(--red-glow);
-    }
-    .search-icon {
-      position: absolute;
-      left: 0.9rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      font-size: 1rem;
-      pointer-events: none;
-    }
+    #cmdSearch:focus { border-color: var(--red-primary); box-shadow: 0 0 16px var(--red-glow); }
+    .search-icon { position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1rem; pointer-events: none; }
 
-    /* ── COMMANDS LAYOUT ───────────────────────────── */
-    #commands-section {
-      padding: 4rem 5% 7rem;
-    }
+    #commands-section { padding: 4rem 5% 7rem; }
     .commands-layout {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 2.5rem;
-      align-items: start;
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 220px 1fr; gap: 2.5rem; align-items: start;
     }
-    @media (max-width: 768px) {
-      .commands-layout { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 768px) { .commands-layout { grid-template-columns: 1fr; } }
 
-    /* ── SIDEBAR CATEGORY NAV ──────────────────────── */
-    .cmd-sidebar {
-      position: sticky;
-      top: calc(var(--nav-height) + 1.5rem);
-    }
-    .sidebar-title {
-      font-family: var(--font-ui);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.8rem;
-      padding-left: 0.6rem;
-    }
-    .sidebar-nav {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
+    .cmd-sidebar { position: sticky; top: calc(var(--nav-height) + 1.5rem); }
+    .sidebar-title { font-family: var(--font-ui); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.8rem; padding-left: 0.6rem; }
+    .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 0.2rem; }
     .sidebar-nav a {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.55rem 0.75rem;
-      border-radius: var(--radius);
-      font-family: var(--font-ui);
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      text-decoration: none;
+      display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.75rem;
+      border-radius: var(--radius); font-family: var(--font-ui); font-size: 0.88rem;
+      font-weight: 600; letter-spacing: 0.04em; color: var(--text-muted); text-decoration: none;
       transition: background var(--transition), color var(--transition);
     }
-    .sidebar-nav a:hover,
-    .sidebar-nav a.active {
-      background: var(--red-faint);
-      color: var(--red-bright);
-    }
-    .sidebar-nav .cat-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--red-primary);
-      flex-shrink: 0;
-    }
+    .sidebar-nav a:hover, .sidebar-nav a.active { background: var(--red-faint); color: var(--red-bright); }
+    .cat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red-primary); flex-shrink: 0; }
 
-    /* ── COMMAND LIST ──────────────────────────────── */
     .cmd-main { display: flex; flex-direction: column; gap: 3rem; }
-
-    .cmd-category {
-      scroll-margin-top: calc(var(--nav-height) + 1.5rem);
-    }
+    .cmd-category { scroll-margin-top: calc(var(--nav-height) + 1.5rem); }
     .cmd-category-title {
-      font-family: var(--font-ui);
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--red-primary);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
+      font-family: var(--font-ui); font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--red-primary); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
     }
-    .cmd-category-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
+    .cmd-category-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .cmd-plugin-tag {
+      font-family: var(--font-ui); font-size: 0.62rem; letter-spacing: 0.1em;
+      color: var(--text-muted); background: var(--bg-raised); border: 1px solid var(--border);
+      padding: 0.15rem 0.5rem; border-radius: 999px; white-space: nowrap;
     }
-
-    /* Command entry row */
     .cmd-entry {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.2rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.5rem 1rem;
-      align-items: start;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem 1.2rem; display: grid; grid-template-columns: 1fr auto;
+      gap: 0.4rem 1rem; align-items: start;
       transition: border-color var(--transition), transform var(--transition);
       margin-bottom: 0.6rem;
     }
     .cmd-entry:last-child { margin-bottom: 0; }
-    .cmd-entry:hover {
-      border-color: var(--border-bright);
-      transform: translateX(4px);
-    }
-    .cmd-name {
-      font-family: 'Courier New', monospace;
-      font-size: 0.92rem;
-      color: var(--red-bright);
-      font-weight: 700;
-      letter-spacing: 0.03em;
-    }
-    .cmd-args {
-      font-family: 'Courier New', monospace;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-    .cmd-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      grid-column: 1;
-      margin-top: 0.2rem;
-      font-family: var(--font-body);
-    }
-    /* Rank badge pill on the right */
-    .cmd-rank {
-      font-family: var(--font-ui);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      white-space: nowrap;
-      align-self: start;
-    }
-    .rank-all    { background: rgba(107,107,122,0.2); color:#9ca3af; }
-    .rank-vip    { background: rgba(34,197,94,0.15);  color:#22c55e; }
-    .rank-elite  { background: rgba(59,130,246,0.15); color:#3b82f6; }
-    .rank-god    { background: rgba(168,85,247,0.15); color:#a855f7; }
-    .rank-mvp    { background: rgba(232,0,13,0.15);   color:#ff1a26; }
-
-    /* Empty search state */
-    #noResults {
-      display: none;
-      text-align: center;
-      padding: 4rem 1rem;
-      color: var(--text-muted);
-      font-family: var(--font-ui);
-      font-size: 1rem;
-      letter-spacing: 0.06em;
-    }
+    .cmd-entry:hover { border-color: var(--border-bright); transform: translateX(4px); }
+    .cmd-name { font-family: 'Courier New', monospace; font-size: 0.92rem; color: var(--red-bright); font-weight: 700; }
+    .cmd-args { font-family: 'Courier New', monospace; font-size: 0.82rem; color: var(--text-muted); }
+    .cmd-desc { font-size: 0.85rem; color: var(--text-muted); grid-column: 1; margin-top: 0.2rem; font-family: var(--font-body); line-height: 1.5; }
+    .cmd-rank { font-family: var(--font-ui); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 999px; white-space: nowrap; align-self: start; }
+    .rank-all   { background: rgba(107,107,122,0.2); color:#9ca3af; }
+    .rank-vip   { background: rgba(34,197,94,0.15);  color:#22c55e; }
+    .rank-elite { background: rgba(59,130,246,0.15); color:#3b82f6; }
+    .rank-god   { background: rgba(168,85,247,0.15); color:#a855f7; }
+    .rank-mvp   { background: rgba(232,0,13,0.15);   color:#ff1a26; }
+    #noResults { display:none; text-align:center; padding:4rem 1rem; color:var(--text-muted); font-family:var(--font-ui); font-size:1rem; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav id="navbar">
     <div class="nav-inner">
       <a class="nav-logo" href="index.html">NEX<span>ORIA</span></a>
@@ -281,323 +132,202 @@
     <a href="#" data-copy-ip>Copy Server IP</a>
   </div>
 
-  <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="page-hero-content">
       <span class="page-eyebrow">Reference</span>
       <h1>Commands</h1>
-      <p>Every command available on Nexoria. Filter by name or browse by category.</p>
-      <!-- Live search box — JS filters the list as you type -->
+      <p>Every command on Nexoria — sourced from our 64 active plugins. Search by name or browse by category.</p>
       <div id="cmd-search-wrap">
         <span class="search-icon">🔍</span>
-        <input id="cmdSearch" type="text" placeholder="Search commands…" autocomplete="off" />
+        <input id="cmdSearch" type="text" placeholder="Search commands… e.g. /ah, /skills, /claim" autocomplete="off" />
       </div>
     </div>
   </section>
 
-  <!-- COMMANDS SECTION -->
   <section id="commands-section">
     <div class="commands-layout">
 
-      <!-- Sidebar category nav -->
       <aside class="cmd-sidebar">
         <div class="sidebar-title">Categories</div>
         <ul class="sidebar-nav" id="sidebarNav">
           <li><a href="#cat-general"   class="active"><span class="cat-dot"></span> General</a></li>
-          <li><a href="#cat-homes"            ><span class="cat-dot"></span> Homes</a></li>
-          <li><a href="#cat-teleport"         ><span class="cat-dot"></span> Teleport</a></li>
           <li><a href="#cat-economy"          ><span class="cat-dot"></span> Economy</a></li>
+          <li><a href="#cat-shop"             ><span class="cat-dot"></span> Shop & Auctions</a></li>
+          <li><a href="#cat-skills"           ><span class="cat-dot"></span> Skills</a></li>
           <li><a href="#cat-claims"           ><span class="cat-dot"></span> Claims</a></li>
-          <li><a href="#cat-shops"            ><span class="cat-dot"></span> Shops</a></li>
+          <li><a href="#cat-homes"            ><span class="cat-dot"></span> Homes & Warps</a></li>
+          <li><a href="#cat-teleport"         ><span class="cat-dot"></span> Teleport</a></li>
+          <li><a href="#cat-teams"            ><span class="cat-dot"></span> Teams</a></li>
+          <li><a href="#cat-cosmetics"        ><span class="cat-dot"></span> Cosmetics & Tags</a></li>
+          <li><a href="#cat-kits"             ><span class="cat-dot"></span> Kits & Crates</a></li>
+          <li><a href="#cat-voting"           ><span class="cat-dot"></span> Voting</a></li>
           <li><a href="#cat-chat"             ><span class="cat-dot"></span> Chat</a></li>
-          <li><a href="#cat-ranks"            ><span class="cat-dot"></span> Rank Perks</a></li>
+          <li><a href="#cat-rankperks"        ><span class="cat-dot"></span> Rank Perks</a></li>
         </ul>
       </aside>
 
-      <!-- Command list -->
       <main class="cmd-main" id="cmdList">
 
-        <!-- ── GENERAL ── -->
+        <!-- ══ GENERAL ══ -->
         <div class="cmd-category reveal" id="cat-general">
-          <div class="cmd-category-title">General</div>
-
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/help</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Opens the in-game help menu with a full command list.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/spawn</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Teleport back to the main server spawn.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/rules</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">View the server rules — please read them!</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/discord</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Get the Discord invite link in chat.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/rankup</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">View rank upgrade options and pricing.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/report <span class="cmd-args">&lt;player&gt; &lt;reason&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Report a player to the moderation team.</div>
-          </div>
+          <div class="cmd-category-title">General <span class="cmd-plugin-tag">Essentials · GSit · InvSeePlusPlus · SkinsRestorer</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/help</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Open the in-game help menu with a paginated command list.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/spawn</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Teleport back to the main server spawn point.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/rules</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Display the server rules in chat.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/discord</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Get the Discord invite link posted in chat.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/afk</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Toggle AFK status manually. AxAFKZone handles auto-AFK after inactivity.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/sit</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Sit on the ground using GSit. Right-click stairs or slabs to sit on them naturally.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/report <span class="cmd-args">&lt;player&gt; &lt;reason&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Report a rule-breaking player directly to the moderation team.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/invsee <span class="cmd-args">&lt;player&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View another player's inventory via InvSeePlusPlus (limited to staff for ender chest).</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/skin <span class="cmd-args">&lt;username&gt;</span></span></div><span class="cmd-rank rank-vip">VIP+</span><div class="cmd-desc">Change your displayed skin to any Minecraft account's skin via SkinsRestorer.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/skin reset</span></div><span class="cmd-rank rank-vip">VIP+</span><div class="cmd-desc">Reset your skin back to your original Minecraft account skin.</div></div>
         </div>
 
-        <!-- ── HOMES ── -->
-        <div class="cmd-category reveal" id="cat-homes">
-          <div class="cmd-category-title">Homes</div>
-
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/sethome <span class="cmd-args">[name]</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Set a home at your current location. Name is optional (defaults to "home").</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/home <span class="cmd-args">[name]</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Teleport to one of your set homes.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/delhome <span class="cmd-args">&lt;name&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Delete a saved home by name.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/homes</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">List all your saved homes and their coordinates.</div>
-          </div>
-        </div>
-
-        <!-- ── TELEPORT ── -->
-        <div class="cmd-category reveal" id="cat-teleport">
-          <div class="cmd-category-title">Teleport</div>
-
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/tpa <span class="cmd-args">&lt;player&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Send a teleport request to another player.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/tpaccept</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Accept an incoming teleport request.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/tpdeny</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Deny an incoming teleport request.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/warp <span class="cmd-args">[name]</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Teleport to a server warp. Run /warp without arguments to list all available warps.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/back</span></div>
-            <span class="cmd-rank rank-vip">VIP+</span>
-            <div class="cmd-desc">Teleport to your last location before a teleport or death.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/rtp</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Random teleport to a safe location in the wilderness.</div>
-          </div>
-        </div>
-
-        <!-- ── ECONOMY ── -->
+        <!-- ══ ECONOMY ══ -->
         <div class="cmd-category reveal" id="cat-economy">
-          <div class="cmd-category-title">Economy</div>
-
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/bal</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Check your current in-game balance.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/baltop</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">View the richest players on the server.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/pay <span class="cmd-args">&lt;player&gt; &lt;amount&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Send money to another player.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/jobs</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Open the Jobs menu to earn money by performing in-game tasks.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/jobs join <span class="cmd-args">&lt;job&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Join a specific job (e.g. Miner, Farmer, Hunter).</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/ah</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Open the auction house to buy and sell items with other players.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/ah sell <span class="cmd-args">&lt;price&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">List the item in your hand on the auction house at the given price.</div>
-          </div>
+          <div class="cmd-category-title">Economy <span class="cmd-plugin-tag">Essentials · Vault · PlayerPoints · CoinFlipZ · ajLeaderboards</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/bal</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Check your current in-game coin balance.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/baltop</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View the richest players on the server.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/pay <span class="cmd-args">&lt;player&gt; &lt;amount&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Send coins to another player.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/points</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Check your PlayerPoints balance — the secondary currency for cosmetics and crates.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/points pay <span class="cmd-args">&lt;player&gt; &lt;amount&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Send PlayerPoints to another player.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/coinflip <span class="cmd-args">&lt;amount&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Wager coins in a 50/50 coin flip challenge against other players via CoinFlipZ.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/leaderboard <span class="cmd-args">[type]</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View server leaderboards for balance, kills, playtime and more via ajLeaderboards.</div></div>
         </div>
 
-        <!-- ── CLAIMS ── -->
+        <!-- ══ SHOP & AUCTIONS ══ -->
+        <div class="cmd-category reveal" id="cat-shop">
+          <div class="cmd-category-title">Shop & Auctions <span class="cmd-plugin-tag">EconomyShopGUI · CrazyAuctions</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/shop</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Open the main GUI server shop to buy and sell hundreds of items at fixed prices.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/shop <span class="cmd-args">&lt;category&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Jump directly to a shop category (e.g. /shop blocks, /shop food, /shop tools).</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/ah</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Open the CrazyAuctions auction house to browse all active player listings.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/ah sell <span class="cmd-args">&lt;price&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">List the item in your hand on the auction house at your chosen price.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/ah search <span class="cmd-args">&lt;item&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Search auction listings for a specific item by name.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/ah expired</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Collect items from your expired or unsold auction listings.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/ah selling</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View all your currently active auction listings.</div></div>
+        </div>
+
+        <!-- ══ SKILLS ══ -->
+        <div class="cmd-category reveal" id="cat-skills">
+          <div class="cmd-category-title">Skills <span class="cmd-plugin-tag">AuraSkills</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/skills</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Open the AuraSkills GUI — view all skill levels, XP bars and unlocked abilities.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/skills stats</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View your full stat sheet including health, strength, speed and luck.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/skills top <span class="cmd-args">&lt;skill&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View top players for a skill (e.g. /skills top mining, /skills top farming).</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/skills rank</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View your overall skill ranking compared to all other players on the server.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/skills profile <span class="cmd-args">[player]</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View your own or another player's full skills profile and stat breakdown.</div></div>
+        </div>
+
+        <!-- ══ CLAIMS ══ -->
         <div class="cmd-category reveal" id="cat-claims">
-          <div class="cmd-category-title">Claims</div>
-
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/claim</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Claim the chunk you are standing in. Hold a golden shovel and right-click corners for custom shapes.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/unclaim</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Remove the claim you are currently standing in.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/claimlist</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">View all your active claims and remaining claim blocks.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/trust <span class="cmd-args">&lt;player&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Grant a player full build &amp; interact access to your claim.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/untrust <span class="cmd-args">&lt;player&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Remove a player's trust from your claim.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/containertrust <span class="cmd-args">&lt;player&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Allow a player to open containers (chests, furnaces) in your claim without full build access.</div>
-          </div>
+          <div class="cmd-category-title">Claims <span class="cmd-plugin-tag">GriefPrevention · WorldGuard</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/claim</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Claim the chunk you're standing in. Use a golden shovel to create custom-shaped claims.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/unclaim</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Remove the claim you are currently standing inside.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/claimlist</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View all your active claims and your remaining claim block balance.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/trust <span class="cmd-args">&lt;player&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Grant a player full build and interact access inside your claim.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/containertrust <span class="cmd-args">&lt;player&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Allow a player to open chests and containers in your claim without build access.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/accesstrust <span class="cmd-args">&lt;player&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Allow a player to use buttons, levers and pressure plates in your claim only.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/untrust <span class="cmd-args">&lt;player&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Remove a player's access from your claim entirely.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/trustlist</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View all players trusted in the claim you are currently standing in.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/abandonclaim</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Delete the claim you're standing in and refund all its blocks back to your balance.</div></div>
         </div>
 
-        <!-- ── SHOPS ── -->
-        <div class="cmd-category reveal" id="cat-shops">
-          <div class="cmd-category-title">Shops</div>
-
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/shop</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Open the server shop to buy basic resources.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/pshop</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Open the player shop browser to buy from other players' shops.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/pshop create <span class="cmd-args">&lt;price&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Create a player shop listing for the item in your hand.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/pshop remove</span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Remove one of your active shop listings.</div>
-          </div>
+        <!-- ══ HOMES & WARPS ══ -->
+        <div class="cmd-category reveal" id="cat-homes">
+          <div class="cmd-category-title">Homes & Warps <span class="cmd-plugin-tag">Essentials · AxPlayerWarps</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/sethome <span class="cmd-args">[name]</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Save your location as a home. Limits: Member=1, VIP=3, Elite=6, God=12, MVP=unlimited.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/home <span class="cmd-args">[name]</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Teleport to a saved home. Run /home without a name to see your list.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/homes</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">List all your saved home locations and their coordinates.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/delhome <span class="cmd-args">&lt;name&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Delete a saved home by name.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/warp <span class="cmd-args">[name]</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Teleport to a server warp. Run /warp alone to list all available warps.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/pwarp <span class="cmd-args">[name]</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Browse or travel to a player-created public warp via AxPlayerWarps.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/pwarp set <span class="cmd-args">&lt;name&gt;</span></span></div><span class="cmd-rank rank-vip">VIP+</span><div class="cmd-desc">Create a public player warp at your current location for others to use.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/pwarp delete <span class="cmd-args">&lt;name&gt;</span></span></div><span class="cmd-rank rank-vip">VIP+</span><div class="cmd-desc">Delete one of your existing player warps.</div></div>
         </div>
 
-        <!-- ── CHAT ── -->
+        <!-- ══ TELEPORT ══ -->
+        <div class="cmd-category reveal" id="cat-teleport">
+          <div class="cmd-category-title">Teleport <span class="cmd-plugin-tag">Essentials · BetterRTP</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/tpa <span class="cmd-args">&lt;player&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Send a teleport request to another player.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/tpaccept</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Accept an incoming teleport request.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/tpdeny</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Deny an incoming teleport request.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/rtp</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Randomly teleport to a safe unclaimed location in the wilderness via BetterRTP.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/back</span></div><span class="cmd-rank rank-vip">VIP+</span><div class="cmd-desc">Return to your previous location before your last teleport or death.</div></div>
+        </div>
+
+        <!-- ══ TEAMS ══ -->
+        <div class="cmd-category reveal" id="cat-teams">
+          <div class="cmd-category-title">Teams <span class="cmd-plugin-tag">BetterTeams · BetterTeamGUI</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/team create <span class="cmd-args">&lt;name&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Create a new team with yourself as the owner.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/team invite <span class="cmd-args">&lt;player&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Invite a player to join your team.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/team join <span class="cmd-args">&lt;name&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Accept an invite and join an existing team.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/team leave</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Leave your current team.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/team info <span class="cmd-args">[name]</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View info and members of your own or another team.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/team chat <span class="cmd-args">&lt;message&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Send a message visible only to your team members.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/team gui</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Open the BetterTeamGUI to manage your team visually.</div></div>
+        </div>
+
+        <!-- ══ COSMETICS & TAGS ══ -->
+        <div class="cmd-category reveal" id="cat-cosmetics">
+          <div class="cmd-category-title">Cosmetics & Tags <span class="cmd-plugin-tag">UltraCosmetics · DeluxeTags · LibsDisguises</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/cosmetics</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Open the UltraCosmetics GUI — equip hats, gadgets, pets, particles, mounts and morphs.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/tags</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Open DeluxeTags to browse and equip your unlocked chat prefix tags.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/tags list</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View all chat tags you currently own.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/tags set <span class="cmd-args">&lt;tag&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Equip a specific tag to display before your name in chat.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/tags clear</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Remove your currently equipped chat tag.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/disguise <span class="cmd-args">&lt;mob&gt;</span></span></div><span class="cmd-rank rank-elite">Elite+</span><div class="cmd-desc">Disguise yourself as any mob using LibsDisguises (e.g. /disguise creeper, /disguise enderman).</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/undisguise</span></div><span class="cmd-rank rank-elite">Elite+</span><div class="cmd-desc">Remove your current disguise and return to your normal player skin.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/nick <span class="cmd-args">&lt;nickname&gt;</span></span></div><span class="cmd-rank rank-elite">Elite+</span><div class="cmd-desc">Set a custom display nickname in chat (supports colour codes using &amp;).</div></div>
+        </div>
+
+        <!-- ══ KITS & CRATES ══ -->
+        <div class="cmd-category reveal" id="cat-kits">
+          <div class="cmd-category-title">Kits & Crates <span class="cmd-plugin-tag">PlayerKits2 · PhoenixCrates</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/kit</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View all available kits and their cooldown timers.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/kit <span class="cmd-args">&lt;name&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Claim a specific kit (e.g. /kit starter, /kit daily, /kit vip).</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/crate</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">View your PhoenixCrates key inventory and available crate types.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/crate open <span class="cmd-args">&lt;type&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Open a crate using a key (or right-click the physical crate block in-game).</div></div>
+        </div>
+
+        <!-- ══ VOTING ══ -->
+        <div class="cmd-category reveal" id="cat-voting">
+          <div class="cmd-category-title">Voting <span class="cmd-plugin-tag">VotingPlugin · VotifierPlus</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/vote</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Get all voting site links. Vote daily to earn coins, PlayerPoints and crate keys.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/voterewards</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Open the vote rewards menu to claim any pending vote rewards.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/voteparty</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Check vote party progress — hitting the target vote count rewards everyone online.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/votestreak</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Check your consecutive voting streak and upcoming milestone rewards.</div></div>
+        </div>
+
+        <!-- ══ CHAT ══ -->
         <div class="cmd-category reveal" id="cat-chat">
-          <div class="cmd-category-title">Chat</div>
-
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/msg <span class="cmd-args">&lt;player&gt; &lt;message&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Send a private message to another player.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/r <span class="cmd-args">&lt;message&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Reply to the last private message you received.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/ignore <span class="cmd-args">&lt;player&gt;</span></span></div>
-            <span class="cmd-rank rank-all">All</span>
-            <div class="cmd-desc">Ignore a player's messages.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/nick <span class="cmd-args">&lt;nickname&gt;</span></span></div>
-            <span class="cmd-rank rank-elite">Elite+</span>
-            <div class="cmd-desc">Set a custom display nickname. Supports colour codes.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/tag <span class="cmd-args">&lt;tag&gt;</span></span></div>
-            <span class="cmd-rank rank-god">God+</span>
-            <div class="cmd-desc">Set a custom chat prefix tag displayed before your name.</div>
-          </div>
+          <div class="cmd-category-title">Chat <span class="cmd-plugin-tag">ChatManager · EssentialsDiscord · InteractiveChat</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/msg <span class="cmd-args">&lt;player&gt; &lt;message&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Send a private message to another online player.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/r <span class="cmd-args">&lt;message&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Reply to the last private message you received.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/ignore <span class="cmd-args">&lt;player&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Block all messages from a specific player.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/chat <span class="cmd-args">&lt;channel&gt;</span></span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Switch between chat channels (global, local, team) via ChatManager.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/discord link</span></div><span class="cmd-rank rank-all">All</span><div class="cmd-desc">Link your Minecraft account to your Discord account via EssentialsDiscord for cross-platform chat.</div></div>
         </div>
 
-        <!-- ── RANK PERKS ── -->
-        <div class="cmd-category reveal" id="cat-ranks">
-          <div class="cmd-category-title">Rank Perks</div>
-
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/fly</span></div>
-            <span class="cmd-rank rank-elite">Elite+</span>
-            <div class="cmd-desc">Toggle creative flight in your own claim or designated zones.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/gfly</span></div>
-            <span class="cmd-rank rank-god">God+</span>
-            <div class="cmd-desc">God-mode fly — faster flight speed with no stamina limit.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/feed</span></div>
-            <span class="cmd-rank rank-god">God+</span>
-            <div class="cmd-desc">Instantly refill your hunger bar. 5 minute cooldown.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/heal</span></div>
-            <span class="cmd-rank rank-mvp">MVP</span>
-            <div class="cmd-desc">Instantly restore full health. 10 minute cooldown.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/ptime <span class="cmd-args">&lt;day|night&gt;</span></span></div>
-            <span class="cmd-rank rank-vip">VIP+</span>
-            <div class="cmd-desc">Change your personal client-side time of day (does not affect other players).</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/pweather <span class="cmd-args">&lt;sun|rain&gt;</span></span></div>
-            <span class="cmd-rank rank-elite">Elite+</span>
-            <div class="cmd-desc">Change your personal client-side weather.</div>
-          </div>
-          <div class="cmd-entry">
-            <div><span class="cmd-name">/hat</span></div>
-            <span class="cmd-rank rank-vip">VIP+</span>
-            <div class="cmd-desc">Wear any block as a helmet for cosmetic purposes.</div>
-          </div>
+        <!-- ══ RANK PERKS ══ -->
+        <div class="cmd-category reveal" id="cat-rankperks">
+          <div class="cmd-category-title">Rank Perks <span class="cmd-plugin-tag">LuckPerms · Essentials · AxShulkers · ColoredAnvils</span></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/fly</span></div><span class="cmd-rank rank-elite">Elite+</span><div class="cmd-desc">Toggle creative flight within your own claims or designated safe zones.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/ptime <span class="cmd-args">&lt;day|night|reset&gt;</span></span></div><span class="cmd-rank rank-vip">VIP+</span><div class="cmd-desc">Change your client-side time of day without affecting other players.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/pweather <span class="cmd-args">&lt;sun|rain|reset&gt;</span></span></div><span class="cmd-rank rank-elite">Elite+</span><div class="cmd-desc">Change your client-side weather without affecting others.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/hat</span></div><span class="cmd-rank rank-vip">VIP+</span><div class="cmd-desc">Wear any block in your hand as a cosmetic helmet.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/feed</span></div><span class="cmd-rank rank-god">God+</span><div class="cmd-desc">Instantly restore your hunger bar. Cooldown applies between uses.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/heal</span></div><span class="cmd-rank rank-mvp">MVP</span><div class="cmd-desc">Instantly restore full health and hunger. Cooldown applies.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/workbench</span></div><span class="cmd-rank rank-elite">Elite+</span><div class="cmd-desc">Open a portable crafting table from anywhere without placing one.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/enderchest</span></div><span class="cmd-rank rank-god">God+</span><div class="cmd-desc">Access your ender chest inventory from anywhere in the world.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/shulker <span class="cmd-args">&lt;slot&gt;</span></span></div><span class="cmd-rank rank-vip">VIP+</span><div class="cmd-desc">Preview shulker box contents from your inventory without placing it, via AxShulkers.</div></div>
+          <div class="cmd-entry"><div><span class="cmd-name">/back</span></div><span class="cmd-rank rank-vip">VIP+</span><div class="cmd-desc">Teleport back to your previous location before a teleport or death.</div></div>
         </div>
 
-        <!-- No results message (hidden, shown by JS search) -->
         <div id="noResults">No commands found matching your search.</div>
 
       </main>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer id="footer">
     <div class="footer-logo">NEX<span>ORIA</span></div>
     <div class="footer-tagline">EU Survival SMP · Est. 2024</div>
@@ -613,30 +343,22 @@
 
   <script src="main.js"></script>
   <script>
-    /* ── COMMAND SEARCH ─────────────────────────────────────────
-       Filters .cmd-entry rows in real time as the user types.
-       Also hides entire category sections if they have no results.
-    ────────────────────────────────────────────────────────────── */
-    const searchInput  = document.getElementById('cmdSearch');
-    const noResults    = document.getElementById('noResults');
-    const categories   = document.querySelectorAll('.cmd-category');
+    /* ── COMMAND SEARCH — filters entries as you type ────────── */
+    const searchInput = document.getElementById('cmdSearch');
+    const noResults   = document.getElementById('noResults');
 
     searchInput.addEventListener('input', () => {
       const q = searchInput.value.toLowerCase().trim();
       let anyVisible = false;
 
-      categories.forEach(cat => {
+      document.querySelectorAll('.cmd-category').forEach(cat => {
         const entries = cat.querySelectorAll('.cmd-entry');
         let catVisible = false;
-
         entries.forEach(entry => {
-          const text = entry.textContent.toLowerCase();
-          const match = !q || text.includes(q);
+          const match = !q || entry.textContent.toLowerCase().includes(q);
           entry.style.display = match ? '' : 'none';
           if (match) catVisible = true;
         });
-
-        // Hide category title if no commands match
         cat.style.display = catVisible ? '' : 'none';
         if (catVisible) anyVisible = true;
       });
@@ -644,12 +366,8 @@
       noResults.style.display = anyVisible ? 'none' : 'block';
     });
 
-    /* ── SIDEBAR ACTIVE STATE ────────────────────────────────────
-       Highlights the sidebar link for the category currently in view.
-    ────────────────────────────────────────────────────────────── */
+    /* ── SIDEBAR ACTIVE STATE — highlights current category ──── */
     const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
-    const catEls = document.querySelectorAll('.cmd-category');
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -661,7 +379,7 @@
       });
     }, { rootMargin: '-30% 0px -60% 0px' });
 
-    catEls.forEach(el => observer.observe(el));
+    document.querySelectorAll('.cmd-category').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
