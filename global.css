@@ -288,6 +288,7 @@ a:hover { color: var(--text-white); }
   gap: 5px;
   cursor: pointer;
   padding: 4px;
+  z-index: 1001;
 }
 .nav-hamburger span {
   display: block;
@@ -295,30 +296,54 @@ a:hover { color: var(--text-white); }
   height: 2px;
   background: var(--text-white);
   border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
+/* Animate hamburger to X when menu is open */
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Mobile menu */
+/* Mobile menu — fullscreen dropdown */
 .nav-mobile-menu {
   display: none;
   position: fixed;
   top: var(--nav-height);
   left: 0;
   right: 0;
-  background: rgba(10, 10, 11, 0.98);
-  border-bottom: 1px solid var(--border);
-  padding: 1.5rem 5%;
+  bottom: 0;
+  background: rgba(10, 10, 11, 0.99);
+  padding: 2rem 6%;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 0;
   z-index: 999;
+  overflow-y: auto;
 }
 .nav-mobile-menu a {
   font-family: var(--font-ui);
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-light);
+  color: var(--text-white);
+  text-decoration: none;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  display: block;
+  transition: color var(--transition), padding-left var(--transition);
+}
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover,
+.nav-mobile-menu a:active {
+  color: var(--red-bright);
+  padding-left: 0.5rem;
+}
+/* Special styling for the copy IP link at the bottom */
+.nav-mobile-menu a[data-copy-ip] {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  margin-top: 1rem;
+  border-bottom: none;
 }
 .nav-mobile-menu.open { display: flex; }
 
@@ -403,5 +428,7 @@ a:hover { color: var(--text-white); }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
-  .nav-right .nav-ip { display: none; } /* hide IP in nav on small screens */
+  .nav-right .nav-ip { display: none; }
+  /* Hide Discord button on mobile — it's in the mobile menu */
+  .nav-right .btn-primary { display: none; }
 }
