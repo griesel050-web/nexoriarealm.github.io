@@ -122,76 +122,7 @@
       letter-spacing: 0.04em;
       display: block;
     }
-
-    /* ── VOTE PARTY PROGRESS ────────────────────────── */
-    #vote-party {
-      padding: 3.5rem 5% 0;
-    }
-    .party-inner {
-      max-width: 700px;
-      margin: 0 auto;
-      background: var(--bg-card);
-      border: 1px solid var(--border-bright);
-      border-radius: var(--radius-lg);
-      padding: 2rem 2.2rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 40px rgba(232,0,13,0.07);
-    }
-    .party-inner::before {
-      content: '';
-      position: absolute;
-      top: -60%; right: -30%;
-      width: 70%; height: 200%;
-      background: radial-gradient(circle, rgba(232,0,13,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .party-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .party-title {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-white);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .party-count {
-      font-family: var(--font-ui);
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-    .party-count strong { color: var(--text-white); }
-
-    /* Progress bar */
-    .party-bar-wrap {
-      background: var(--bg-raised);
-      border-radius: 999px;
-      height: 10px;
-      overflow: hidden;
-      margin-bottom: 0.7rem;
-    }
-    .party-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--red-dark), var(--red-bright));
-      border-radius: 999px;
-      box-shadow: 0 0 10px var(--red-glow);
-      transition: width 1s ease;
-      width: 0%; /* set by JS */
-    }
-    .party-reward {
-      font-family: var(--font-ui);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .party-reward strong { color: #fbbf24; }
+.party-reward strong { color: #fbbf24; }
 
     /* ── VOTING SITES SECTION ───────────────────────── */
     #vote-sites {
@@ -352,7 +283,7 @@
 <body>
 
   <!-- NAV -->
-  <nav id="navbar">
+    <nav id="navbar">
     <div class="nav-inner">
       <a class="nav-logo" href="index.html">NEX<span>ORIA</span></a>
       <ul class="nav-links">
@@ -360,9 +291,7 @@
         <li><a href="store.html">Store</a></li>
         <li><a href="ranks.html">Ranks</a></li>
         <li><a href="commands.html">Commands</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="leaderboards.html">Leaderboards</a></li>
-        <li><a href="vote.html" style="color:var(--red-bright)">Vote</a></li>
+        <li><a href="vote.html">Vote</a></li>
         <li><a href="rules.html">Rules</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="about.html">About</a></li>
@@ -380,8 +309,6 @@
     <a href="store.html">Store</a>
     <a href="ranks.html">Ranks</a>
     <a href="commands.html">Commands</a>
-    <a href="events.html">Events</a>
-    <a href="leaderboards.html">Leaderboards</a>
     <a href="vote.html">Vote</a>
     <a href="rules.html">Rules</a>
     <a href="faq.html">FAQ</a>
@@ -409,24 +336,7 @@
       <!-- Populated by JS -->
     </div>
   </div>
-
-  <!-- VOTE PARTY PROGRESS — rendered from VOTE_PARTY in vote-config.js -->
-  <section id="vote-party">
-    <div class="party-inner reveal">
-      <div class="party-header">
-        <div class="party-title">🎉 Vote Party Progress</div>
-        <div class="party-count" id="partyCount">— / — votes</div>
-      </div>
-      <div class="party-bar-wrap">
-        <div class="party-bar-fill" id="partyBar"></div>
-      </div>
-      <div class="party-reward">
-        Prize when goal is reached: <strong id="partyReward">—</strong>
-      </div>
-    </div>
-  </section>
-
-  <!-- VOTING SITES — dynamically rendered from VOTE_SITES in vote-config.js -->
+<!-- VOTING SITES — dynamically rendered from VOTE_SITES in vote-config.js -->
   <section id="vote-sites">
     <div class="sites-inner">
       <div class="sites-header reveal">
@@ -467,7 +377,7 @@
         <div class="tip-card">
           <span class="tip-icon">🏆</span>
           <div class="tip-title">Top Voter Leaderboard</div>
-          <p class="tip-desc">The top 3 voters each month win bonus prizes. Check the <a href="leaderboards.html" style="color:var(--red-bright)">leaderboards</a> to see where you rank.</p>
+          <p class="tip-desc">The top 3 voters each month win bonus prizes. Check the <a href="leaderboards.html">leaderboards</a> to see where you rank.</p>
         </div>
       </div>
     </div>
@@ -482,8 +392,6 @@
       <a href="store.html">Store</a>
       <a href="ranks.html">Ranks</a>
       <a href="commands.html">Commands</a>
-      <a href="events.html">Events</a>
-      <a href="leaderboards.html">Leaderboards</a>
       <a href="vote.html">Vote</a>
       <a href="rules.html">Rules</a>
       <a href="faq.html">FAQ</a>
