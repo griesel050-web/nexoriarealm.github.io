@@ -15,13 +15,21 @@
     /* ── HERO SECTION ──────────────────────────────────────── */
     #hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       overflow: hidden;
       padding-top: var(--nav-height);
+      padding-bottom: 5rem;
+    }
+    @media (max-width: 768px) {
+      #hero { min-height: auto; padding-top: calc(var(--nav-height) + 2.5rem); padding-bottom: 4rem; }
+      .hero-title { font-size: clamp(2.4rem, 14vw, 4rem); }
+      .hero-subtitle { font-size: 0.8rem; letter-spacing: 0.12em; margin-bottom: 1.5rem; }
+      .hero-badge { margin-bottom: 1.2rem; font-size: 0.72rem; }
+      .hero-ip-box { margin-bottom: 1.5rem; }
     }
 
     /* Particle canvas fills the hero background */
@@ -225,13 +233,14 @@
 
     /* ── FEATURES SECTION ─────────────────────────────────── */
     #features {
-      padding: 7rem 5%;
+      padding: 5rem 5%;
     }
+    @media (max-width: 768px) { #features { padding: 3.5rem 4%; } }
     .features-grid {
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 1.5rem;
     }
     .feature-card {
@@ -533,44 +542,39 @@
        To add/remove nav links just edit the <li> items below.
        The logo, IP pill, and Discord button are here too.
   ═══════════════════════════════════════════════════════ -->
-  <nav id="navbar">
+    <nav id="navbar">
     <div class="nav-inner">
-
-      <!-- Logo — edit text here -->
       <a class="nav-logo" href="index.html">NEX<span>ORIA</span></a>
-
-      <!-- Desktop nav links -->
       <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#ranks">Ranks</a></li>
-        <li><a href="#server-info">Server Info</a></li>
-        <li><a href="#discord-cta">Discord</a></li>
+        <li><a href="index.html" style="color:var(--red-bright)">Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="ranks.html">Ranks</a></li>
+        <li><a href="commands.html">Commands</a></li>
+        <li><a href="vote.html">Vote</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
-
-      <!-- Right side: IP pill + Discord button -->
       <div class="nav-right">
-        <span class="nav-ip" data-copy-ip title="Click to copy IP">
-          play.nexoriarealm.xyz
-        </span>
-        <a class="btn-primary" data-discord-link href="#" target="_blank" rel="noopener">
-          Discord
-        </a>
+        <span class="nav-ip" data-copy-ip title="Click to copy IP">play.nexoriarealm.xyz</span>
+        <a class="btn-primary" data-discord-link href="#" target="_blank" rel="noopener">Discord</a>
       </div>
-
-      <!-- Mobile hamburger button -->
-      <div id="navHamburger" class="nav-hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </div>
+      <div id="navHamburger" class="nav-hamburger"><span></span><span></span><span></span></div>
     </div>
   </nav>
-
-  <!-- Mobile dropdown menu -->
   <div id="navMobileMenu" class="nav-mobile-menu">
-    <a href="#features">Features</a>
-    <a href="#ranks">Ranks</a>
-    <a href="#server-info">Server Info</a>
-    <a href="#discord-cta">Discord</a>
+    <a href="index.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="ranks.html">Ranks</a>
+    <a href="commands.html">Commands</a>
+    <a href="vote.html">Vote</a>
+    <a href="rules.html">Rules</a>
+    <a href="faq.html">FAQ</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
     <a href="#" data-copy-ip>Copy Server IP</a>
+    <a data-discord-link href="#" target="_blank" rel="noopener">Join Discord</a>
   </div>
 
 
@@ -678,38 +682,74 @@
 
       <div class="feature-card">
         <span class="feature-icon">🏪</span>
-        <div class="feature-title">Player Shops</div>
-        <p class="feature-desc">Set up your own shop, sell resources and grow your merchant empire in a fully player-driven market.</p>
+        <div class="feature-title">Economy Shop</div>
+        <p class="feature-desc">Full GUI-based shop powered by EconomyShopGUI. Buy and sell hundreds of items with a clean in-game interface.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">💰</span>
-        <div class="feature-title">Economy</div>
-        <p class="feature-desc">A balanced in-game economy with jobs, auctions and a thriving market ecosystem.</p>
+        <span class="feature-icon">🔨</span>
+        <div class="feature-title">Auction House</div>
+        <p class="feature-desc">Player-driven market via CrazyAuctions. List any item, bid on others and grow your in-game wealth.</p>
       </div>
 
       <div class="feature-card">
         <span class="feature-icon">⚔️</span>
-        <div class="feature-title">Survival SMP</div>
-        <p class="feature-desc">Classic survival gameplay with quality-of-life plugins and a fair anti-cheat.</p>
+        <div class="feature-title">Skills & RPG</div>
+        <p class="feature-desc">Level up 15+ skills with AuraSkills — Mining, Farming, Combat and more. The more you play, the stronger you get.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🏆</span>
-        <div class="feature-title">Ranks & Perks</div>
-        <p class="feature-desc">Five ranks from Member to MVP, each unlocking exclusive commands, cosmetics and advantages.</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">🌍</span>
-        <div class="feature-title">EU Servers</div>
-        <p class="feature-desc">Low-latency, high-performance EU hosting for a smooth experience across Europe.</p>
+        <span class="feature-icon">🎁</span>
+        <div class="feature-title">Crates & Cosmetics</div>
+        <p class="feature-desc">PhoenixCrates for loot drops and UltraCosmetics for hats, gadgets, pets and particle effects.</p>
       </div>
 
       <div class="feature-card">
         <span class="feature-icon">🛡️</span>
         <div class="feature-title">Land Claims</div>
-        <p class="feature-desc">Protect your builds and resources with easy land-claiming and grief protection plugins.</p>
+        <p class="feature-desc">Protect your builds with GriefPrevention and WorldGuard. Your land, your rules — grief is impossible.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🏆</span>
+        <div class="feature-title">Leaderboards</div>
+        <p class="feature-desc">Live leaderboards via ajLeaderboards and AxKills — compete for the top spot in kills, wealth and more.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🧙</span>
+        <div class="feature-title">MythicMobs</div>
+        <p class="feature-desc">Custom boss encounters and unique mobs with special abilities. Not your average survival mobs.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🏅</span>
+        <div class="feature-title">Tags & Ranks</div>
+        <p class="feature-desc">Collect custom chat tags via DeluxeTags, earn prestige and show off your status with TAB-powered display.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <div class="feature-title">Events & Tournaments</div>
+        <p class="feature-desc">Regular server events via WorldEvents and XLTournaments with prizes and community-wide competitions.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🗳️</span>
+        <div class="feature-title">Vote Rewards</div>
+        <p class="feature-desc">Vote for the server daily via VotingPlugin and VotifierPlus to earn bonus loot, coins and exclusive rewards.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📦</span>
+        <div class="feature-title">Shulker Preview & Kits</div>
+        <p class="feature-desc">View shulker box contents without placing via AxShulkers. Starter and rank kits via PlayerKits2.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <div class="feature-title">Anti-Cheat</div>
+        <p class="feature-desc">Vulcan anti-cheat keeps the server fair. No hackers, no flyers, no cheaters — just clean survival gameplay.</p>
       </div>
 
     </div>
@@ -730,39 +770,39 @@
 
     <div class="ranks-grid reveal-group">
 
-      <!-- MEMBER -->
+      <!-- MEMBER (free default rank) -->
       <div class="rank-card rank-member">
-        <span class="rank-badge">Default</span>
+        <span class="rank-badge">Free</span>
         <div class="rank-name">Member</div>
-        <p class="rank-desc">Every journey starts here. Access the server, explore the world and begin building your legacy.</p>
+        <p class="rank-desc">The starting rank. Full server access, 1 home, AuraSkills, /rtp and player warps.</p>
       </div>
 
-      <!-- VIP -->
+      <!-- VIP — $4.99 -->
       <div class="rank-card rank-vip">
-        <span class="rank-badge">VIP</span>
+        <span class="rank-badge">$4.99</span>
         <div class="rank-name">VIP</div>
-        <p class="rank-desc">Unlock extra homes, coloured chat and priority queue access.</p>
+        <p class="rank-desc">7 homes, /fly, /nick, /ptime, /enderchest, /workbench + VIP kit &amp; shop discounts.</p>
       </div>
 
-      <!-- ELITE -->
+      <!-- ELITE — $9.99 -->
       <div class="rank-card rank-elite">
-        <span class="rank-badge">Elite</span>
+        <span class="rank-badge">$9.99</span>
         <div class="rank-name">Elite</div>
-        <p class="rank-desc">Advanced commands, exclusive cosmetics and a larger claim allowance.</p>
+        <p class="rank-desc">9 homes, 14 auction slots, Elite kit, bigger sell multiplier + all VIP perks.</p>
       </div>
 
-      <!-- GOD -->
+      <!-- GOD — $14.99 -->
       <div class="rank-card rank-god">
-        <span class="rank-badge">God</span>
+        <span class="rank-badge">$14.99</span>
         <div class="rank-name">God</div>
-        <p class="rank-desc">Near-limitless perks, special god-mode fly and premium badge in chat.</p>
+        <p class="rank-desc">11 homes, 16 auction slots, /feed, /heal, God kit + all Elite perks.</p>
       </div>
 
-      <!-- MVP -->
+      <!-- MVP — $19.99 -->
       <div class="rank-card rank-mvp">
-        <span class="rank-badge">Top Tier</span>
+        <span class="rank-badge">$19.99</span>
         <div class="rank-name">MVP</div>
-        <p class="rank-desc">The pinnacle of Nexoria. All perks maxed, custom tag and direct developer access.</p>
+        <p class="rank-desc">13 homes, 18 auction slots, /god mode, MVP kit + every perk unlocked.</p>
       </div>
 
     </div>
@@ -831,11 +871,19 @@
         </div>
         <div class="panel-row">
           <span class="panel-row-key">Anti-Cheat</span>
-          <span class="panel-row-val" style="color:#22c55e">✔ Active</span>
+          <span class="panel-row-val" style="color:#22c55e">✔ Vulcan</span>
         </div>
         <div class="panel-row">
           <span class="panel-row-key">Grief Protection</span>
-          <span class="panel-row-val" style="color:#22c55e">✔ Active</span>
+          <span class="panel-row-val" style="color:#22c55e">✔ GriefPrevention</span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Economy</span>
+          <span class="panel-row-val" style="color:#22c55e">✔ Vault + EconomyShopGUI</span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Plugins</span>
+          <span class="panel-row-val">64 active</span>
         </div>
 
         <div style="margin-top:1.5rem">
@@ -887,10 +935,15 @@
     <div class="footer-logo">NEX<span>ORIA</span></div>
     <div class="footer-tagline">EU Survival SMP · Est. 2024</div>
     <div class="footer-links">
-      <a href="#features">Features</a>
-      <a href="#ranks">Ranks</a>
-      <a href="#server-info">Server Info</a>
-      <a data-discord-link href="#" target="_blank" rel="noopener">Discord</a>
+      <a href="index.html">Home</a>
+      <a href="store.html">Store</a>
+      <a href="ranks.html">Ranks</a>
+      <a href="commands.html">Commands</a>
+      <a href="vote.html">Vote</a>
+      <a href="rules.html">Rules</a>
+      <a href="faq.html">FAQ</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
     <p class="footer-copy">© 2024 Nexoria. Not affiliated with Mojang AB.</p>
   </footer>
