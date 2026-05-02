@@ -108,3 +108,4 @@ const VOTE_PARTY = {
   current: 0,    // current vote count ← update this manually or via API
   reward:  'Legendary Crate Key for ALL online players', // party prize
 };
+ 
