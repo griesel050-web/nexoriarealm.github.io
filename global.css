@@ -405,4 +405,3 @@ a:hover { color: var(--text-white); }
   .nav-hamburger { display: flex; }
   .nav-right .nav-ip { display: none; } /* hide IP in nav on small screens */
 }
- 
