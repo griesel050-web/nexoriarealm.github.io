@@ -6,11 +6,10 @@
   <title>Vote — Nexoria</title>
   <meta name="description" content="Vote for Nexoria daily and earn free coins, PlayerPoints and crate keys." />
   <link rel="stylesheet" href="global.css" />
-
   <style>
-    /* ── PAGE HERO ─────────────────────────────────── */
+    /* ── HERO ── */
     .page-hero {
-      padding: calc(var(--nav-height) + 5rem) 5% 4rem;
+      padding: calc(var(--nav-height) + 4rem) 5% 3.5rem;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -26,135 +25,78 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(232,0,13,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232,0,13,0.04) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(232,0,13,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(232,0,13,0.04) 1px, transparent 1px);
       background-size: 60px 60px;
       pointer-events: none;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
     }
     .page-hero-content { position: relative; z-index: 1; }
-    .page-eyebrow {
-      display: inline-block;
-      font-family: var(--font-ui);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--red-primary);
-      margin-bottom: 1.2rem;
-    }
-    .page-hero h1 {
-      font-size: clamp(2.5rem, 7vw, 5rem);
-      font-weight: 900;
-      margin-bottom: 1rem;
-      animation: heroSlide 0.7s ease both;
-    }
-    .page-hero p {
-      max-width: 560px;
-      margin: 0 auto;
-      color: var(--text-muted);
-      font-size: 1rem;
-      animation: heroSlide 0.7s ease 0.15s both;
-    }
-    @keyframes heroSlide {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .page-eyebrow { display: inline-block; font-family: var(--font-ui); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red-primary); margin-bottom: 1.2rem; }
+    .page-hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 900; margin-bottom: 1rem; animation: heroSlide 0.6s ease both; }
+    .page-hero p { max-width: 520px; margin: 0 auto 1.5rem; color: var(--text-muted); font-size: 1rem; animation: heroSlide 0.6s ease 0.12s both; }
+    @keyframes heroSlide { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 
-    /* In-game tip badge */
     .hero-tip {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      margin-top: 1.5rem;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 0.55rem 1.1rem;
+      padding: 0.5rem 1rem;
       font-family: var(--font-ui);
       font-size: 0.82rem;
       color: var(--text-muted);
-      animation: heroSlide 0.7s ease 0.3s both;
+      animation: heroSlide 0.6s ease 0.25s both;
     }
-    .hero-tip code {
-      background: var(--bg-raised);
-      color: var(--red-bright);
-      padding: 0.1rem 0.45rem;
-      border-radius: 3px;
-      font-size: 0.85rem;
-    }
+    .hero-tip code { background: var(--bg-raised); color: var(--red-bright); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.82rem; }
 
-    /* ── REWARDS STRIP ──────────────────────────────── */
-    #vote-rewards-strip {
+    /* ── REWARDS STRIP ── */
+    #rewardsWrap {
       background: var(--bg-card);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 1.4rem 5%;
+      padding: 1.3rem 5%;
     }
-    .rewards-strip-inner {
-      max-width: 1100px;
+    #rewardsStrip {
+      max-width: 1000px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2.5rem;
+      gap: 2rem;
       flex-wrap: wrap;
     }
-    .reward-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .reward-pill-icon { font-size: 1.3rem; }
-    .reward-pill-label {
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-white);
-      display: block;
-      line-height: 1.2;
-    }
-    .reward-pill-desc {
-      font-family: var(--font-ui);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-      display: block;
-    }
-.party-reward strong { color: #fbbf24; }
+    .reward-pill { display: flex; align-items: center; gap: 0.6rem; }
+    .rp-icon { font-size: 1.4rem; }
+    .rp-label { display: block; font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--text-white); line-height: 1.2; }
+    .rp-desc  { display: block; font-family: var(--font-ui); font-size: 0.72rem; color: var(--text-muted); }
 
-    /* ── VOTING SITES SECTION ───────────────────────── */
-    #vote-sites {
-      padding: 4rem 5% 7rem;
-    }
+    /* ── SITES SECTION ── */
+    #vote-sites { padding: 3.5rem 5% 5rem; }
     .sites-inner { max-width: 1100px; margin: 0 auto; }
 
-    /* Counter badge */
     .sites-header {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.5rem;
     }
-    .sites-count {
-      font-family: var(--font-ui);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-    }
-    .sites-count strong { color: var(--text-white); }
+    .sites-header h2 { text-align: left; margin-bottom: 0; }
+    .sites-header h2 .accent-line { margin: 0.5rem 0 0; }
+    #sitesCount { font-family: var(--font-ui); font-size: 0.82rem; color: var(--text-muted); }
+    #sitesCount strong { color: var(--text-white); }
 
-    /* Grid — JS renders cards into here */
+    /* Grid */
     #sitesGrid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 1.2rem;
     }
 
-    /* Individual site card */
+    /* Site card */
     .site-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -162,41 +104,22 @@
       padding: 1.6rem;
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
+      gap: 1rem;
       transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-      text-decoration: none;
     }
     .site-card:hover {
       border-color: var(--border-bright);
       transform: translateY(-5px);
-      box-shadow: 0 12px 36px rgba(232,0,13,0.12);
+      box-shadow: 0 12px 32px rgba(232,0,13,0.12);
     }
-    .site-card-top {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .site-card-icon {
-      font-size: 2.2rem;
-      line-height: 1;
-      filter: drop-shadow(0 0 6px rgba(232,0,13,0.4));
-    }
-    .site-card-name {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-white);
-    }
-    .site-card-cooldown {
-      font-family: var(--font-ui);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-      margin-top: 0.15rem;
-    }
+    .site-card.voted { border-color: #22c55e; }
 
-    /* Reward tag */
-    .site-card-reward {
+    .sc-top { display: flex; align-items: center; gap: 1rem; }
+    .sc-icon { font-size: 2.2rem; line-height: 1; filter: drop-shadow(0 0 6px rgba(232,0,13,0.35)); }
+    .sc-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--text-white); }
+    .sc-cool { font-family: var(--font-ui); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 0.15rem; }
+
+    .sc-reward {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
@@ -211,79 +134,46 @@
       width: fit-content;
     }
 
-    /* Vote button inside card */
-    .site-card-btn {
+    .sc-btn {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
-      padding: 0.65rem 1rem;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1rem;
       background: var(--red-primary);
       color: #fff;
       font-family: var(--font-ui);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       border-radius: var(--radius);
       text-decoration: none;
-      transition: background var(--transition), box-shadow var(--transition);
       margin-top: auto;
+      transition: background var(--transition), box-shadow var(--transition);
     }
-    .site-card-btn:hover {
-      background: var(--red-bright);
-      box-shadow: 0 0 16px var(--red-glow);
-      color: #fff;
-    }
-    /* Voted state (toggled by JS on click) */
-    .site-card.voted { border-color: #22c55e; }
-    .site-card.voted .site-card-btn {
-      background: #15803d;
-      pointer-events: none;
-    }
-    .site-card.voted .site-card-btn::after { content: ' ✔'; }
+    .sc-btn:hover { background: var(--red-bright); box-shadow: 0 0 16px var(--red-glow); color: #fff; }
+    .sc-btn--voted { background: #15803d !important; box-shadow: none !important; pointer-events: none; }
 
-    /* ── VOTE TIPS ──────────────────────────────────── */
-    #vote-tips { padding: 0 5% 5rem; }
-    .tips-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    /* ── TIPS ── */
+    #vote-tips { padding: 0 5% 6rem; }
     .tips-grid {
+      max-width: 1100px;
+      margin: 2.5rem auto 0;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 1rem;
     }
-    .tip-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.4rem;
-    }
+    .tip-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem; }
     .tip-icon { font-size: 1.8rem; margin-bottom: 0.7rem; display: block; }
-    .tip-title {
-      font-family: var(--font-ui);
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-white);
-      margin-bottom: 0.4rem;
-    }
+    .tip-title { font-family: var(--font-ui); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-white); margin-bottom: 0.4rem; }
     .tip-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.65; }
-    .tip-desc code {
-      background: var(--bg-raised);
-      color: var(--red-bright);
-      padding: 0.1rem 0.4rem;
-      border-radius: 3px;
-      font-size: 0.82rem;
-    }
+    .tip-desc code { background: var(--bg-raised); color: var(--red-bright); padding: 0.1rem 0.4rem; border-radius: 3px; font-size: 0.82rem; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-    <nav id="navbar">
+  <nav id="navbar">
     <div class="nav-inner">
       <a class="nav-logo" href="index.html">NEX<span>ORIA</span></a>
       <ul class="nav-links">
@@ -291,7 +181,7 @@
         <li><a href="store.html">Store</a></li>
         <li><a href="ranks.html">Ranks</a></li>
         <li><a href="commands.html">Commands</a></li>
-        <li><a href="vote.html">Vote</a></li>
+        <li><a href="vote.html" style="color:var(--red-bright)">Vote</a></li>
         <li><a href="rules.html">Rules</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="about.html">About</a></li>
@@ -324,29 +214,25 @@
       <span class="page-eyebrow">Free daily rewards</span>
       <h1>Vote for Nexoria</h1>
       <p>Vote on every site below to earn free coins, PlayerPoints and crate keys. Takes less than 2 minutes.</p>
-      <div class="hero-tip">
-        💡 Also use <code>/vote</code> in-game to get these links directly in chat
-      </div>
+      <div class="hero-tip">💡 Also use <code>/vote</code> in-game to get links directly in chat</div>
     </div>
   </section>
 
-  <!-- REWARDS STRIP — rendered from VOTE_REWARDS in vote-config.js -->
-  <div id="vote-rewards-strip">
-    <div class="rewards-strip-inner" id="rewardsStrip">
-      <!-- Populated by JS -->
-    </div>
+  <!-- REWARDS STRIP -->
+  <div id="rewardsWrap">
+    <div id="rewardsStrip"><!-- built by vote.js --></div>
   </div>
-<!-- VOTING SITES — dynamically rendered from VOTE_SITES in vote-config.js -->
+
+  <!-- VOTING SITES -->
   <section id="vote-sites">
     <div class="sites-inner">
-      <div class="sites-header reveal">
-        <h2 class="section-title" style="text-align:left;margin-bottom:0">
+      <div class="sites-header">
+        <h2 class="section-title">
           Voting Sites
-          <span class="accent-line" style="margin:0.5rem 0 0"></span>
+          <span class="accent-line"></span>
         </h2>
-        <span class="sites-count" id="sitesCount">Loading…</span>
+        <span id="sitesCount"></span>
       </div>
-
       <!-- Cards injected here by vote.js -->
       <div id="sitesGrid"></div>
     </div>
@@ -354,31 +240,28 @@
 
   <!-- TIPS -->
   <section id="vote-tips">
-    <div class="tips-inner">
-      <p class="section-sub reveal">Pro tips</p>
-      <h2 class="section-title reveal">Get the most from voting<span class="accent-line"></span></h2>
-
-      <div class="tips-grid reveal-group" style="margin-top:2.5rem">
-        <div class="tip-card">
-          <span class="tip-icon">📅</span>
-          <div class="tip-title">Vote Every Day</div>
-          <p class="tip-desc">All sites reset every 24 hours. Build a streak with <code>/votestreak</code> for increasing daily bonuses.</p>
-        </div>
-        <div class="tip-card">
-          <span class="tip-icon">🎉</span>
-          <div class="tip-title">Trigger the Party</div>
-          <p class="tip-desc">When enough players vote, a Vote Party fires and everyone online gets a Legendary Crate Key for free.</p>
-        </div>
-        <div class="tip-card">
-          <span class="tip-icon">🗝️</span>
-          <div class="tip-title">Claim Your Keys</div>
-          <p class="tip-desc">Use <code>/voterewards</code> in-game to open your reward inbox. Keys expire after 30 days so don't forget!</p>
-        </div>
-        <div class="tip-card">
-          <span class="tip-icon">🏆</span>
-          <div class="tip-title">Top Voter Leaderboard</div>
-          <p class="tip-desc">The top 3 voters each month win bonus prizes. Check the <a href="leaderboards.html">leaderboards</a> to see where you rank.</p>
-        </div>
+    <p class="section-sub">Pro tips</p>
+    <h2 class="section-title">Get the most from voting<span class="accent-line"></span></h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">📅</span>
+        <div class="tip-title">Vote Every Day</div>
+        <p class="tip-desc">All sites reset every 24h. Build a streak with <code>/votestreak</code> for increasing daily bonuses.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🗝️</span>
+        <div class="tip-title">Claim Rewards</div>
+        <p class="tip-desc">Use <code>/voterewards</code> in-game to open your reward inbox and claim keys + coins.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🏆</span>
+        <div class="tip-title">Top Voter</div>
+        <p class="tip-desc">The top 3 voters each month win bonus prizes. Use <code>/leaderboard</code> to check your rank.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🎉</span>
+        <div class="tip-title">Vote Party</div>
+        <p class="tip-desc">When the server hits its daily vote goal, every online player gets a free Legendary Crate Key.</p>
       </div>
     </div>
   </section>
@@ -401,7 +284,7 @@
     <p class="footer-copy">© 2024 Nexoria. Not affiliated with Mojang AB.</p>
   </footer>
 
-  <!-- Load config FIRST, then main.js, then vote.js -->
+  <!-- Load order: config first, then shared JS, then vote renderer -->
   <script src="vote-config.js"></script>
   <script src="main.js"></script>
   <script src="vote.js"></script>
