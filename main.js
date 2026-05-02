@@ -12,7 +12,7 @@
    ──────────────────────────────────────────────────────────── */
 const CONFIG = {
   SERVER_IP:     'play.nexoriarealm.xyz',
-  DISCORD_URL:   'https://discord.gg/fFQfgK3gqQ', // ← paste your invite
+  DISCORD_URL:   'https://discord.gg/YOUR_INVITE_HERE', // ← paste your invite
   MAX_PLAYERS:   200,
   PING_INTERVAL: 30000, // 30 seconds
 };
