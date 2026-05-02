@@ -25,13 +25,7 @@ function renderRewardsStrip() {
   `).join('');
 }
 
-/* ── 2. RENDER VOTE PARTY PROGRESS BAR ──────────────────────
-   Reads VOTE_PARTY.current / VOTE_PARTY.goal and fills the bar.
-──────────────────────────────────────────────────────────── */
-function renderVoteParty() {
-  if (!window.VOTE_PARTY) return;
-
-  const { goal, current, reward } = VOTE_PARTY;
+= VOTE_PARTY;
   const pct = Math.min((current / goal) * 100, 100);
 
   const countEl  = document.getElementById('partyCount');
@@ -176,7 +170,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   renderRewardsStrip();
-  renderVoteParty();
   renderSiteCards();
 });
- 
