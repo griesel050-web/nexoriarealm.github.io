@@ -145,13 +145,17 @@
 <body>
 
   <!-- NAV -->
-  <nav id="navbar">
+    <nav id="navbar">
     <div class="nav-inner">
       <a class="nav-logo" href="index.html">NEX<span>ORIA</span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="ranks.html" style="color:var(--red-bright)">Ranks</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="ranks.html">Ranks</a></li>
         <li><a href="commands.html">Commands</a></li>
+        <li><a href="vote.html">Vote</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faq.html">FAQ</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -163,9 +167,17 @@
     </div>
   </nav>
   <div id="navMobileMenu" class="nav-mobile-menu">
-    <a href="index.html">Home</a><a href="ranks.html">Ranks</a><a href="commands.html">Commands</a>
-    <a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="index.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="ranks.html">Ranks</a>
+    <a href="commands.html">Commands</a>
+    <a href="vote.html">Vote</a>
+    <a href="rules.html">Rules</a>
+    <a href="faq.html">FAQ</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
     <a href="#" data-copy-ip>Copy Server IP</a>
+    <a data-discord-link href="#" target="_blank" rel="noopener">Join Discord</a>
   </div>
 
   <!-- HERO -->
@@ -188,7 +200,7 @@
       <!-- MEMBER (default group) -->
       <div class="rcard member">
         <div class="rcard-header">
-          <div class="rcard-tier">Default · Tier 0</div>
+          <div class="rcard-tier">Default · Free</div>
           <div class="rcard-name">Member</div>
           <div class="rcard-price">Free — join &amp; play</div>
         </div>
@@ -206,32 +218,12 @@
         </div>
       </div>
 
-      <!-- PRO -->
-      <div class="rcard pro">
-        <div class="rcard-header">
-          <div class="rcard-tier">Donor · Tier 1</div>
-          <div class="rcard-name">Pro</div>
-          <div class="rcard-price">Store — coming soon</div>
-        </div>
-        <div class="rcard-body">
-          <ul class="rcard-perks">
-            <li><strong>5</strong> set homes</li>
-            <li><strong>10</strong> auction listings</li>
-            <li><strong>/feed</strong> &amp; <strong>/heal</strong></li>
-            <li>Pro kit via <strong>/kit pro</strong></li>
-            <li>Pro shop discounts</li>
-            <li>+ Everything in Member</li>
-          </ul>
-          <button class="btn-primary" style="background:#d97706">Get Pro</button>
-        </div>
-      </div>
-
       <!-- VIP -->
       <div class="rcard vip">
         <div class="rcard-header">
-          <div class="rcard-tier">Donor · Tier 2</div>
+          <div class="rcard-tier">Donor · Tier 1</div>
           <div class="rcard-name">VIP</div>
-          <div class="rcard-price">Store — coming soon</div>
+          <div class="rcard-price">$4.99</div>
         </div>
         <div class="rcard-body">
           <ul class="rcard-perks">
@@ -242,7 +234,7 @@
             <li><strong>/ptime</strong> &amp; <strong>/pweather</strong></li>
             <li><strong>/enderchest</strong> anywhere</li>
             <li>VIP kit &amp; shop discounts</li>
-            <li>+ Everything in Pro</li>
+            <li>+ Everything in Member</li>
           </ul>
           <button class="btn-primary" style="background:#16a34a">Get VIP</button>
         </div>
@@ -251,9 +243,9 @@
       <!-- ELITE -->
       <div class="rcard elite">
         <div class="rcard-header">
-          <div class="rcard-tier">Donor · Tier 3</div>
+          <div class="rcard-tier">Donor · Tier 2</div>
           <div class="rcard-name">Elite</div>
-          <div class="rcard-price">Store — coming soon</div>
+          <div class="rcard-price">$9.99</div>
         </div>
         <div class="rcard-body">
           <ul class="rcard-perks">
@@ -270,9 +262,9 @@
       <!-- GOD -->
       <div class="rcard god">
         <div class="rcard-header">
-          <div class="rcard-tier">Donor · Tier 4</div>
+          <div class="rcard-tier">Donor · Tier 3</div>
           <div class="rcard-name">God</div>
-          <div class="rcard-price">Store — coming soon</div>
+          <div class="rcard-price">$14.99</div>
         </div>
         <div class="rcard-body">
           <ul class="rcard-perks">
@@ -291,7 +283,7 @@
         <div class="rcard-header">
           <div class="rcard-tier">Donor · Top Tier</div>
           <div class="rcard-name">MVP</div>
-          <div class="rcard-price">Store — coming soon</div>
+          <div class="rcard-price">$19.99</div>
         </div>
         <div class="rcard-body">
           <ul class="rcard-perks">
@@ -321,7 +313,6 @@
           <tr>
             <th style="text-align:left">Perk</th>
             <th>Member</th>
-            <th>Pro</th>
             <th>VIP</th>
             <th>Elite</th>
             <th>God</th>
@@ -331,7 +322,7 @@
         <tbody>
           <tr>
             <td>Set Homes</td>
-            <td class="val">1</td>
+            
             <td class="val">5</td>
             <td class="val">7</td>
             <td class="val">9</td>
@@ -340,7 +331,7 @@
           </tr>
           <tr>
             <td>Auction Listings (CrazyAuctions)</td>
-            <td class="val">5</td>
+            
             <td class="val">10</td>
             <td class="val">12</td>
             <td class="val">14</td>
@@ -349,7 +340,7 @@
           </tr>
           <tr>
             <td>Rank Kit (/kit)</td>
-            <td class="cross">✗</td>
+            
             <td class="check">✔ Pro</td>
             <td class="check">✔ VIP</td>
             <td class="check">✔ Elite</td>
@@ -358,7 +349,7 @@
           </tr>
           <tr>
             <td>Shop Discounts</td>
-            <td class="cross">✗</td>
+            
             <td class="check">✔</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -367,7 +358,7 @@
           </tr>
           <tr>
             <td>/fly (flight)</td>
-            <td class="cross">✗</td>
+            
             <td class="cross">✗</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -376,7 +367,7 @@
           </tr>
           <tr>
             <td>/nick (nickname + colours)</td>
-            <td class="cross">✗</td>
+            
             <td class="cross">✗</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -385,7 +376,7 @@
           </tr>
           <tr>
             <td>/ptime (personal time)</td>
-            <td class="cross">✗</td>
+            
             <td class="cross">✗</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -394,7 +385,7 @@
           </tr>
           <tr>
             <td>/pweather (personal weather)</td>
-            <td class="cross">✗</td>
+            
             <td class="cross">✗</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -403,7 +394,7 @@
           </tr>
           <tr>
             <td>/enderchest (portable)</td>
-            <td class="cross">✗</td>
+            
             <td class="cross">✗</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -412,7 +403,7 @@
           </tr>
           <tr>
             <td>/workbench (portable)</td>
-            <td class="cross">✗</td>
+            
             <td class="cross">✗</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -421,7 +412,7 @@
           </tr>
           <tr>
             <td>/feed &amp; /heal</td>
-            <td class="cross">✗</td>
+            
             <td class="check">✔</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -430,7 +421,7 @@
           </tr>
           <tr>
             <td>/god mode</td>
-            <td class="cross">✗</td>
+            
             <td class="cross">✗</td>
             <td class="cross">✗</td>
             <td class="cross">✗</td>
@@ -439,7 +430,7 @@
           </tr>
           <tr>
             <td>Coloured Chat</td>
-            <td class="check">✔</td>
+            
             <td class="check">✔</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -448,7 +439,7 @@
           </tr>
           <tr>
             <td>Player Warps (create)</td>
-            <td class="check">✔</td>
+            
             <td class="check">✔</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -457,7 +448,7 @@
           </tr>
           <tr>
             <td>AuraSkills Access</td>
-            <td class="check">✔</td>
+            
             <td class="check">✔</td>
             <td class="check">✔</td>
             <td class="check">✔</td>
@@ -466,7 +457,7 @@
           </tr>
           <tr>
             <td>Sell Multiplier</td>
-            <td class="cross">✗</td>
+            
             <td class="check">✔ Pro</td>
             <td class="check">✔ VIP</td>
             <td class="check">✔ Elite</td>
@@ -528,8 +519,15 @@
     <div class="footer-logo">NEX<span>ORIA</span></div>
     <div class="footer-tagline">EU Survival SMP · Est. 2024</div>
     <div class="footer-links">
-      <a href="index.html">Home</a><a href="ranks.html">Ranks</a><a href="commands.html">Commands</a>
-      <a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="store.html">Store</a>
+      <a href="ranks.html">Ranks</a>
+      <a href="commands.html">Commands</a>
+      <a href="vote.html">Vote</a>
+      <a href="rules.html">Rules</a>
+      <a href="faq.html">FAQ</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
     <p class="footer-copy">© 2024 Nexoria. Not affiliated with Mojang AB.</p>
   </footer>
