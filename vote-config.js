@@ -96,16 +96,3 @@ const VOTE_REWARDS = [
   { icon: '🔥', label: 'Vote Streak',   desc: 'Bonus rewards for daily streaks'  },
   { icon: '🎉', label: 'Vote Party',    desc: 'Server-wide reward when goal hit' },
 ];
-
-/* ── VOTE PARTY CONFIG ───────────────────────────────────
-   Shown in the Vote Party progress section.
-   PARTY_GOAL = total votes needed to trigger the party.
-   PARTY_CURRENT = current vote count (update manually or
-   hook to an API if your host exposes one).
-──────────────────────────────────────────────────────── */
-const VOTE_PARTY = {
-  goal:    50,   // votes needed for a party ← edit this
-  current: 0,    // current vote count ← update this manually or via API
-  reward:  'Legendary Crate Key for ALL online players', // party prize
-};
- 
