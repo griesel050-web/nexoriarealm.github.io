@@ -1,0 +1,435 @@
+/* ============================================================
+   NEXORIA — GLOBAL STYLESHEET
+   This file controls the look of EVERY page on the site.
+   Edit variables in :root to change the whole theme at once.
+   ============================================================ */
+
+/* ── Google Fonts ────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500&display=swap');
+
+/* ── CSS Custom Properties (edit these to retheme the site) ─ */
+:root {
+  /* Core brand colours */
+  --red-primary:    #e8000d;   /* Main red — buttons, accents */
+  --red-bright:     #ff1a26;   /* Hover / glow state */
+  --red-dark:       #9b0009;   /* Darker shade for gradients */
+  --red-faint:      rgba(232, 0, 13, 0.08); /* Subtle tint backgrounds */
+  --red-glow:       rgba(232, 0, 13, 0.45); /* Box-shadow glow */
+
+  /* Neutrals */
+  --bg:             #0a0a0b;   /* Page background */
+  --bg-card:        #111114;   /* Card / panel background */
+  --bg-raised:      #18181d;   /* Slightly elevated surfaces */
+  --border:         rgba(232, 0, 13, 0.2); /* Default border colour */
+  --border-bright:  rgba(232, 0, 13, 0.55);
+
+  /* Text */
+  --text-white:     #ffffff;
+  --text-light:     #c8c8d0;
+  --text-muted:     #6b6b7a;
+
+  /* Typography */
+  --font-display:   'Orbitron', monospace;   /* Headings / logo */
+  --font-ui:        'Rajdhani', sans-serif;  /* Nav, labels, UI copy */
+  --font-body:      'Inter', sans-serif;     /* Body paragraphs */
+
+  /* Misc */
+  --radius:         6px;
+  --radius-lg:      12px;
+  --transition:     0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --nav-height:     70px;
+}
+
+/* ── Reset & Base ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* Subtle noise texture over the whole page */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--red-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--red-primary); }
+
+/* ── Typography ──────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text-white);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+p { color: var(--text-light); }
+
+a {
+  color: var(--red-bright);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--text-white); }
+
+/* ── Utility classes ─────────────────────────────────────── */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text-white);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-sub {
+  text-align: center;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 3.5rem;
+}
+
+/* Red accent underline used on section titles */
+.accent-line {
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--red-primary);
+  margin: 0.75rem auto 0;
+  box-shadow: 0 0 12px var(--red-glow);
+}
+
+/* ── Global button styles ────────────────────────────────── */
+/* Primary CTA button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.8rem;
+  background: var(--red-primary);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+.btn-primary:hover {
+  background: var(--red-bright);
+  box-shadow: 0 0 24px var(--red-glow), 0 4px 20px rgba(0,0,0,0.4);
+  transform: translateY(-2px);
+}
+.btn-primary:hover::after { transform: translateX(100%); }
+.btn-primary:active { transform: translateY(0); }
+
+/* Ghost / outlined button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.8rem;
+  background: transparent;
+  color: var(--text-white);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition),
+              box-shadow var(--transition), background var(--transition);
+}
+.btn-ghost:hover {
+  border-color: var(--red-primary);
+  color: var(--red-bright);
+  background: var(--red-faint);
+  box-shadow: 0 0 14px var(--red-glow);
+}
+
+/* ── NAVIGATION ──────────────────────────────────────────── */
+/* Copy this nav into every page — it stays consistent automatically */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  background: rgba(10, 10, 11, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(232, 0, 13, 0.12);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+#navbar.scrolled {
+  background: rgba(10, 10, 11, 0.96);
+  border-bottom-color: rgba(232, 0, 13, 0.3);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--text-white);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--red-primary); }
+
+/* Desktop links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--red-primary);
+  transition: width var(--transition);
+}
+.nav-links a:hover { color: var(--text-white); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Nav right side (IP + Discord button) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* IP copy pill in nav */
+.nav-ip {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+.nav-ip:hover { color: var(--red-bright); border-color: var(--red-primary); }
+
+/* Hamburger for mobile */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1001;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-white);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+/* Animate hamburger to X when menu is open */
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu — fullscreen dropdown */
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 11, 0.99);
+  padding: 2rem 6%;
+  flex-direction: column;
+  gap: 0;
+  z-index: 999;
+  overflow-y: auto;
+}
+.nav-mobile-menu a {
+  font-family: var(--font-ui);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-white);
+  text-decoration: none;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  display: block;
+  transition: color var(--transition), padding-left var(--transition);
+}
+.nav-mobile-menu a:last-child { border-bottom: none; }
+.nav-mobile-menu a:hover,
+.nav-mobile-menu a:active {
+  color: var(--red-bright);
+  padding-left: 0.5rem;
+}
+/* Special styling for the copy IP link at the bottom */
+.nav-mobile-menu a[data-copy-ip] {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  margin-top: 1rem;
+  border-bottom: none;
+}
+.nav-mobile-menu.open { display: flex; }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+#footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 3rem 5% 2rem;
+  text-align: center;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--text-white);
+  margin-bottom: 0.5rem;
+}
+.footer-logo span { color: var(--red-primary); }
+.footer-tagline {
+  font-family: var(--font-ui);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.footer-links a {
+  font-family: var(--font-ui);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--red-bright); }
+.footer-copy {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+/* ── Card / panel base ───────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.card:hover {
+  border-color: var(--border-bright);
+  box-shadow: 0 0 24px rgba(232, 0, 13, 0.12);
+  transform: translateY(-4px);
+}
+
+/* ── Fade-in / slide-up animation (triggered by JS IntersectionObserver) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger children */
+.reveal-group > * { opacity: 0; transform: translateY(25px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal-group.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0.05s; }
+.reveal-group.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.15s; }
+.reveal-group.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.25s; }
+.reveal-group.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.35s; }
+.reveal-group.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.45s; }
+.reveal-group.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.55s; }
+
+/* ── Responsive breakpoints ──────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-right .nav-ip { display: none; }
+  /* Hide Discord button on mobile — it's in the mobile menu */
+  .nav-right .btn-primary { display: none; }
+}
+ 
