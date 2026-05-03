@@ -304,7 +304,7 @@ document.getElementById('formSubmitBtn').addEventListener('click', async () => {
   btn.disabled = true;
 
   try {
-    const res = await fetch("https://nexoria-contactform.griesel050.workers.dev", {
+    const res = await fetch("https://nexoria-contactform.griesel050.workers.dev/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
