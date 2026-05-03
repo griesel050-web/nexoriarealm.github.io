@@ -322,7 +322,7 @@ document.getElementById('formSubmitBtn').addEventListener('click', async () => {
     }
 
   } catch (err) {
-    showToast('Network error.');
+    showToast(err);
     btn.disabled = false;
     btn.textContent = 'Send Message';
   }
