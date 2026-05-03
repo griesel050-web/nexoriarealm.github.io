@@ -432,3 +432,4 @@ a:hover { color: var(--text-white); }
   /* Hide Discord button on mobile — it's in the mobile menu */
   .nav-right .btn-primary { display: none; }
 }
+ 
