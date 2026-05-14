@@ -274,3 +274,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initDiscordLinks();
 });
+ 
