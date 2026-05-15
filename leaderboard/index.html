@@ -4,11 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leaderboard — Nexoria EU Survival SMP</title>
-  <meta name="description" content="View the top players on Nexoria — kills, playtime, money, coins and more." />
+  <meta name="description" content="Top players on Nexoria — kills, money, playtime and more." />
   <link rel="stylesheet" href="/global.css" />
   <style>
-
-    /* ── PAGE HEADER ──────────────────────────────────────── */
     #lb-hero {
       padding: calc(var(--nav-height) + 4rem) 5% 3rem;
       text-align: center;
@@ -16,404 +14,102 @@
       overflow: hidden;
     }
     #lb-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(232,0,13,0.08) 0%, transparent 70%);
-      pointer-events: none;
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(232,0,13,.08) 0%,transparent 70%);
+      pointer-events:none;
     }
-    .lb-hero-inner { position: relative; z-index: 1; }
-    .lb-last-updated {
-      font-family: var(--font-ui);
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-top: 0.6rem;
-    }
-    .lb-last-updated span { color: var(--red-bright); }
+    .lb-hero-inner{position:relative;z-index:1;}
+    .lb-last-updated{font-family:var(--font-ui);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-top:.6rem;}
+    .lb-last-updated span{color:var(--red-bright);}
 
-    /* ── TAB SWITCHER ─────────────────────────────────────── */
-    #lb-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      padding: 0 5% 2.5rem;
-    }
-    .lb-tab {
-      font-family: var(--font-ui);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.5rem 1.3rem;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-    .lb-tab:hover {
-      border-color: var(--red-primary);
-      color: var(--text-white);
-    }
-    .lb-tab.active {
-      background: var(--red-primary);
-      border-color: var(--red-primary);
-      color: #fff;
-      box-shadow: 0 0 16px var(--red-glow);
-    }
+    /* Tabs */
+    #lb-tabs{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;padding:0 5% 2.5rem;}
+    .lb-tab{font-family:var(--font-ui);font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.3rem;border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--text-muted);cursor:pointer;transition:all var(--transition);}
+    .lb-tab:hover{border-color:var(--red-primary);color:var(--text-white);}
+    .lb-tab.active{background:var(--red-primary);border-color:var(--red-primary);color:#fff;box-shadow:0 0 16px var(--red-glow);}
 
-    /* ── SEARCH BAR ───────────────────────────────────────── */
-    #lb-search-wrap {
-      max-width: 400px;
-      margin: 0 auto 2rem;
-      padding: 0 5%;
-    }
-    #lb-search {
-      width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 0.65rem 1.1rem;
-      color: var(--text-white);
-      font-family: var(--font-ui);
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
-    #lb-search::placeholder { color: var(--text-muted); }
-    #lb-search:focus {
-      border-color: var(--red-primary);
-      box-shadow: 0 0 12px var(--red-glow);
-    }
+    /* Search */
+    #lb-search-wrap{max-width:400px;margin:0 auto 2rem;padding:0 5%;}
+    #lb-search{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:.65rem 1.1rem;color:var(--text-white);font-family:var(--font-ui);font-size:.95rem;outline:none;transition:border-color var(--transition),box-shadow var(--transition);box-sizing:border-box;}
+    #lb-search::placeholder{color:var(--text-muted);}
+    #lb-search:focus{border-color:var(--red-primary);box-shadow:0 0 12px var(--red-glow);}
 
-    /* ── LEADERBOARD TABLE ────────────────────────────────── */
-    #lb-wrap {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 5% 6rem;
-    }
+    /* Wrap */
+    #lb-wrap{max-width:1000px;margin:0 auto;padding:0 5% 6rem;}
 
-    /* Loading / error states */
-    #lb-status {
-      text-align: center;
-      padding: 4rem 0;
-      font-family: var(--font-ui);
-      color: var(--text-muted);
-      font-size: 1rem;
-      letter-spacing: 0.06em;
-    }
-    .lb-spinner {
-      width: 36px;
-      height: 36px;
-      border: 3px solid var(--border);
-      border-top-color: var(--red-primary);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      margin: 0 auto 1rem;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    /* Spinner */
+    #lb-status{text-align:center;padding:4rem 0;font-family:var(--font-ui);color:var(--text-muted);font-size:1rem;letter-spacing:.06em;}
+    .lb-spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--red-primary);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 1rem;}
+    @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* Table container */
-    .lb-table-wrap {
-      display: none; /* shown by JS once data loaded */
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
+    /* Table wrap */
+    .lb-table-wrap{display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;}
 
-    /* Top-3 podium cards */
-    .lb-podium {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-      padding: 1.5rem 1.5rem 0;
-    }
-    @media (max-width: 600px) {
-      .lb-podium { grid-template-columns: 1fr; }
-    }
+    /* Podium */
+    .lb-podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;padding:1.5rem 1.5rem 0;}
+    @media(max-width:600px){.lb-podium{grid-template-columns:1fr;}}
+    .podium-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1rem;text-align:center;position:relative;overflow:hidden;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);}
+    .podium-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.4);}
+    .podium-card[data-rank="1"]::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#fbbf24;box-shadow:0 0 10px #fbbf24;}
+    .podium-card[data-rank="2"]::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#94a3b8;box-shadow:0 0 10px #94a3b8;}
+    .podium-card[data-rank="3"]::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#cd7f32;box-shadow:0 0 10px #cd7f32;}
+    .podium-rank-num{font-family:var(--font-display);font-size:2rem;font-weight:900;line-height:1;margin-bottom:.4rem;}
+    .podium-card[data-rank="1"] .podium-rank-num{color:#fbbf24;}
+    .podium-card[data-rank="2"] .podium-rank-num{color:#94a3b8;}
+    .podium-card[data-rank="3"] .podium-rank-num{color:#cd7f32;}
+    .podium-avatar{width:56px;height:56px;border-radius:6px;margin:.4rem auto .6rem;border:2px solid var(--border);image-rendering:pixelated;}
+    .podium-name{font-family:var(--font-ui);font-size:1rem;font-weight:700;color:var(--text-white);letter-spacing:.06em;margin-bottom:.3rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .podium-value{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--red-primary);}
+    .podium-value-label{font-family:var(--font-ui);font-size:.7rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;}
+    .online-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;margin-right:4px;vertical-align:middle;}
+    .online-dot-sm{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 5px #22c55e;flex-shrink:0;}
 
-    .podium-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.2rem 1rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .podium-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.4);
-    }
-    /* Gold/Silver/Bronze top bars */
-    .podium-card[data-rank="1"]::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:#fbbf24; box-shadow:0 0 10px #fbbf24; }
-    .podium-card[data-rank="2"]::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:#94a3b8; box-shadow:0 0 10px #94a3b8; }
-    .podium-card[data-rank="3"]::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:#cd7f32; box-shadow:0 0 10px #cd7f32; }
+    .lb-divider{height:1px;background:var(--border);margin:1.5rem 1.5rem 0;}
 
-    .podium-rank-num {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 900;
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-    .podium-card[data-rank="1"] .podium-rank-num { color: #fbbf24; }
-    .podium-card[data-rank="2"] .podium-rank-num { color: #94a3b8; }
-    .podium-card[data-rank="3"] .podium-rank-num { color: #cd7f32; }
+    /* Column headers */
+    .lb-thead{display:grid;grid-template-columns:48px 2fr 1fr 1fr 1fr 1fr;gap:.5rem;padding:.8rem 1.5rem;font-family:var(--font-ui);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border);align-items:center;}
+    @media(max-width:640px){.lb-thead,.lb-row{grid-template-columns:36px 2fr 1fr 1fr !important;}.col-hide-sm{display:none !important;}}
 
-    .podium-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 6px;
-      margin: 0.4rem auto 0.6rem;
-      border: 2px solid var(--border);
-      image-rendering: pixelated;
-    }
-    .podium-name {
-      font-family: var(--font-ui);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-white);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.3rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .podium-value {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--red-primary);
-    }
-    .podium-value-label {
-      font-family: var(--font-ui);
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .podium-online-dot {
-      display: inline-block;
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 6px #22c55e;
-      margin-right: 4px;
-      vertical-align: middle;
-    }
+    /* Rows */
+    .lb-row{display:grid;grid-template-columns:48px 2fr 1fr 1fr 1fr 1fr;gap:.5rem;padding:.75rem 1.5rem;border-bottom:1px solid rgba(232,0,13,.08);font-family:var(--font-ui);font-size:.9rem;transition:background var(--transition);cursor:pointer;align-items:center;}
+    .lb-row:last-child{border-bottom:none;}
+    .lb-row:hover{background:rgba(232,0,13,.04);}
+    .col-rank{font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--text-muted);text-align:center;}
+    .col-player{display:flex;align-items:center;gap:.6rem;min-width:0;}
+    .row-avatar{width:28px;height:28px;border-radius:4px;image-rendering:pixelated;flex-shrink:0;}
+    .row-name{font-weight:700;color:var(--text-white);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .col-val{color:var(--text-light);font-size:.88rem;white-space:nowrap;}
+    .col-val.primary{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--red-primary);}
 
-    /* Divider between podium and table */
-    .lb-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 1.5rem 1.5rem 0;
-    }
+    /* Load more */
+    #lb-load-more-wrap{text-align:center;padding:1.5rem;border-top:1px solid var(--border);}
+    #lb-load-more{font-family:var(--font-ui);font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 2rem;border:1px solid var(--red-primary);border-radius:999px;background:transparent;color:var(--red-primary);cursor:pointer;transition:all var(--transition);}
+    #lb-load-more:hover{background:var(--red-primary);color:#fff;box-shadow:0 0 16px var(--red-glow);}
+    .lb-count{font-family:var(--font-ui);font-size:.75rem;color:var(--text-muted);margin-top:.6rem;letter-spacing:.06em;}
 
-    /* Table header */
-    .lb-thead {
-      display: grid;
-      padding: 0.8rem 1.5rem;
-      font-family: var(--font-ui);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border);
-    }
+    .lb-empty{text-align:center;padding:3rem;color:var(--text-muted);font-family:var(--font-ui);letter-spacing:.06em;}
 
-    /* Row layout — set by JS based on active tab */
-    .lb-thead,
-    .lb-row {
-      grid-template-columns: 48px 2fr 1fr 1fr 1fr 1fr;
-      gap: 0.5rem;
-      align-items: center;
-    }
-    @media (max-width: 640px) {
-      .lb-thead,
-      .lb-row {
-        grid-template-columns: 36px 2fr 1fr 1fr;
-      }
-      .col-hide-sm { display: none !important; }
-    }
-
-    .lb-row {
-      display: grid;
-      padding: 0.75rem 1.5rem;
-      border-bottom: 1px solid rgba(232,0,13,0.08);
-      font-family: var(--font-ui);
-      font-size: 0.9rem;
-      transition: background var(--transition);
-    }
-    .lb-row:last-child { border-bottom: none; }
-    .lb-row:hover { background: rgba(232,0,13,0.04); }
-    .lb-row.highlight-me { background: rgba(232,0,13,0.07); }
-
-    .col-rank {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-align: center;
-    }
-    .col-player {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      min-width: 0;
-    }
-    .row-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 4px;
-      image-rendering: pixelated;
-      flex-shrink: 0;
-    }
-    .row-name {
-      font-weight: 700;
-      color: var(--text-white);
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .row-online {
-      display: inline-block;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 5px #22c55e;
-      flex-shrink: 0;
-    }
-    .col-val {
-      color: var(--text-light);
-      font-size: 0.88rem;
-      white-space: nowrap;
-    }
-    .col-val.primary {
-      font-family: var(--font-display);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--red-primary);
-    }
-
-    /* No results message */
-    .lb-empty {
-      text-align: center;
-      padding: 3rem;
-      color: var(--text-muted);
-      font-family: var(--font-ui);
-      letter-spacing: 0.06em;
-    }
-
-    /* ── PLAYER PROFILE MODAL ─────────────────────────────── */
-    #lb-modal-bg {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    #lb-modal-bg.open { display: flex; }
-    #lb-modal {
-      background: var(--bg-card);
-      border: 1px solid var(--border-bright);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      max-width: 480px;
-      width: 100%;
-      position: relative;
-      box-shadow: 0 0 60px rgba(232,0,13,0.2);
-      animation: modalIn 0.25s ease both;
-    }
-    @keyframes modalIn {
-      from { opacity:0; transform: scale(0.93) translateY(12px); }
-      to   { opacity:1; transform: none; }
-    }
-    #lb-modal-close {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.3rem;
-      cursor: pointer;
-      transition: color var(--transition);
-    }
-    #lb-modal-close:hover { color: var(--red-bright); }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .modal-avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 8px;
-      image-rendering: pixelated;
-      border: 2px solid var(--border-bright);
-    }
-    .modal-name {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--text-white);
-    }
-    .modal-status {
-      font-family: var(--font-ui);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 0.2rem;
-    }
-    .modal-status.online { color: #22c55e; }
-
-    .modal-stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
-    }
-    .modal-stat {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 0.9rem 1rem;
-    }
-    .modal-stat-label {
-      font-family: var(--font-ui);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.3rem;
-    }
-    .modal-stat-val {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-white);
-    }
-    .modal-stat-val.red { color: var(--red-primary); }
-
+    /* Modal */
+    #lb-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);z-index:2000;align-items:center;justify-content:center;padding:1rem;}
+    #lb-modal-bg.open{display:flex;}
+    #lb-modal{background:var(--bg-card);border:1px solid var(--border-bright);border-radius:var(--radius-lg);padding:2rem;max-width:480px;width:100%;position:relative;box-shadow:0 0 60px rgba(232,0,13,.2);animation:modalIn .25s ease both;}
+    @keyframes modalIn{from{opacity:0;transform:scale(.93) translateY(12px)}to{opacity:1;transform:none}}
+    #lb-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-muted);font-size:1.3rem;cursor:pointer;transition:color var(--transition);}
+    #lb-modal-close:hover{color:var(--red-bright);}
+    .modal-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+    .modal-avatar{width:64px;height:64px;border-radius:8px;image-rendering:pixelated;border:2px solid var(--border-bright);}
+    .modal-name{font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--text-white);}
+    .modal-status{font-family:var(--font-ui);font-size:.8rem;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem;}
+    .modal-status.online{color:#22c55e;}
+    .modal-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+    .modal-stat{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem 1rem;}
+    .modal-stat-label{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.3rem;}
+    .modal-stat-val{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--text-white);}
+    .modal-stat-val.red{color:var(--red-primary);}
   </style>
 </head>
 <body>
 
-  <!-- ═══════════ NAV (copied from index.html) ══════════════ -->
   <nav id="navbar">
     <div class="nav-inner">
       <a class="nav-logo" href="/">NEX<span>ORIA</span></a>
@@ -447,19 +143,14 @@
     <a data-discord-link href="#" target="_blank" rel="noopener">Join Discord</a>
   </div>
 
-  <!-- ═══════════ HERO ══════════════════════════════════════ -->
   <section id="lb-hero">
     <div class="lb-hero-inner">
       <p class="section-sub">Hall of Fame</p>
-      <h1 class="section-title">
-        Leaderboard
-        <span class="accent-line"></span>
-      </h1>
+      <h1 class="section-title">Leaderboard<span class="accent-line"></span></h1>
       <p class="lb-last-updated">Last updated: <span id="lb-updated">loading…</span></p>
     </div>
   </section>
 
-  <!-- ═══════════ TABS ══════════════════════════════════════ -->
   <div id="lb-tabs">
     <button class="lb-tab active" data-tab="kills">⚔️ Kills</button>
     <button class="lb-tab" data-tab="deaths">💀 Deaths</button>
@@ -468,30 +159,23 @@
     <button class="lb-tab" data-tab="coins">🪙 Coins</button>
     <button class="lb-tab" data-tab="level">⭐ Level</button>
     <button class="lb-tab" data-tab="mob_kills">🐉 Mob Kills</button>
+    <button class="lb-tab" data-tab="votes">🗳️ Votes</button>
   </div>
 
-  <!-- ═══════════ SEARCH ════════════════════════════════════ -->
   <div id="lb-search-wrap">
     <input id="lb-search" type="text" placeholder="🔍  Search player…" autocomplete="off" />
   </div>
 
-  <!-- ═══════════ TABLE ════════════════════════════════════ -->
   <div id="lb-wrap">
-
-    <!-- Loading spinner -->
     <div id="lb-status">
       <div class="lb-spinner"></div>
       Fetching stats…
     </div>
 
-    <!-- Actual leaderboard — hidden until data ready -->
     <div class="lb-table-wrap" id="lb-table-wrap">
-
-      <!-- Top 3 podium -->
       <div class="lb-podium" id="lb-podium"></div>
       <div class="lb-divider"></div>
 
-      <!-- Column headers -->
       <div class="lb-thead" id="lb-thead">
         <div style="text-align:center">#</div>
         <div>Player</div>
@@ -501,16 +185,18 @@
         <div>Money</div>
       </div>
 
-      <!-- Rows injected here -->
       <div id="lb-rows"></div>
 
+      <div id="lb-load-more-wrap" style="display:none">
+        <button id="lb-load-more">Show More Players ↓</button>
+        <div class="lb-count" id="lb-count"></div>
+      </div>
     </div>
   </div>
 
-  <!-- ═══════════ PLAYER MODAL ════════════════════════════ -->
   <div id="lb-modal-bg">
     <div id="lb-modal">
-      <button id="lb-modal-close" title="Close">✕</button>
+      <button id="lb-modal-close">✕</button>
       <div class="modal-header">
         <img class="modal-avatar" id="modal-avatar" src="" alt="" />
         <div>
@@ -522,51 +208,40 @@
     </div>
   </div>
 
-  <!-- ═══════════ FOOTER ════════════════════════════════════ -->
   <footer id="footer">
     <div class="footer-logo">NEX<span>ORIA</span></div>
     <div class="footer-tagline">EU Survival SMP · Est. 2024</div>
     <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/store/">Store</a>
-      <a href="/ranks/">Ranks</a>
-      <a href="/leaderboard/">Leaderboard</a>
-      <a href="/commands/">Commands</a>
-      <a href="/rules/">Rules</a>
-      <a href="/faq/">FAQ</a>
-      <a href="/about/">About</a>
+      <a href="/">Home</a><a href="/store/">Store</a><a href="/ranks/">Ranks</a>
+      <a href="/leaderboard/">Leaderboard</a><a href="/commands/">Commands</a>
+      <a href="/rules/">Rules</a><a href="/faq/">FAQ</a><a href="/about/">About</a>
     </div>
     <p class="footer-copy">© 2024 Nexoria. Not affiliated with Mojang AB.</p>
   </footer>
 
   <script src="/main.js"></script>
   <script>
-  /* ============================================================
-     LEADERBOARD — leaderboard/index.html inline script
-     Reads from /data/stats.json pushed by the StatsPusher plugin.
-  ============================================================ */
+  const STATS_URL   = '/data/stats.json';
+  const PAGE_SIZE   = 10;   // rows shown initially (after podium top-3)
+  const PAGE_STEP   = 10;   // extra rows per "load more" click
 
-  // ── CONFIG ────────────────────────────────────────────────
-  // Path to the JSON file your plugin pushes to GitHub
-  const STATS_URL = '/data/stats.json';
-
-  // Tab definitions: key = JSON field, label = column header, format = display fn
   const TABS = {
-    kills:           { label: 'Kills',        fmt: n => num(n) },
-    deaths:          { label: 'Deaths',       fmt: n => num(n) },
-    playtime_minutes:{ label: 'Playtime',     fmt: n => fmtTime(n) },
-    money:           { label: 'Money',        fmt: n => '€' + num(n) },
-    coins:           { label: 'Coins',        fmt: n => num(n) },
-    level:           { label: 'Level',        fmt: n => num(n) },
-    mob_kills:       { label: 'Mob Kills',    fmt: n => num(n) },
+    kills:            { label:'Kills',    fmt: n => num(n) },
+    deaths:           { label:'Deaths',   fmt: n => num(n) },
+    playtime_minutes: { label:'Playtime', fmt: n => fmtTime(n) },
+    money:            { label:'Money',    fmt: n => '€'+num(n) },
+    coins:            { label:'Coins',    fmt: n => num(n) },
+    level:            { label:'Level',    fmt: n => num(n) },
+    mob_kills:        { label:'Mob Kills',fmt: n => num(n) },
+    votes:            { label:'Votes',    fmt: n => num(n) },
   };
 
-  // ── STATE ─────────────────────────────────────────────────
   let allPlayers  = [];
   let activeTab   = 'kills';
   let searchQuery = '';
+  let shownCount  = PAGE_SIZE;   // how many rows (after top-3) are visible
 
-  // ── HELPERS ───────────────────────────────────────────────
+  // ── Formatters ────────────────────────────────────────────
   const num     = n => (+(n||0)).toLocaleString();
   const fmtTime = m => {
     m = +(m||0);
@@ -576,151 +251,156 @@
   };
   const fmtDate = iso => {
     if (!iso) return '—';
-    try { return new Date(iso).toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'}); }
+    try { return new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }
     catch { return iso; }
   };
-  const avatarUrl = name => `https://mc-heads.net/avatar/${encodeURIComponent(name)}/64`;
+  const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const avatar = n => `https://mc-heads.net/avatar/${encodeURIComponent(n)}/32`;
+  const avatarLg = n => `https://mc-heads.net/avatar/${encodeURIComponent(n)}/64`;
 
-  // ── FETCH DATA ────────────────────────────────────────────
+  // ── Sorted list for current tab ───────────────────────────
+  function getSorted() {
+    return [...allPlayers]
+      .filter(p => !searchQuery || (p.name||'').toLowerCase().includes(searchQuery))
+      .sort((a, b) => {
+        // Always sort highest → lowest for the active stat
+        const va = parseFloat(a[activeTab]) || 0;
+        const vb = parseFloat(b[activeTab]) || 0;
+        return vb - va;
+      });
+  }
+
+  // ── Fetch ─────────────────────────────────────────────────
   async function loadStats() {
     try {
       const res = await fetch(STATS_URL + '?_=' + Date.now());
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
-
       allPlayers = data.players || [];
 
-      // Show last updated time
       const upd = document.getElementById('lb-updated');
-      if (data.last_updated) {
-        try {
-          upd.textContent = new Date(data.last_updated).toLocaleString('en-GB');
-        } catch { upd.textContent = data.last_updated; }
-      } else {
-        upd.textContent = 'just now';
-      }
+      upd.textContent = data.last_updated
+        ? new Date(data.last_updated).toLocaleString('en-GB') : 'just now';
 
       document.getElementById('lb-status').style.display = 'none';
       document.getElementById('lb-table-wrap').style.display = 'block';
+      shownCount = PAGE_SIZE;
       render();
     } catch (err) {
       document.getElementById('lb-status').innerHTML =
-        `<div style="color:var(--red-bright);font-size:2rem;margin-bottom:0.8rem">⚠</div>
+        `<div style="color:var(--red-bright);font-size:2rem;margin-bottom:.8rem">⚠</div>
          Could not load stats.<br>
-         <small style="font-size:0.8rem;margin-top:0.4rem;display:block">Make sure the StatsPusher plugin has pushed at least once and <code>/data/stats.json</code> exists in your repo.</small>`;
+         <small style="font-size:.8rem;display:block;margin-top:.4rem">
+           Make sure StatsPusher has pushed once and <code>/data/stats.json</code> exists in your repo.
+         </small>`;
     }
   }
 
-  // ── RENDER ────────────────────────────────────────────────
+  // ── Render ────────────────────────────────────────────────
   function render() {
     const tab    = TABS[activeTab];
-    const sorted = [...allPlayers]
-      .filter(p => !searchQuery || p.name?.toLowerCase().includes(searchQuery))
-      .sort((a,b) => (+(b[activeTab]||0)) - (+(a[activeTab]||0)));
+    const sorted = getSorted();
 
-    renderPodium(sorted.slice(0,3), tab);
-    renderRows(sorted, tab);
-
-    // Update column header
     document.getElementById('th-primary').textContent = tab.label;
+    renderPodium(sorted.slice(0, 3), tab);
+    renderRows(sorted, tab);
+    updateLoadMore(sorted);
   }
 
   function renderPodium(top, tab) {
     const el = document.getElementById('lb-podium');
     if (!top.length) { el.innerHTML = ''; return; }
-
-    // Reorder: 2nd, 1st, 3rd for visual podium effect
+    // Visual order: 2nd · 1st · 3rd
     const order = [top[1], top[0], top[2]].filter(Boolean);
-    const ranks  = top[1] ? [2,1,3] : [1,2,3];
-
-    el.innerHTML = order.map((p, i) => {
-      const rank = ranks[i];
-      const val  = +(p[activeTab]||0);
-      return `
-        <div class="podium-card" data-rank="${rank}" data-name="${esc(p.name)}" style="cursor:pointer" title="View ${esc(p.name)}'s stats">
-          <div class="podium-rank-num">${rank === 1 ? '🏆' : rank === 2 ? '🥈' : '🥉'}</div>
-          <img class="podium-avatar" src="${avatarUrl(p.name)}" alt="${esc(p.name)}" loading="lazy" />
-          <div class="podium-name">
-            ${p.online ? '<span class="podium-online-dot"></span>' : ''}${esc(p.name)}
-          </div>
-          <div class="podium-value">${tab.fmt(val)}</div>
-          <div class="podium-value-label">${tab.label}</div>
-        </div>`;
-    }).join('');
-
-    el.querySelectorAll('.podium-card').forEach(card => {
-      card.addEventListener('click', () => openModal(card.dataset.name));
-    });
+    const ranks  = [2, 1, 3];
+    el.innerHTML = order.map((p, i) => `
+      <div class="podium-card" data-rank="${ranks[i]}" data-name="${esc(p.name)}" title="View ${esc(p.name)}">
+        <div class="podium-rank-num">${ranks[i]===1?'🏆':ranks[i]===2?'🥈':'🥉'}</div>
+        <img class="podium-avatar" src="${avatarLg(p.name)}" alt="" loading="lazy" />
+        <div class="podium-name">${p.online?'<span class="online-dot"></span>':''}${esc(p.name)}</div>
+        <div class="podium-value">${tab.fmt(+(p[activeTab]||0))}</div>
+        <div class="podium-value-label">${tab.label}</div>
+      </div>`).join('');
+    el.querySelectorAll('.podium-card').forEach(c =>
+      c.addEventListener('click', () => openModal(c.dataset.name)));
   }
 
   function renderRows(sorted, tab) {
     const el = document.getElementById('lb-rows');
-    if (!sorted.length) {
-      el.innerHTML = '<div class="lb-empty">No players found.</div>';
-      return;
-    }
-
-    // Skip top 3 in the row list (already in podium) only when not searching
+    // Rows = everyone after top 3 (or all if searching)
     const rows = searchQuery ? sorted : sorted.slice(3);
+    const visible = rows.slice(0, shownCount);
 
-    if (!rows.length && !searchQuery) {
-      el.innerHTML = '<div class="lb-empty" style="padding:1.5rem">Top 3 shown above.</div>';
+    if (!visible.length) {
+      el.innerHTML = searchQuery
+        ? '<div class="lb-empty">No players match that name.</div>'
+        : '<div class="lb-empty" style="padding:1.5rem">Top 3 shown above.</div>';
       return;
     }
 
-    el.innerHTML = rows.map((p, i) => {
-      const rank    = sorted.indexOf(p) + 1;
-      const val     = +(p[activeTab]||0);
-      const kills   = +(p.kills||0);
-      const deaths  = +(p.deaths||0);
-      const pt      = +(p.playtime_minutes||0);
-      const money   = +(p.money||0);
-
+    el.innerHTML = visible.map(p => {
+      const rank   = sorted.indexOf(p) + 1;
+      const money  = parseFloat(p.money) || 0;
+      const deaths = +(p.deaths||0);
+      const pt     = +(p.playtime_minutes||0);
       return `
-        <div class="lb-row" data-name="${esc(p.name)}" style="cursor:pointer" title="View stats">
+        <div class="lb-row" data-name="${esc(p.name)}" title="View ${esc(p.name)}">
           <div class="col-rank">${rank}</div>
           <div class="col-player">
-            <img class="row-avatar" src="${avatarUrl(p.name)}" alt="" loading="lazy" />
-            ${p.online ? '<span class="row-online"></span>' : ''}
+            <img class="row-avatar" src="${avatar(p.name)}" alt="" loading="lazy" />
+            ${p.online?'<span class="online-dot-sm"></span>':''}
             <span class="row-name">${esc(p.name)}</span>
           </div>
-          <div class="col-val primary">${tab.fmt(val)}</div>
+          <div class="col-val primary">${tab.fmt(+(p[activeTab]||0))}</div>
           <div class="col-val col-hide-sm">${num(deaths)}</div>
           <div class="col-val col-hide-sm">${fmtTime(pt)}</div>
           <div class="col-val">€${num(money)}</div>
         </div>`;
     }).join('');
 
-    el.querySelectorAll('.lb-row').forEach(row => {
-      row.addEventListener('click', () => openModal(row.dataset.name));
-    });
+    el.querySelectorAll('.lb-row').forEach(r =>
+      r.addEventListener('click', () => openModal(r.dataset.name)));
   }
 
-  // ── PLAYER MODAL ──────────────────────────────────────────
+  function updateLoadMore(sorted) {
+    const rows  = searchQuery ? sorted : sorted.slice(3);
+    const wrap  = document.getElementById('lb-load-more-wrap');
+    const count = document.getElementById('lb-count');
+
+    if (rows.length > shownCount) {
+      wrap.style.display = 'block';
+      const remaining = rows.length - shownCount;
+      count.textContent = `Showing ${Math.min(shownCount, rows.length)} of ${rows.length} players`;
+      document.getElementById('lb-load-more').textContent =
+        `Show ${Math.min(PAGE_STEP, remaining)} More ↓`;
+    } else {
+      wrap.style.display = rows.length > 0 ? 'block' : 'none';
+      count.textContent = `Showing all ${rows.length} players`;
+      document.getElementById('lb-load-more').style.display = 'none';
+    }
+  }
+
+  // ── Modal ─────────────────────────────────────────────────
   function openModal(name) {
     const p = allPlayers.find(x => x.name === name);
     if (!p) return;
-
-    document.getElementById('modal-avatar').src = avatarUrl(p.name);
+    document.getElementById('modal-avatar').src = avatarLg(p.name);
     document.getElementById('modal-name').textContent = p.name;
-    const statusEl = document.getElementById('modal-status');
-    if (p.online) {
-      statusEl.textContent = '● Online now';
-      statusEl.className = 'modal-status online';
-    } else {
-      statusEl.textContent = 'Last seen: ' + fmtDate(p.last_seen);
-      statusEl.className = 'modal-status';
-    }
+    const st = document.getElementById('modal-status');
+    if (p.online) { st.textContent = '● Online now'; st.className = 'modal-status online'; }
+    else          { st.textContent = 'Last seen: ' + fmtDate(p.last_seen); st.className = 'modal-status'; }
 
     const stats = [
-      { label: 'Player Kills',  val: num(p.kills||0),            red: true  },
-      { label: 'Deaths',        val: num(p.deaths||0)                         },
-      { label: 'Playtime',      val: fmtTime(p.playtime_minutes||0), red: true },
-      { label: 'Money',         val: '€' + num(p.money||0)                    },
-      { label: 'Coins',         val: num(p.coins||0)                           },
-      { label: 'Mob Kills',     val: num(p.mob_kills||0)                       },
-      { label: 'Level',         val: num(p.level||0),            red: true   },
-      { label: 'First Joined',  val: fmtDate(p.first_joined)                   },
+      { label:'Kills',       val: num(p.kills||0),                red:true },
+      { label:'Deaths',      val: num(p.deaths||0)                         },
+      { label:'Playtime',    val: fmtTime(p.playtime_minutes||0), red:true },
+      { label:'Money',       val: '€' + num(p.money||0)                    },
+      { label:'Coins',       val: num(p.coins||0)                           },
+      { label:'Level',       val: num(p.level||0),                red:true },
+      { label:'Mob Kills',   val: num(p.mob_kills||0)                       },
+      { label:'Votes',       val: num(p.votes||0)                           },
+      { label:'First Joined',val: fmtDate(p.first_joined)                   },
+      { label:'Last Seen',   val: fmtDate(p.last_seen)                      },
     ];
 
     document.getElementById('modal-stats-grid').innerHTML = stats.map(s => `
@@ -732,11 +412,9 @@
     document.getElementById('lb-modal-bg').classList.add('open');
   }
 
-  function closeModal() {
-    document.getElementById('lb-modal-bg').classList.remove('open');
-  }
+  const closeModal = () => document.getElementById('lb-modal-bg').classList.remove('open');
 
-  // ── EVENTS ────────────────────────────────────────────────
+  // ── Events ────────────────────────────────────────────────
   document.getElementById('lb-modal-bg').addEventListener('click', e => {
     if (e.target === document.getElementById('lb-modal-bg')) closeModal();
   });
@@ -748,23 +426,27 @@
       document.querySelectorAll('.lb-tab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeTab = btn.dataset.tab;
+      shownCount = PAGE_SIZE;
       render();
     });
   });
 
   document.getElementById('lb-search').addEventListener('input', e => {
     searchQuery = e.target.value.trim().toLowerCase();
+    shownCount = PAGE_SIZE;
     render();
   });
 
-  // ── BOOT ──────────────────────────────────────────────────
-  function esc(str) {
-    return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
+  document.getElementById('lb-load-more').addEventListener('click', () => {
+    shownCount += PAGE_STEP;
+    render();
+    // Smooth scroll to new rows
+    document.getElementById('lb-rows').lastElementChild?.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  });
 
+  // ── Boot ──────────────────────────────────────────────────
   loadStats();
-  // Auto-refresh every 2 minutes
-  setInterval(loadStats, 120000);
+  setInterval(loadStats, 120000); // refresh every 2 min
   </script>
 </body>
 </html>
