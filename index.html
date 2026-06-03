@@ -565,7 +565,7 @@
     <div class="nav-inner">
       <a class="nav-logo" href="/">NEX<span>ORIA</span></a>
       <ul class="nav-links">
-        <li><a href="nexoriarealm.xyz" style="color:var(--red-bright)">Home</a></li>
+        <li><a href="/" style="color:var(--red-bright)">Home</a></li>
         <li><a href="/store/">Store</a></li>
         <li><a href="/ranks/">Ranks</a>
         <li><a href="/commands/">Commands</a></li>
@@ -582,7 +582,7 @@
     </div>
   </nav>
   <div id="navMobileMenu" class="nav-mobile-menu">
-    <a href="nexoriarealm.xyz">Home</a>
+    <a href="/">Home</a>
     <a href="/store/">Store</a>
     <a href="/ranks/">Ranks</a>
     <a href="/commands/">Commands</a>
@@ -611,7 +611,7 @@
       </div>
 
       <!-- Main title -->
-      <h1 class="hero-title">NEX<span>ORIA</span></h1>
+      <h1 class="hero-title anim-glitch">NEX<span>ORIA</span></h1>
       <p class="hero-subtitle">Forge your legend. Build your empire.</p>
 
       <!-- IP copy box — clicking copies IP via main.js -->
@@ -688,7 +688,7 @@
        FEATURES SECTION
        Add/remove feature-card divs to change what's listed.
   ═══════════════════════════════════════════════════════ -->
-  <section id="features">
+  <section id="features" data-ambient data-ambient>
     <p class="section-sub reveal">What awaits you</p>
     <h2 class="section-title reveal">
       Built for players, by players
@@ -697,49 +697,49 @@
 
     <div class="features-grid reveal-group">
 
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <span class="feature-icon">🏪</span>
         <div class="feature-title">Economy Shop</div>
         <p class="feature-desc">Full GUI-based shop powered by EconomyShopGUI. Buy and sell hundreds of items with a clean in-game interface.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <span class="feature-icon">🔨</span>
         <div class="feature-title">Auction House</div>
         <p class="feature-desc">Player-driven market via CrazyAuctions. List any item, bid on others and grow your in-game wealth.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <span class="feature-icon">⚔️</span>
         <div class="feature-title">Skills & RPG</div>
         <p class="feature-desc">Level up 15+ skills with AuraSkills — Mining, Farming, Combat and more. The more you play, the stronger you get.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <span class="feature-icon">🎁</span>
         <div class="feature-title">Crates & Cosmetics</div>
         <p class="feature-desc">PhoenixCrates for loot drops and UltraCosmetics for hats, gadgets, pets and particle effects.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <span class="feature-icon">🛡️</span>
         <div class="feature-title">Land Claims</div>
         <p class="feature-desc">Protect your builds with GriefPrevention and WorldGuard. Your land, your rules — grief is impossible.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <span class="feature-icon">🧙</span>
         <div class="feature-title">MythicMobs</div>
         <p class="feature-desc">Custom boss encounters and unique mobs with special abilities. Not your average survival mobs.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <span class="feature-icon">🏅</span>
         <div class="feature-title">Tags & Ranks</div>
         <p class="feature-desc">Collect custom chat tags via DeluxeTags, earn prestige and show off your status with TAB-powered display.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card tilt-card">
         <span class="feature-icon">🔒</span>
         <div class="feature-title">Anti-Cheat</div>
         <p class="feature-desc">Vulcan anti-cheat keeps the server fair. No hackers, no flyers, no cheaters — just clean survival gameplay.</p>
@@ -754,7 +754,7 @@
        To update rank colours, find the CSS block above
        labelled "RANK COLOURS" and change the hex values.
   ═══════════════════════════════════════════════════════ -->
-  <section id="ranks">
+  <section id="ranks" data-ambient>
     <p class="section-sub reveal">Prestige &amp; Progression</p>
     <h2 class="section-title reveal">
       Choose your rank
@@ -764,35 +764,35 @@
     <div class="ranks-grid reveal-group">
 
       <!-- MEMBER (free default rank) -->
-      <div class="rank-card rank-member">
+      <div class="rank-card tilt-card rank-member">
         <span class="rank-badge">Free</span>
         <div class="rank-name">Member</div>
         <p class="rank-desc">The starting rank. Full server access, 1 home, AuraSkills, /rtp and player warps.</p>
       </div>
 
       <!-- VIP — $4.99 -->
-      <div class="rank-card rank-vip">
+      <div class="rank-card tilt-card rank-vip">
         <span class="rank-badge">$4.99</span>
         <div class="rank-name">VIP</div>
         <p class="rank-desc">7 homes, /fly, /nick, /ptime, /enderchest, /workbench + VIP kit &amp; shop discounts.</p>
       </div>
 
       <!-- ELITE — $9.99 -->
-      <div class="rank-card rank-elite">
+      <div class="rank-card tilt-card rank-elite">
         <span class="rank-badge">$9.99</span>
         <div class="rank-name">Elite</div>
         <p class="rank-desc">9 homes, 14 auction slots, Elite kit, bigger sell multiplier + all VIP perks.</p>
       </div>
 
       <!-- GOD — $14.99 -->
-      <div class="rank-card rank-god">
+      <div class="rank-card tilt-card rank-god">
         <span class="rank-badge">$14.99</span>
         <div class="rank-name">God</div>
         <p class="rank-desc">11 homes, 16 auction slots, /feed, /heal, God kit + all Elite perks.</p>
       </div>
 
       <!-- MVP — $19.99 -->
-      <div class="rank-card rank-mvp">
+      <div class="rank-card tilt-card rank-mvp">
         <span class="rank-badge">$19.99</span>
         <div class="rank-name">MVP</div>
         <p class="rank-desc">13 homes, 18 auction slots, /god mode, MVP kit + every perk unlocked.</p>
@@ -928,7 +928,7 @@
     <div class="footer-logo">NEX<span>ORIA</span></div>
     <div class="footer-tagline">EU Survival SMP · Est. 2024</div>
     <div class="footer-links">
-      <a href="nexoriarealm.xyz">Home</a>
+      <a href="/">Home</a>
       <a href="/store/">Store</a>
       <a href="/ranks/">Ranks</a>
       <a href="/commands/">Commands</a>
