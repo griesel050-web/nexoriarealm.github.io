@@ -1,9 +1,7 @@
 /* ============================================================
-   NEXORIA — main.js  (Enhanced with animations v2)
-   Shared script included on every page.
+   NEXORIA — main.js  v3  (Full animation overhaul)
    ============================================================ */
 
-/* ── 1. CONFIG ───────────────────────────────────────────────── */
 const CONFIG = {
   SERVER_IP:     'play.nexoriarealm.xyz',
   DISCORD_URL:   'https://discord.gg/35mFaZxrgZ',
@@ -11,7 +9,88 @@ const CONFIG = {
   PING_INTERVAL: 30000,
 };
 
-/* ── 2. NAV ──────────────────────────────────────────────────── */
+/* ── CUSTOM CURSOR ─────────────────────────────────────────── */
+function initCursor() {
+  // Don't run on touch-only devices
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  const dot  = document.createElement('div');
+  const ring = document.createElement('div');
+  dot.id  = 'nex-cursor-dot';
+  ring.id = 'nex-cursor-ring';
+  document.body.appendChild(dot);
+  document.body.appendChild(ring);
+
+  let mx = -200, my = -200;
+  let rx = -200, ry = -200;
+  let hidden = false;
+
+  // Dot follows exactly; ring lags behind
+  window.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+    if (hidden) { dot.style.opacity = '1'; ring.style.opacity = '1'; hidden = false; }
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    hidden = true;
+    dot.style.opacity = '0';
+    ring.style.opacity = '0';
+  });
+
+  // Smooth ring lerp
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  (function animate() {
+    rx = lerp(rx, mx, 0.12);
+    ry = lerp(ry, my, 0.12);
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animate);
+  })();
+
+  // Hover state on interactive elements
+  const hoverTargets = 'a, button, [data-copy-ip], .btn-primary, .btn-ghost, ' +
+                       '.nav-links a, .nav-logo, .tilt-card, .feature-card, ' +
+                       '.rank-card, .rcard, .product-card, input, textarea, select';
+
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest(hoverTargets)) document.body.classList.add('cursor-hover');
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest(hoverTargets)) document.body.classList.remove('cursor-hover');
+  });
+
+  // Click state
+  document.addEventListener('mousedown', () => {
+    document.body.classList.add('cursor-click');
+    document.body.classList.remove('cursor-hover');
+  });
+  document.addEventListener('mouseup', () => {
+    document.body.classList.remove('cursor-click');
+  });
+
+  // Click burst ring
+  document.addEventListener('click', e => {
+    spawnBurstRing(e.clientX, e.clientY);
+  });
+}
+
+/* ── BURST RING (on click) ─────────────────────────────────── */
+function spawnBurstRing(x, y, count = 2) {
+  for (let i = 0; i < count; i++) {
+    const r    = document.createElement('div');
+    r.className = 'cursor-burst-ring';
+    const sz   = 18 + i * 16;
+    r.style.cssText = `width:${sz}px;height:${sz}px;` +
+                      `left:${x - sz/2}px;top:${y - sz/2}px;` +
+                      `animation-delay:${i * 0.07}s;`;
+    document.body.appendChild(r);
+    setTimeout(() => r.remove(), 700);
+  }
+}
+
+/* ── NAV ───────────────────────────────────────────────────── */
 function initNav() {
   const navbar     = document.getElementById('navbar');
   const hamburger  = document.getElementById('navHamburger');
@@ -27,114 +106,130 @@ function initNav() {
       const open = mobileMenu.classList.toggle('open');
       hamburger.classList.toggle('open', open);
     });
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
+    mobileMenu.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
         hamburger.classList.remove('open');
-      });
-    });
+      })
+    );
   }
 }
 
-/* ── 3. IP COPY ──────────────────────────────────────────────── */
+/* ── ACTIVE NAV LINK ───────────────────────────────────────── */
+function initActiveNav() {
+  // Normalize current path: strip trailing slash, default to "/"
+  const current = window.location.pathname.replace(/\/$/, '') || '/';
+
+  const allNavLinks = document.querySelectorAll(
+    '.nav-links a, .nav-mobile-menu a'
+  );
+
+  allNavLinks.forEach(a => {
+    // Remove any old inline style that was hardcoded
+    a.removeAttribute('style');
+    a.classList.remove('nav-active');
+
+    const href = a.getAttribute('href') || '';
+    const linkPath = href.startsWith('http')
+      ? new URL(href).pathname.replace(/\/$/, '') || '/'
+      : href.replace(/\/$/, '') || '/';
+
+    if (linkPath === current) {
+      a.classList.add('nav-active');
+    }
+  });
+}
+
+/* ── IP COPY ───────────────────────────────────────────────── */
 function initIpCopy() {
   document.querySelectorAll('[data-copy-ip]').forEach(el => {
-    el.addEventListener('click', (e) => {
-      navigator.clipboard.writeText(CONFIG.SERVER_IP).then(() => {
-        showToast('IP copied — see you in-game! ⚔️');
-        burstParticles(e.clientX, e.clientY);
-      }).catch(() => {
-        showToast(CONFIG.SERVER_IP);
-      });
+    el.addEventListener('click', e => {
+      navigator.clipboard.writeText(CONFIG.SERVER_IP)
+        .then(() => showToast('IP copied — see you in-game! ⚔️'))
+        .catch(() => showToast(CONFIG.SERVER_IP));
     });
   });
 }
 
-/* ── 4. TOAST ────────────────────────────────────────────────── */
-function showToast(message) {
-  const existing = document.getElementById('nexToast');
-  if (existing) existing.remove();
-
-  const toast = document.createElement('div');
-  toast.id = 'nexToast';
-  toast.textContent = message;
-  Object.assign(toast.style, {
-    position: 'fixed', bottom: '1.5rem', left: '50%',
-    transform: 'translateX(-50%) translateY(20px)',
-    background: '#e8000d', color: '#fff',
-    fontFamily: "'Rajdhani', sans-serif", fontWeight: '700',
-    fontSize: '0.95rem', letterSpacing: '0.06em',
-    padding: '0.65rem 1.4rem', borderRadius: '6px',
-    boxShadow: '0 0 24px rgba(232,0,13,0.5)', zIndex: '9999',
-    opacity: '0', transition: 'opacity 0.3s ease, transform 0.3s ease',
-    pointerEvents: 'none', whiteSpace: 'nowrap',
+/* ── TOAST ─────────────────────────────────────────────────── */
+function showToast(msg) {
+  const old = document.getElementById('nexToast');
+  if (old) old.remove();
+  const t = document.createElement('div');
+  t.id = 'nexToast';
+  t.textContent = msg;
+  Object.assign(t.style, {
+    position:'fixed', bottom:'1.5rem', left:'50%',
+    transform:'translateX(-50%) translateY(18px)',
+    background:'#e8000d', color:'#fff',
+    fontFamily:"'Rajdhani',sans-serif", fontWeight:'700',
+    fontSize:'0.95rem', letterSpacing:'0.06em',
+    padding:'0.65rem 1.4rem', borderRadius:'6px',
+    boxShadow:'0 0 24px rgba(232,0,13,0.55)',
+    zIndex:'99999', opacity:'0',
+    transition:'opacity 0.3s ease, transform 0.3s ease',
+    pointerEvents:'none', whiteSpace:'nowrap',
   });
-  document.body.appendChild(toast);
-
+  document.body.appendChild(t);
   requestAnimationFrame(() => requestAnimationFrame(() => {
-    toast.style.opacity = '1';
-    toast.style.transform = 'translateX(-50%) translateY(0)';
+    t.style.opacity = '1';
+    t.style.transform = 'translateX(-50%) translateY(0)';
   }));
-
   setTimeout(() => {
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateX(-50%) translateY(20px)';
-    setTimeout(() => toast.remove(), 350);
+    t.style.opacity = '0';
+    t.style.transform = 'translateX(-50%) translateY(18px)';
+    setTimeout(() => t.remove(), 350);
   }, 2500);
 }
 
-/* ── 5. LIVE PLAYER COUNT ────────────────────────────────────── */
+/* ── PLAYER COUNT ──────────────────────────────────────────── */
 async function fetchPlayerCount() {
   try {
-    const res  = await fetch(`https://api.mcsrvstat.us/3/${CONFIG.SERVER_IP}`);
-    const data = await res.json();
+    const r    = await fetch(`https://api.mcsrvstat.us/3/${CONFIG.SERVER_IP}`);
+    const data = await r.json();
     if (data.online) {
-      updatePlayerCountUI(data.players?.online ?? 0, data.players?.max ?? CONFIG.MAX_PLAYERS, true);
+      updatePlayerUI(data.players?.online ?? 0, data.players?.max ?? CONFIG.MAX_PLAYERS, true);
     } else {
-      updatePlayerCountUI(0, CONFIG.MAX_PLAYERS, false);
+      updatePlayerUI(0, CONFIG.MAX_PLAYERS, false);
     }
-  } catch {
-    updatePlayerCountUI('?', CONFIG.MAX_PLAYERS, null);
-  }
+  } catch { updatePlayerUI('?', CONFIG.MAX_PLAYERS, null); }
 }
 
-function updatePlayerCountUI(online, max, isOnline) {
+function updatePlayerUI(online, max, isOnline) {
   document.querySelectorAll('[data-player-count]').forEach(el => {
     el.textContent = `${online} / ${max}`;
   });
   document.querySelectorAll('[data-server-dot]').forEach(dot => {
-    dot.classList.remove('dot-online', 'dot-offline', 'dot-unknown');
-    if (isOnline === true)       dot.classList.add('dot-online');
-    else if (isOnline === false) dot.classList.add('dot-offline');
-    else                         dot.classList.add('dot-unknown');
+    dot.classList.remove('dot-online','dot-offline','dot-unknown');
+    dot.classList.add(isOnline === true ? 'dot-online' : isOnline === false ? 'dot-offline' : 'dot-unknown');
   });
 }
 
-function initPlayerCount() {
-  fetchPlayerCount();
-  setInterval(fetchPlayerCount, CONFIG.PING_INTERVAL);
-}
-
-/* ── 6. SCROLL REVEAL (multi-direction) ─────────────────────── */
+/* ── SCROLL REVEAL ─────────────────────────────────────────── */
 function initScrollReveal() {
-  const selectors = '.reveal, .reveal-group, .reveal-left, .reveal-right, .reveal-scale';
-  const observer  = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+  const sel = '.reveal, .reveal-group, .reveal-left, .reveal-right, .reveal-scale';
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        // Add stagger delay based on position in parent
+        const siblings = Array.from(e.target.parentElement?.children || []);
+        const idx      = siblings.indexOf(e.target);
+        if (idx > 0 && !e.target.classList.contains('reveal-group')) {
+          e.target.style.transitionDelay = (idx * 0.08) + 's';
+        }
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll(selectors).forEach(el => observer.observe(el));
+  document.querySelectorAll(sel).forEach(el => obs.observe(el));
 }
 
-/* ── 7. PARTICLE CANVAS ──────────────────────────────────────── */
+/* ── PARTICLE CANVAS ───────────────────────────────────────── */
 function initParticles() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
-
   const ctx = canvas.getContext('2d');
   let W, H, particles;
 
@@ -145,168 +240,91 @@ function initParticles() {
 
   class Particle {
     constructor() { this.reset(true); }
-    reset(initial = false) {
+    reset(init = false) {
       this.x      = Math.random() * W;
-      this.y      = initial ? Math.random() * H : H + 5;
-      this.size   = Math.random() * 1.8 + 0.4;
-      this.alpha  = Math.random() * 0.55 + 0.05;
-      this.speedX = (Math.random() - 0.5) * 0.4;
-      this.speedY = -Math.random() * 0.5 - 0.1;
-      this.twinkle = Math.random() * Math.PI * 2;
+      this.y      = init ? Math.random() * H : H + 5;
+      this.r      = Math.random() * 1.6 + 0.3;
+      this.a      = Math.random() * 0.5 + 0.05;
+      this.vx     = (Math.random() - 0.5) * 0.35;
+      this.vy     = -(Math.random() * 0.55 + 0.12);
+      this.phase  = Math.random() * Math.PI * 2;
     }
     update() {
-      this.x       += this.speedX;
-      this.twinkle += 0.03;
-      this.y       += this.speedY;
+      this.x     += this.vx;
+      this.y     += this.vy;
+      this.phase += 0.025;
       if (this.y < -5 || this.x < -5 || this.x > W + 5) this.reset();
     }
     draw() {
-      const a = this.alpha * (0.75 + 0.25 * Math.sin(this.twinkle));
+      const alpha = this.a * (0.7 + 0.3 * Math.sin(this.phase));
       ctx.save();
-      ctx.globalAlpha = a;
-      ctx.fillStyle   = '#e8000d';
+      ctx.globalAlpha = alpha;
       ctx.shadowColor = '#e8000d';
-      ctx.shadowBlur  = 8;
+      ctx.shadowBlur  = 7;
+      ctx.fillStyle   = '#e8000d';
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     }
   }
 
-  function init() {
-    resize();
-    particles = Array.from({ length: 150 }, () => new Particle());
-  }
+  resize();
+  particles = Array.from({ length: 160 }, () => new Particle());
+  window.addEventListener('resize', resize, { passive: true });
 
-  function loop() {
+  (function loop() {
     ctx.clearRect(0, 0, W, H);
     particles.forEach(p => { p.update(); p.draw(); });
     requestAnimationFrame(loop);
-  }
-
-  window.addEventListener('resize', resize, { passive: true });
-  init();
-  loop();
+  })();
 }
 
-/* ── 8. ANIMATED COUNTER ─────────────────────────────────────── */
-function animateCounter(el, target, duration = 1500) {
-  const start = performance.now();
+/* ── COUNTER ANIMATION ─────────────────────────────────────── */
+function animCounter(el, target, ms = 1600) {
+  const start   = performance.now();
   const isFloat = target % 1 !== 0;
-  function step(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased    = 1 - Math.pow(1 - progress, 3);
-    const current  = target * eased;
-    el.textContent = isFloat ? current.toFixed(1) : Math.round(current).toLocaleString();
-    if (progress < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
+  (function step(now) {
+    const p  = Math.min((now - start) / ms, 1);
+    const e2 = 1 - Math.pow(1 - p, 3);
+    el.textContent = isFloat ? (target * e2).toFixed(1) : Math.round(target * e2).toLocaleString();
+    if (p < 1) requestAnimationFrame(step);
+  })(start);
 }
 
 function initCounters() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target, parseFloat(entry.target.dataset.countTo));
-        observer.unobserve(entry.target);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animCounter(e.target, parseFloat(e.target.dataset.countTo));
+        obs.unobserve(e.target);
       }
     });
   }, { threshold: 0.3 });
-  document.querySelectorAll('[data-count-to]').forEach(el => observer.observe(el));
+  document.querySelectorAll('[data-count-to]').forEach(el => obs.observe(el));
 }
 
-/* ── 9. DISCORD LINKS ────────────────────────────────────────── */
+/* ── DISCORD LINKS ─────────────────────────────────────────── */
 function initDiscordLinks() {
   document.querySelectorAll('[data-discord-link]').forEach(el => {
     el.href = CONFIG.DISCORD_URL;
   });
 }
 
-/* ── 10. CURSOR PARTICLE TRAIL ───────────────────────────────── */
-function initCursorTrail() {
-  // Only on non-touch devices
-  if (window.matchMedia('(hover: none)').matches) return;
-
-  const dots = [];
-  const MAX  = 12;
-  let mx = 0, my = 0;
-
-  for (let i = 0; i < MAX; i++) {
-    const d = document.createElement('div');
-    Object.assign(d.style, {
-      position: 'fixed', borderRadius: '50%', pointerEvents: 'none',
-      zIndex: '9990', opacity: '0',
-      background: `rgba(232,0,13,${0.6 - i * 0.045})`,
-      transition: `transform 0.05s ease, opacity 0.15s ease`,
-      willChange: 'transform',
-    });
-    document.body.appendChild(d);
-    dots.push({ el: d, x: 0, y: 0 });
-  }
-
-  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
-
-  let active = false;
-  window.addEventListener('mouseenter', () => { active = true; });
-  window.addEventListener('mouseleave', () => {
-    active = false;
-    dots.forEach(d => { d.el.style.opacity = '0'; });
-  });
-
-  function tick() {
-    let px = mx, py = my;
-    dots.forEach((dot, i) => {
-      const size = Math.max(2, 8 - i * 0.5);
-      dot.el.style.width  = size + 'px';
-      dot.el.style.height = size + 'px';
-      dot.x += (px - dot.x) * (0.35 - i * 0.022);
-      dot.y += (py - dot.y) * (0.35 - i * 0.022);
-      dot.el.style.transform = `translate(${dot.x - size/2}px, ${dot.y - size/2}px)`;
-      dot.el.style.opacity   = active ? (0.7 - i * 0.05).toString() : '0';
-      px = dot.x;
-      py = dot.y;
-    });
-    requestAnimationFrame(tick);
-  }
-  tick();
-}
-
-/* ── 11. PARTICLE RING BURST (click feedback) ────────────────── */
-function burstParticles(x, y) {
-  for (let i = 0; i < 3; i++) {
-    const ring = document.createElement('div');
-    ring.className = 'particle-burst';
-    const size = 20 + i * 18;
-    Object.assign(ring.style, {
-      width: size + 'px', height: size + 'px',
-      left: (x - size/2) + 'px', top: (y - size/2) + 'px',
-      animationDelay: (i * 0.08) + 's',
-    });
-    document.body.appendChild(ring);
-    setTimeout(() => ring.remove(), 800);
-  }
-}
-
-function initClickBurst() {
-  document.querySelectorAll('.btn-primary, .btn-ghost, .card').forEach(el => {
-    el.addEventListener('click', e => {
-      const r = el.getBoundingClientRect();
-      burstParticles(r.left + r.width/2, r.top + r.height/2);
-    });
-  });
-}
-
-/* ── 12. 3D TILT CARDS ───────────────────────────────────────── */
+/* ── 3D TILT CARDS ─────────────────────────────────────────── */
 function initTiltCards() {
-  document.querySelectorAll('.tilt-card').forEach(card => {
+  const sel = '.tilt-card, .feature-card, .rank-card, .rcard, .product-card';
+  document.querySelectorAll(sel).forEach(card => {
+    card.style.transition = 'transform 0.12s ease, box-shadow 0.12s ease';
+    card.style.willChange = 'transform';
+
     card.addEventListener('mousemove', e => {
       const r  = card.getBoundingClientRect();
       const cx = r.left + r.width  / 2;
       const cy = r.top  + r.height / 2;
-      const rx = ((e.clientY - cy) / (r.height / 2)) * -8;
-      const ry = ((e.clientX - cx) / (r.width  / 2)) *  8;
-      card.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+      const rx = ((e.clientY - cy) / (r.height / 2)) * -9;
+      const ry = ((e.clientX - cx) / (r.width  / 2)) *  9;
+      card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.03)`;
     });
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
@@ -314,14 +332,14 @@ function initTiltCards() {
   });
 }
 
-/* ── 13. MAGNETIC BUTTONS ────────────────────────────────────── */
+/* ── MAGNETIC BUTTONS ──────────────────────────────────────── */
 function initMagneticButtons() {
   document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
     btn.addEventListener('mousemove', e => {
-      const r   = btn.getBoundingClientRect();
-      const dx  = e.clientX - (r.left + r.width  / 2);
-      const dy  = e.clientY - (r.top  + r.height / 2);
-      btn.style.transform = `translate(${dx * 0.18}px, ${dy * 0.18}px) translateY(-2px)`;
+      const r  = btn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width  / 2);
+      const dy = e.clientY - (r.top  + r.height / 2);
+      btn.style.transform = `translate(${dx * 0.22}px, ${dy * 0.22}px)`;
     });
     btn.addEventListener('mouseleave', () => {
       btn.style.transform = '';
@@ -329,106 +347,70 @@ function initMagneticButtons() {
   });
 }
 
-/* ── 14. TYPEWRITER ──────────────────────────────────────────── */
-function typewrite(el, text, speed = 55, onDone) {
-  el.textContent = '';
-  let i = 0;
-  el.classList.add('anim-cursor');
-  function tick() {
-    if (i <= text.length) {
-      el.textContent = text.slice(0, i++);
-      setTimeout(tick, speed + Math.random() * 30);
-    } else {
-      if (onDone) onDone();
+/* ── AMBIENT ORBS (inject into [data-ambient] sections) ─────── */
+function initAmbientOrbs() {
+  document.querySelectorAll('[data-ambient]').forEach(section => {
+    // Avoid double-injecting
+    if (section.querySelector('.ambient-orb')) return;
+    for (let i = 1; i <= 3; i++) {
+      const orb       = document.createElement('div');
+      orb.className   = `ambient-orb ambient-orb-${i}`;
+      section.insertBefore(orb, section.firstChild);
     }
-  }
-  tick();
-}
-
-function initTypewriter() {
-  document.querySelectorAll('[data-typewrite]').forEach(el => {
-    const text = el.dataset.typewrite || el.textContent;
-    el.textContent = '';
-    const obs = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        obs.disconnect();
-        setTimeout(() => typewrite(el, text, 50), 300);
-      }
-    }, { threshold: 0.5 });
-    obs.observe(el);
   });
 }
 
-/* ── 15. PAGE TRANSITION ─────────────────────────────────────── */
+/* ── PAGE TRANSITION ───────────────────────────────────────── */
 function initPageTransition() {
-  const overlay = document.createElement('div');
-  overlay.id = 'pageTransition';
-  document.body.appendChild(overlay);
+  const veil = document.createElement('div');
+  veil.id = 'nex-page-veil';
+  document.body.appendChild(veil);
 
-  // Fade in on arrival
-  overlay.style.opacity = '1';
-  overlay.style.transition = 'none';
+  // Fade in (reveal current page)
   requestAnimationFrame(() => requestAnimationFrame(() => {
-    overlay.style.transition = 'opacity 0.4s ease';
-    overlay.style.opacity    = '0';
+    veil.style.transition = 'opacity 0.4s ease';
   }));
 
-  // Fade out on internal link click
-  document.querySelectorAll('a[href]').forEach(link => {
+  // Intercept internal links
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
     const href = link.getAttribute('href');
-    // Only internal links, not anchors or external
     if (!href || href.startsWith('#') || href.startsWith('http') ||
-        href.startsWith('mailto') || link.target === '_blank') return;
+        href.startsWith('mailto') || href.startsWith('tel') || link.target === '_blank') return;
 
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      overlay.style.opacity = '1';
-      setTimeout(() => { window.location.href = href; }, 380);
-    });
+    e.preventDefault();
+    veil.classList.add('leaving');
+    setTimeout(() => { window.location.href = href; }, 380);
   });
 }
 
-/* ── 16. AMBIENT ORBS (auto-inject) ──────────────────────────── */
-function initAmbientOrbs() {
-  // Inject into sections that have position:relative and are tall enough
-  document.querySelectorAll('[data-ambient]').forEach(section => {
-    section.style.position = 'relative';
-    section.style.overflow = 'hidden';
-    [1, 2, 3].forEach(n => {
-      const orb = document.createElement('div');
-      orb.className = `ambient-orb ambient-orb-${n}`;
-      section.insertBefore(orb, section.firstChild);
-    });
+/* ── GLITCH TEXT: auto-set data-text attr ──────────────────── */
+function initGlitchText() {
+  document.querySelectorAll('.anim-glitch').forEach(el => {
+    if (!el.dataset.text) el.dataset.text = el.textContent;
   });
 }
 
-/* ── 17. NAVBAR ACTIVE LINK ───────────────────────────────────── */
-function initActiveNavLink() {
-  const path = window.location.pathname.replace(/\/$/, '') || '/';
-  document.querySelectorAll('.nav-links a, .nav-mobile-menu a').forEach(link => {
-    const lpath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '') || '/';
-    if (lpath === path) {
-      link.style.color     = 'var(--red-bright)';
-      link.style.fontWeight = '900';
-    }
-  });
-}
-
-/* ── BOOT ─────────────────────────────────────────────────────── */
+/* ── BOOT ──────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  initCursor();
   initNav();
+  initActiveNav();
   initIpCopy();
   initPlayerCount();
   initScrollReveal();
   initParticles();
   initCounters();
   initDiscordLinks();
-  initCursorTrail();
-  initClickBurst();
   initTiltCards();
   initMagneticButtons();
-  initTypewriter();
-  initPageTransition();
   initAmbientOrbs();
-  initActiveNavLink();
+  initPageTransition();
+  initGlitchText();
 });
+
+function initPlayerCount() {
+  fetchPlayerCount();
+  setInterval(fetchPlayerCount, CONFIG.PING_INTERVAL);
+}
