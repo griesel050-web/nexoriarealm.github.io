@@ -1,0 +1,7 @@
+# Nexus Social — Cloudflare Pages redirects
+
+# Remove trailing slashes (Cloudflare handles this natively, but just in case)
+/index.html  /  301
+
+# Catch-all: 404 → home
+/*  /  200
