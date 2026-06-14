@@ -3,21 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nexus — Creator & Web Developer</title>
-  <meta name="description" content="Nexus — web developer, creator and digital builder. Follow along on Discord, YouTube, TikTok, Instagram and more." />
+  <title>Nexoria — EU Survival SMP | play.nexoriarealm.xyz</title>
+  <meta name="description" content="Nexoria is a premium EU Minecraft Survival SMP with economy, player shops, ranks, skills, and an active community. Join now at play.nexoriarealm.xyz" />
   <link rel="icon" href="/assets/icons/logo.png" type="image/png"/>
   <link rel="shortcut icon" href="/assets/icons/logo.png" type="image/png"/>
   <link rel="apple-touch-icon" href="/assets/icons/logo.png"/>
+  <meta name="msapplication-TileImage" content="/assets/icons/logo.png"/>
+  <meta name="keywords" content="Nexoria Minecraft server, EU Survival SMP, Minecraft survival server Europe, play.nexoriarealm.xyz, economy Minecraft server, ranks SMP" />
+  <meta name="author" content="Nexoria" />
+  <link rel="canonical" href="https://nexoriarealm.xyz/" />
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Nexus — Creator & Web Developer" />
-  <meta property="og:description" content="Web developer, creator and digital builder. Find all my links here." />
-  <meta property="og:image" content="/assets/icons/logo.png" />
+  <meta property="og:site_name" content="Nexoria EU Survival SMP" />
+  <meta property="og:title" content="Nexoria — EU Survival SMP | play.nexoriarealm.xyz" />
+  <meta property="og:description" content="Nexoria is a premium EU Minecraft Survival SMP with economy, player shops, ranks, skills, and an active community. Join now at play.nexoriarealm.xyz" />
+  <meta property="og:url" content="https://nexoriarealm.xyz/" />
+  <meta property="og:image" content="https://nexoriarealm.xyz/assets/icons/logo.png" />
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Nexus — Creator & Web Developer" />
-  <meta name="twitter:description" content="Web developer, creator and digital builder." />
+  <meta name="twitter:title" content="Nexoria — EU Survival SMP | play.nexoriarealm.xyz" />
+  <meta name="twitter:description" content="Premium EU Minecraft Survival SMP. Economy, ranks, skills, shops. Join at play.nexoriarealm.xyz" />
+  <meta name="twitter:image" content="https://nexoriarealm.xyz/assets/icons/logo.png" />
+  <!-- ① Global stylesheet — controls theme for every page -->
   <link rel="stylesheet" href="global.css" />
+
+  <!-- ② Page-specific styles (homepage only) -->
   <style>
-    /* ── HERO ──────────────────────────────────────────────── */
+
+    /* ── HERO SECTION ──────────────────────────────────────── */
     #hero {
       position: relative;
       min-height: 100svh;
@@ -31,26 +44,42 @@
     }
     @media (max-width: 768px) {
       #hero { min-height: auto; padding-top: calc(var(--nav-height) + 2.5rem); padding-bottom: 4rem; }
-      .hero-title { font-size: clamp(2.4rem, 14vw, 4rem) !important; }
+      .hero-title { font-size: clamp(2.4rem, 14vw, 4rem); }
+      .hero-subtitle { font-size: 0.8rem; letter-spacing: 0.12em; margin-bottom: 1.5rem; }
+      .hero-badge { margin-bottom: 1.2rem; font-size: 0.72rem; }
+      .hero-ip-box { margin-bottom: 1.5rem; }
     }
 
+    /* Particle canvas fills the hero background */
     #heroCanvas {
       position: absolute;
-      inset: 0; width: 100%; height: 100%;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
     }
+
+    /* Radial vignette overlay */
     #hero::before {
       content: '';
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: radial-gradient(ellipse 80% 60% at 50% 50%,
-        rgba(124,58,237,0.08) 0%, transparent 70%),
+        rgba(232,0,13,0.06) 0%,
+        transparent 70%),
         linear-gradient(180deg, transparent 60%, var(--bg) 100%);
-      pointer-events: none; z-index: 1;
+      pointer-events: none;
+      z-index: 1;
     }
+
     .hero-content {
-      position: relative; z-index: 2;
-      max-width: 780px; padding: 2rem 1.5rem;
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      padding: 2rem 1rem;
     }
+
+    /* Blinking "ONLINE" badge */
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -67,13 +96,18 @@
       margin-bottom: 2rem;
       animation: fadeDown 0.8s ease 0.2s both;
     }
-    .badge-dot {
-      width: 7px; height: 7px;
+
+    /* Green pulsing dot inside the badge */
+    .status-dot {
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--accent-bright);
-      box-shadow: 0 0 8px var(--accent-bright);
-      animation: pulseDot 2s ease-in-out infinite;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+      animation: pulse-dot 2s ease-in-out infinite;
     }
+
+    /* Hero title — huge Orbitron wordmark */
     .hero-title {
       font-family: var(--font-display);
       font-size: clamp(3rem, 9vw, 7rem);
@@ -83,152 +117,372 @@
       line-height: 1;
       margin-bottom: 0.2em;
       animation: fadeDown 0.8s ease 0.35s both;
-      text-shadow: 0 0 80px rgba(124,58,237,0.3);
+      /* Subtle red glow on text */
+      text-shadow: 0 0 80px rgba(232,0,13,0.25);
     }
-    .hero-title span { color: var(--accent-bright); }
+    .hero-title span { color: var(--red-primary); }
+
     .hero-subtitle {
       font-family: var(--font-ui);
-      font-size: clamp(0.9rem, 2vw, 1.15rem);
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
       color: var(--text-muted);
       letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-bottom: 2.5rem;
       animation: fadeDown 0.8s ease 0.5s both;
     }
+
+    /* IP copy box */
+    .hero-ip-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius);
+      padding: 0.7rem 1.2rem;
+      margin-bottom: 2.5rem;
+      cursor: pointer;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      animation: fadeDown 0.8s ease 0.65s both;
+    }
+    .hero-ip-box:hover {
+      border-color: var(--red-primary);
+      box-shadow: 0 0 20px var(--red-glow);
+    }
+    .hero-ip-label {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero-ip-text {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: 0.08em;
+    }
+    .hero-ip-icon {
+      color: var(--red-primary);
+      font-size: 0.9rem;
+    }
+
     .hero-cta-group {
       display: flex;
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
-      animation: fadeDown 0.8s ease 0.7s both;
+      animation: fadeDown 0.8s ease 0.8s both;
     }
 
-    /* ── SOCIAL GRID ───────────────────────────────────────── */
-    #socials {
-      padding: 6rem 5%;
-    }
-    .socials-grid {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.2rem;
-    }
-    @media (max-width: 500px) {
-      .socials-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    .social-card {
+    /* Scroll indicator arrow at the bottom of hero */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: fadeDown 1s ease 1.4s both;
+    }
+    .hero-scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid var(--red-primary);
+      border-bottom: 2px solid var(--red-primary);
+      transform: rotate(45deg);
+      animation: bounceArrow 1.6s ease-in-out infinite;
+    }
+
+    /* ── LIVE STATS BAR (below hero) ───────────────────────── */
+    #stats-bar {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 5%;
+    }
+    .stats-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 0.8rem;
-      padding: 2rem 1.2rem;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .stat-pill-icon {
+      font-size: 1.2rem;
+    }
+    .stat-pill-label {
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+    }
+    .stat-pill-value {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-white);
+      display: block;
+    }
+    /* The pulsing dot for server online/offline */
+    .dot-online  { background:#22c55e; box-shadow:0 0 8px #22c55e; animation:pulse-dot 2s infinite; }
+    .dot-offline { background:#ef4444; box-shadow:0 0 8px #ef4444; }
+    .dot-unknown { background:#6b6b7a; }
+
+    /* ── FEATURES SECTION ─────────────────────────────────── */
+    #features {
+      padding: 5rem 5%;
+    }
+    @media (max-width: 768px) { #features { padding: 3.5rem 4%; } }
+    .features-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      text-decoration: none;
-      cursor: pointer;
-      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition), background var(--transition);
-      position: relative;
-      overflow: hidden;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      cursor: default;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
     }
-    .social-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: var(--card-glow, transparent);
-      opacity: 0;
-      transition: opacity var(--transition);
-    }
-    .social-card:hover::before { opacity: 1; }
-    .social-card:hover {
-      border-color: var(--card-color, var(--accent));
-      box-shadow: 0 0 28px var(--card-shadow, var(--accent-glow)), 0 8px 32px rgba(0,0,0,0.4);
+    .feature-card:hover {
+      border-color: var(--red-primary);
+      box-shadow: 0 0 28px rgba(232,0,13,0.15), 0 8px 32px rgba(0,0,0,0.4);
       transform: translateY(-6px);
-      color: inherit;
     }
-
-    /* Platform-specific colours */
-    .social-card.discord  { --card-color: #5865f2; --card-shadow: rgba(88,101,242,0.4); --card-glow: radial-gradient(ellipse at 50% 100%, rgba(88,101,242,0.06), transparent 70%); }
-    .social-card.youtube  { --card-color: #ff0000; --card-shadow: rgba(255,0,0,0.35);   --card-glow: radial-gradient(ellipse at 50% 100%, rgba(255,0,0,0.06), transparent 70%); }
-    .social-card.x        { --card-color: #e7e9ea; --card-shadow: rgba(231,233,234,0.2);--card-glow: radial-gradient(ellipse at 50% 100%, rgba(231,233,234,0.04), transparent 70%); }
-    .social-card.tiktok   { --card-color: #69c9d0; --card-shadow: rgba(105,201,208,0.4);--card-glow: radial-gradient(ellipse at 50% 100%, rgba(105,201,208,0.06), transparent 70%); }
-    .social-card.instagram{ --card-color: #e1306c; --card-shadow: rgba(225,48,108,0.4); --card-glow: radial-gradient(ellipse at 50% 100%, rgba(225,48,108,0.06), transparent 70%); }
-    .social-card.roblox   { --card-color: #e8432d; --card-shadow: rgba(232,67,45,0.35); --card-glow: radial-gradient(ellipse at 50% 100%, rgba(232,67,45,0.06), transparent 70%); }
-    .social-card.linkedin { --card-color: #0a66c2; --card-shadow: rgba(10,102,194,0.4); --card-glow: radial-gradient(ellipse at 50% 100%, rgba(10,102,194,0.06), transparent 70%); }
-
-    .social-icon {
-      font-size: 2.4rem;
-      line-height: 1;
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
       display: block;
-      position: relative; z-index: 1;
+      filter: drop-shadow(0 0 8px rgba(232,0,13,0.5));
     }
-    .social-name {
+    .feature-title {
       font-family: var(--font-ui);
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-white);
-      position: relative; z-index: 1;
+      margin-bottom: 0.6rem;
     }
-    .social-handle {
-      font-family: var(--font-body);
-      font-size: 0.8rem;
+    .feature-desc {
+      font-size: 0.88rem;
       color: var(--text-muted);
-      position: relative; z-index: 1;
+      line-height: 1.65;
     }
 
-    /* ── ABOUT SECTION ─────────────────────────────────────── */
-    #about {
-      padding: 6rem 5%;
+    /* ── RANKS SECTION ────────────────────────────────────── */
+    #ranks {
+      padding: 7rem 5%;
       background: var(--bg-card);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .about-inner {
-      max-width: 820px;
+    .ranks-grid {
+      max-width: 1100px;
       margin: 0 auto;
-      text-align: center;
+      display: grid;
+      /* 5 ranks in a row on desktop, wraps on mobile */
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
     }
-    .about-inner h2 {
+    .rank-card {
+      position: relative;
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.2rem 1.5rem;
+      text-align: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .rank-card:hover { transform: translateY(-8px); }
+
+    /* Top accent bar — each rank has its own colour */
+    .rank-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+    /* ── RANK COLOURS — edit hex values here to change each rank colour ── */
+    .rank-member::before  { background: #6b6b7a; }
+    .rank-vip::before     { background: #22c55e; box-shadow: 0 0 12px #22c55e; }
+    .rank-elite::before   { background: #3b82f6; box-shadow: 0 0 12px #3b82f6; }
+    .rank-god::before     { background: #a855f7; box-shadow: 0 0 12px #a855f7; }
+    .rank-mvp::before     { background: #e8000d; box-shadow: 0 0 12px #e8000d; }
+
+    .rank-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+
+    .rank-badge {
+      display: inline-block;
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    /* Badge colours match the bar colours */
+    .rank-member .rank-badge  { background: rgba(107,107,122,0.2); color:#9ca3af; }
+    .rank-vip    .rank-badge  { background: rgba(34,197,94,0.15);  color:#22c55e; }
+    .rank-elite  .rank-badge  { background: rgba(59,130,246,0.15); color:#3b82f6; }
+    .rank-god    .rank-badge  { background: rgba(168,85,247,0.15); color:#a855f7; }
+    .rank-mvp    .rank-badge  { background: rgba(232,0,13,0.15);   color:#ff1a26; }
+
+    .rank-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 0.4rem;
+    }
+    .rank-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── SERVER INFO SECTION ─────────────────────────────── */
+    #server-info {
+      padding: 7rem 5%;
+    }
+    .info-flex {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .info-flex { grid-template-columns: 1fr; }
+    }
+    .info-text h2 {
       font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       margin-bottom: 1.2rem;
     }
-    .about-inner p {
-      font-size: 0.97rem;
-      line-height: 1.85;
+    .info-text p {
+      font-size: 0.95rem;
+      line-height: 1.8;
       color: var(--text-muted);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
-    .about-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.6rem;
-      margin-top: 2rem;
+    .info-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
     }
-    .tag {
-      font-family: var(--font-ui);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.85rem;
-      border-radius: 999px;
+    .info-stat {
+      background: var(--bg-card);
       border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+    }
+    .info-stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--red-primary);
+    }
+    .info-stat-label {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--text-muted);
-      background: var(--bg);
+      margin-top: 0.2rem;
     }
 
-    /* ── DISCORD HIGHLIGHT ─────────────────────────────────── */
+    /* Decorative "screen" panel on the right side */
+    .info-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .info-panel::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(232,0,13,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .panel-title {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red-primary);
+      margin-bottom: 1.2rem;
+    }
+    .panel-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+    }
+    .panel-row:last-child { border-bottom: none; }
+    .panel-row-key { color: var(--text-muted); letter-spacing: 0.05em; }
+    .panel-row-val { color: var(--text-white); font-weight: 600; }
+    .panel-live-count {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .panel-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    /* ── DISCORD CTA SECTION ─────────────────────────────── */
     #discord-cta {
       padding: 6rem 5%;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       text-align: center;
     }
     .discord-box {
-      max-width: 580px;
+      max-width: 600px;
       margin: 0 auto;
     }
     .discord-icon {
@@ -237,45 +491,59 @@
       display: block;
       filter: drop-shadow(0 0 16px rgba(88,101,242,0.6));
     }
-    .discord-box h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.8rem; }
-    .discord-box p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+    .discord-box h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: 0.8rem;
+    }
+    .discord-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    /* Override btn colour for discord */
     .btn-discord {
       background: #5865f2;
     }
     .btn-discord:hover {
       background: #4752c4;
       box-shadow: 0 0 24px rgba(88,101,242,0.5), 0 4px 20px rgba(0,0,0,0.4);
-      color: #fff;
     }
 
-    /* ── SCROLL HINT ───────────────────────────────────────── */
-    .hero-scroll {
+    /* ── JOIN SECTION ────────────────────────────────────── */
+    #join {
+      padding: 8rem 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #join::before {
+      content: '';
       position: absolute;
-      bottom: 2rem; left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-      color: var(--text-muted);
-      font-family: var(--font-ui);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      animation: fadeDown 1s ease 1.2s both;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232,0,13,0.07) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .hero-scroll-arrow {
-      width: 18px; height: 18px;
-      border-right: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent);
-      transform: rotate(45deg);
-      animation: bounceArrow 1.6s ease-in-out infinite;
+    .join-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .join-content h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+    .join-content p {
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
     }
 
-    /* ── KEYFRAMES ─────────────────────────────────────────── */
+    /* ── KEYFRAME ANIMATIONS ─────────────────────────────── */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    @keyframes pulseDot {
+    @keyframes pulse-dot {
       0%, 100% { opacity: 1; }
       50%       { opacity: 0.3; }
     }
@@ -287,151 +555,394 @@
 </head>
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+       To add/remove nav links just edit the <li> items below.
+       The logo, IP pill, and Discord button are here too.
+  ═══════════════════════════════════════════════════════ -->
+
   <nav id="navbar">
     <div class="nav-inner">
-      <a class="nav-logo" href="/">NEX<span>US</span></a>
+      <a class="nav-logo" href="/">NEX<span>ORIA</span></a>
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#socials">Socials</a></li>
-        <li><a href="https://nexosites.xyz" target="_blank" rel="noopener">NexoSites</a></li>
+        <li><a href="/store/">Store</a></li>
+        <li><a href="/ranks/">Ranks</a>
+        <li><a href="/commands/">Commands</a></li>
+        <li><a href="/rules/">Rules</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
       </ul>
       <div class="nav-right">
-        <a class="btn-primary btn-discord" href="https://discord.gg/tPj26Vaxx5" target="_blank" rel="noopener">Discord</a>
+        <span class="nav-ip" data-copy-ip title="Click to copy IP">play.nexoriarealm.xyz</span>
+        <a class="btn-primary" data-discord-link href="#" target="_blank" rel="noopener">Discord</a>
       </div>
       <div id="navHamburger" class="nav-hamburger"><span></span><span></span><span></span></div>
     </div>
   </nav>
   <div id="navMobileMenu" class="nav-mobile-menu">
     <a href="/">Home</a>
-    <a href="#about">About</a>
-    <a href="#socials">Socials</a>
-    <a href="https://nexosites.xyz" target="_blank" rel="noopener">NexoSites</a>
-    <a href="https://discord.gg/tPj26Vaxx5" target="_blank" rel="noopener">Join Discord</a>
+    <a href="/store/">Store</a>
+    <a href="/ranks/">Ranks</a>
+    <a href="/commands/">Commands</a>
+    <a href="/rules/">Rules</a>
+    <a href="/faq/">FAQ</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="#" data-copy-ip>Copy Server IP</a>
+    <a data-discord-link href="#" target="_blank" rel="noopener">Join Discord</a>
   </div>
 
-  <!-- HERO -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════════════════ -->
   <section id="hero">
+    <!-- Particle canvas — animated by main.js -->
     <canvas id="heroCanvas"></canvas>
+
     <div class="hero-content">
+
+      <!-- Online badge -->
       <div class="hero-badge">
-        <span class="badge-dot"></span>
-        Web Dev · Creator · Digital Builder
+        <span class="status-dot" data-server-dot></span>
+        EU Survival SMP &nbsp;·&nbsp; Since 2024
       </div>
-      <h1 class="hero-title">NEX<span>US</span></h1>
-      <p class="hero-subtitle">Building the web. Growing the community.</p>
+
+      <!-- Main title -->
+      <h1 class="hero-title anim-glitch" data-text="NEXORIA">NEX<span>ORIA</span></h1>
+      <p class="hero-subtitle">Forge your legend. Build your empire.</p>
+
+      <!-- IP copy box — clicking copies IP via main.js -->
+      <div class="hero-ip-box" data-copy-ip title="Click to copy server IP">
+        <span class="hero-ip-label">Server IP</span>
+        <span class="hero-ip-text">play.nexoriarealm.xyz</span>
+        <span class="hero-ip-icon">⎘</span>
+      </div>
+
+      <!-- CTA buttons -->
       <div class="hero-cta-group">
-        <a class="btn-primary btn-discord" href="https://discord.gg/tPj26Vaxx5" target="_blank" rel="noopener">
-          💬 Join Discord
-        </a>
-        <a class="btn-ghost" href="#socials">
-          Find me everywhere
+        <button class="btn-primary" data-copy-ip>
+          ⚔ Join Now
+        </button>
+        <a class="btn-ghost" data-discord-link href="#" target="_blank" rel="noopener">
+          💬 Discord
         </a>
       </div>
+
     </div>
+
+    <!-- Scroll cue -->
     <div class="hero-scroll">
       <span>Scroll</span>
       <div class="hero-scroll-arrow"></div>
     </div>
   </section>
 
-  <!-- SOCIALS -->
-  <section id="socials">
-    <p class="section-sub reveal">Connect with me</p>
-    <h2 class="section-title reveal">Find me everywhere<span class="accent-line"></span></h2>
 
-    <div class="socials-grid reveal-group" style="margin-top:3.5rem">
+  <!-- ═══════════════════════════════════════════════════════
+       LIVE STATS BAR
+       data-player-count is updated automatically by main.js
+  ═══════════════════════════════════════════════════════ -->
+  <div id="stats-bar">
+    <div class="stats-bar-inner">
 
-      <a class="social-card discord tilt-card" data-social="discord">
-        <span class="social-icon">💬</span>
-        <span class="social-name">Discord</span>
-        <span class="social-handle">Join the server</span>
-      </a>
-
-      <a class="social-card youtube tilt-card" data-social="youtube">
-        <span class="social-icon">▶️</span>
-        <span class="social-name">YouTube</span>
-        <span class="social-handle">@nxrealm08</span>
-      </a>
-
-      <a class="social-card x tilt-card" data-social="x">
-        <span class="social-icon">𝕏</span>
-        <span class="social-name">X / Twitter</span>
-        <span class="social-handle">@w050g</span>
-      </a>
-
-      <a class="social-card tiktok tilt-card" data-social="tiktok">
-        <span class="social-icon">🎵</span>
-        <span class="social-name">TikTok</span>
-        <span class="social-handle">@nxrealm08</span>
-      </a>
-
-      <a class="social-card instagram tilt-card" data-social="instagram">
-        <span class="social-icon">📸</span>
-        <span class="social-name">Instagram</span>
-        <span class="social-handle">@nxrealm08</span>
-      </a>
-
-      <a class="social-card roblox tilt-card" data-social="roblox">
-        <span class="social-icon">🟥</span>
-        <span class="social-name">Roblox</span>
-        <span class="social-handle">nxrealm08</span>
-      </a>
-
-      <a class="social-card linkedin tilt-card" data-social="linkedin">
-        <span class="social-icon">💼</span>
-        <span class="social-name">LinkedIn</span>
-        <span class="social-handle">nexosites</span>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-inner reveal">
-      <h2>Hey, I'm Nexus</h2>
-      <p>I build websites, grow communities, and create content across the web. Whether it's a sleek client site through <a href="https://nexosites.xyz" target="_blank" rel="noopener">NexoSites</a>, a curated tool directory, or just having fun online — I'm always building something.</p>
-      <p>Hop in the Discord to chat, check the socials for updates, or just vibe. The links are all up top.</p>
-      <div class="about-tags">
-        <span class="tag">Web Development</span>
-        <span class="tag">HTML · CSS · JS</span>
-        <span class="tag">Content Creator</span>
-        <span class="tag">Gaming</span>
-        <span class="tag">Community Builder</span>
-        <span class="tag">Cloudflare Pages</span>
-        <span class="tag">GitHub</span>
+      <div class="stat-pill">
+        <span class="stat-pill-icon">🟢</span>
+        <div>
+          <span class="stat-pill-label">Live Players</span>
+          <span class="stat-pill-value" data-player-count>— / 200</span>
+        </div>
       </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-icon">🌍</span>
+        <div>
+          <span class="stat-pill-label">Region</span>
+          <span class="stat-pill-value">Europe (EU)</span>
+        </div>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-icon">⚔️</span>
+        <div>
+          <span class="stat-pill-label">Mode</span>
+          <span class="stat-pill-value">Survival SMP</span>
+        </div>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-icon">🏆</span>
+        <div>
+          <span class="stat-pill-label">Max Players</span>
+          <span class="stat-pill-value">200</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FEATURES SECTION
+       Add/remove feature-card divs to change what's listed.
+  ═══════════════════════════════════════════════════════ -->
+  <section id="features" data-ambient>
+    <p class="section-sub reveal">What awaits you</p>
+    <h2 class="section-title reveal">
+      Built for players, by players
+      <span class="accent-line"></span>
+    </h2>
+
+    <div class="features-grid reveal-group">
+
+      <div class="feature-card tilt-card">
+        <span class="feature-icon">🏪</span>
+        <div class="feature-title">Economy Shop</div>
+        <p class="feature-desc">Full GUI-based shop powered by EconomyShopGUI. Buy and sell hundreds of items with a clean in-game interface.</p>
+      </div>
+
+      <div class="feature-card tilt-card">
+        <span class="feature-icon">🔨</span>
+        <div class="feature-title">Auction House</div>
+        <p class="feature-desc">Player-driven market via CrazyAuctions. List any item, bid on others and grow your in-game wealth.</p>
+      </div>
+
+      <div class="feature-card tilt-card">
+        <span class="feature-icon">⚔️</span>
+        <div class="feature-title">Skills & RPG</div>
+        <p class="feature-desc">Level up 15+ skills with AuraSkills — Mining, Farming, Combat and more. The more you play, the stronger you get.</p>
+      </div>
+
+      <div class="feature-card tilt-card">
+        <span class="feature-icon">🎁</span>
+        <div class="feature-title">Crates & Cosmetics</div>
+        <p class="feature-desc">PhoenixCrates for loot drops and UltraCosmetics for hats, gadgets, pets and particle effects.</p>
+      </div>
+
+      <!--<div class="feature-card tilt-card">
+        <span class="feature-icon">🛡️</span>
+        <div class="feature-title">Land Claims</div>
+        <p class="feature-desc">Protect your builds with GriefPrevention and WorldGuard. Your land, your rules — grief is impossible.</p>
+      </div>
+
+      <div class="feature-card tilt-card">
+        <span class="feature-icon">🧙</span>
+        <div class="feature-title">MythicMobs</div>
+        <p class="feature-desc">Custom boss encounters and unique mobs with special abilities. Not your average survival mobs.</p>
+      </div> -->
+
+      <div class="feature-card tilt-card">
+        <span class="feature-icon">🏅</span>
+        <div class="feature-title">Tags & Ranks</div>
+        <p class="feature-desc">Collect custom chat tags via DeluxeTags, earn prestige and show off your status with TAB-powered display.</p>
+      </div>
+
+      <div class="feature-card tilt-card">
+        <span class="feature-icon">🔒</span>
+        <div class="feature-title">Anti-Cheat</div>
+        <p class="feature-desc">Vulcan anti-cheat keeps the server fair. No hackers, no flyers, no cheaters — just clean survival gameplay.</p>
+      </div>
+
+    </div>
+    </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       RANKS SECTION
+       To update rank colours, find the CSS block above
+       labelled "RANK COLOURS" and change the hex values.
+  ═══════════════════════════════════════════════════════ -->
+  <section id="ranks" data-ambient>
+    <p class="section-sub reveal">Prestige &amp; Progression</p>
+    <h2 class="section-title reveal">
+      Choose your rank
+      <span class="accent-line"></span>
+    </h2>
+
+    <div class="ranks-grid reveal-group">
+
+      <!-- MEMBER (free default rank) -->
+      <div class="rank-card tilt-card rank-member">
+        <span class="rank-badge">Free</span>
+        <div class="rank-name">Member</div>
+        <p class="rank-desc">The starting rank. Full server access, 1 home, AuraSkills, /rtp and player warps.</p>
+      </div>
+
+      <!-- VIP — $4.99 -->
+      <div class="rank-card tilt-card rank-vip">
+        <span class="rank-badge">$4.99</span>
+        <div class="rank-name">VIP</div>
+        <p class="rank-desc">7 homes, /fly, /nick, /ptime, /enderchest, /workbench + VIP kit &amp; shop discounts.</p>
+      </div>
+
+      <!-- ELITE — $9.99 -->
+      <div class="rank-card tilt-card rank-elite">
+        <span class="rank-badge">$9.99</span>
+        <div class="rank-name">Elite</div>
+        <p class="rank-desc">9 homes, 14 auction slots, Elite kit, bigger sell multiplier + all VIP perks.</p>
+      </div>
+
+      <!-- GOD — $14.99 -->
+      <div class="rank-card tilt-card rank-god">
+        <span class="rank-badge">$14.99</span>
+        <div class="rank-name">God</div>
+        <p class="rank-desc">11 homes, 16 auction slots, /feed, /heal, God kit + all Elite perks.</p>
+      </div>
+
+      <!-- MVP — $19.99 -->
+      <div class="rank-card tilt-card rank-mvp">
+        <span class="rank-badge">$19.99</span>
+        <div class="rank-name">MVP</div>
+        <p class="rank-desc">13 homes, 18 auction slots, /god mode, MVP kit + every perk unlocked.</p>
+      </div>
+
     </div>
   </section>
 
-  <!-- DISCORD CTA -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       SERVER INFO — two-column layout
+  ═══════════════════════════════════════════════════════ -->
+  <section id="server-info">
+    <div class="info-flex">
+
+      <!-- Left: text + stat counters -->
+      <div class="info-text reveal">
+        <h2>Everything you need in one server</h2>
+        <p>Nexoria was built with a single goal: give players a premium, long-lasting SMP experience with a strong community. No P2W nonsense — just well-crafted gameplay.</p>
+        <p>From in-depth economy plugins to custom rank perks, every system is designed to keep the game fresh and rewarding.</p>
+
+        <!-- Animated stat counters — data-count-to sets the target number -->
+        <div class="info-stats">
+          <div class="info-stat">
+            <div class="info-stat-num" data-count-to="200">0</div>
+            <div class="info-stat-label">Max Players</div>
+          </div>
+          <div class="info-stat">
+            <div class="info-stat-num" data-count-to="5">0</div>
+            <div class="info-stat-label">Rank Tiers</div>
+          </div>
+          <div class="info-stat">
+            <div class="info-stat-num" data-count-to="24">0</div>
+            <div class="info-stat-label">Uptime hrs/day</div>
+          </div>
+          <div class="info-stat">
+            <div class="info-stat-num" data-count-to="99">0</div>
+            <div class="info-stat-label">% TPS Stability</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: live server spec panel -->
+      <div class="info-panel reveal">
+        <div class="panel-title">// Server Status</div>
+
+        <div class="panel-row">
+          <span class="panel-row-key">Address</span>
+          <span class="panel-row-val" data-copy-ip style="cursor:pointer" title="Click to copy">play.nexoriarealm.xyz</span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Version</span>
+          <span class="panel-row-val">Java 1.20+</span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Region</span>
+          <span class="panel-row-val">🌍 Europe</span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Mode</span>
+          <span class="panel-row-val">Survival SMP</span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Players Online</span>
+          <span class="panel-row-val panel-live-count">
+            <span class="panel-dot dot-unknown" data-server-dot></span>
+            <span data-player-count>Loading…</span>
+          </span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Anti-Cheat</span>
+          <span class="panel-row-val" style="color:#22c55e">✔ Vulcan</span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Grief Protection</span>
+          <span class="panel-row-val" style="color:#22c55e">✔ GriefPrevention</span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Economy</span>
+          <span class="panel-row-val" style="color:#22c55e">✔ Vault + EconomyShopGUI</span>
+        </div>
+        <div class="panel-row">
+          <span class="panel-row-key">Plugins</span>
+          <span class="panel-row-val">64 active</span>
+        </div>
+
+        <div style="margin-top:1.5rem">
+          <button class="btn-primary" style="width:100%; justify-content:center;" data-copy-ip>
+            ⎘ Copy Server IP
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       DISCORD CTA
+       Update your invite URL in main.js → CONFIG.DISCORD_URL
+  ═══════════════════════════════════════════════════════ -->
   <section id="discord-cta">
     <div class="discord-box reveal">
       <span class="discord-icon">💬</span>
       <h2>Join the Community</h2>
-      <p>The Discord is where everything happens — drops, updates, projects, and just hanging out. Don't miss it.</p>
-      <a class="btn-primary btn-discord" href="https://discord.gg/tPj26Vaxx5" target="_blank" rel="noopener">
-        Join Discord
+      <p>Hundreds of players hang out in our Discord — get help, share builds, report bugs and stay up to date with server news.</p>
+      <a class="btn-primary btn-discord" data-discord-link href="#" target="_blank" rel="noopener">
+        Join our Discord
       </a>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer id="footer">
-    <div class="footer-logo">NEX<span>US</span></div>
-    <div class="footer-tagline">Creator · Developer · Builder</div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FINAL JOIN CTA
+  ═══════════════════════════════════════════════════════ -->
+  <section id="join">
+    <div class="join-content reveal">
+      <h2>Ready to play?</h2>
+      <p>Copy the IP, fire up Minecraft, and join thousands of players already forging their story on Nexoria.</p>
+      <button class="btn-primary" data-copy-ip style="font-size:1.05rem; padding:0.9rem 2.4rem;">
+        ⚔ play.nexoriarealm.xyz
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       Edit links and copyright text here.
+  ═══════════════════════════════════════════════════════ -->
+      <footer id="footer">
+    <div class="footer-logo">NEX<span>ORIA</span></div>
+    <div class="footer-tagline">EU Survival SMP · Est. 2024</div>
     <div class="footer-links">
       <a href="/">Home</a>
-      <a href="#about">About</a>
-      <a href="#socials">Socials</a>
-      <a href="https://nexosites.xyz" target="_blank" rel="noopener">NexoSites</a>
-      <a href="https://discord.gg/tPj26Vaxx5" target="_blank" rel="noopener">Discord</a>
+      <a href="/store/">Store</a>
+      <a href="/ranks/">Ranks</a>
+      <a href="/commands/">Commands</a>
+      <a href="/rules/">Rules</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
     </div>
-    <p class="footer-copy">© 2025 Nexus. All rights reserved.</p>
+    <p class="footer-copy">© 2024 Nexoria. Not affiliated with Mojang AB.</p>
   </footer>
 
+
+  <!-- ③ Shared JS — loaded last so HTML is ready when it runs -->
   <script src="main.js"></script>
+
 </body>
 </html>
