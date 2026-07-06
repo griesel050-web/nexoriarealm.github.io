@@ -1,245 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>nxrealm08 // Nexosites</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexoria Network</title>
+  <meta name="description" content="Nexoria Network — A connected ecosystem of digital ventures." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 </head>
 <body>
 
-<div class="glow glow1"></div>
-<div class="glow glow2"></div>
-<div class="grain"></div>
+  <!-- ── NAV ──────────────────────────────────────────── -->
+  <nav class="nav">
+    <a class="nav-logo" href="#home" data-nav="home">
+      <div class="nav-logo-mark">N</div>
+      <span data-brand-name>Nexoria Network</span>
+    </a>
 
-<div class="cdot" id="cdot"></div>
-<div class="cring" id="cring"></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home"    data-nav="home">Home</a></li>
+      <li><a href="#network" data-nav="network">Network</a></li>
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
+    </ul>
 
-<nav>
-  <div class="logo">nx<span>realm</span>08</div>
-  <div class="nav-links">
-    <a href="#work">Builds</a>
-    <a href="#social">Social</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+    <a class="nav-cta" href="#network" data-nav="network">Explore Sites</a>
+    <button class="nav-mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">☰</button>
+  </nav>
 
-<header class="hero">
-  <div class="hero-grid">
-    <div class="hero-left">
-      <div class="eyebrow"><span class="pulse"></span>Available for new builds</div>
-      <h1 class="title">
-        <span class="row"><span>I build the</span></span>
-        <span class="row"><span class="grad">internet's</span></span>
-        <span class="row"><span>front lines.</span></span>
-      </h1>
-      <p class="hero-sub">
-        I'm <b>nxrealm08</b> — founder of <b>Nexosites</b>. I design and ship websites, tools and
-        platforms used by thousands, then post the whole process everywhere I can.
-      </p>
-      <div class="hero-cta">
-        <a href="#work" class="btn">View the work</a>
-        <a href="#contact" class="btn ghost">Get in touch</a>
+  <!-- ══════════════════════════════════════════════════════
+       PAGE: HOME
+  ═══════════════════════════════════════════════════════ -->
+  <div class="page" id="page-home">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+      <span class="hero-eyebrow">// nexoria network</span>
+      <h1>Everything we build,<br><span id="hero-title-main">connected.</span></h1>
+      <p class="hero-sub" id="hero-sub">Loading…</p>
+      <div class="btn-group">
+        <button class="btn-primary" onclick="navigateTo('network')">Explore the Network</button>
+        <button class="btn-ghost"   onclick="navigateTo('contact')">Get in Touch</button>
       </div>
-      <div class="hero-stats">
-        <div class="stat"><span class="num" data-target="4">0</span><span class="label">Live products</span></div>
-        <div class="stat"><span class="num" data-target="8">0</span><span class="label">Platforms active</span></div>
-        <div class="stat"><span class="num" data-target="460" data-suffix="+">0</span><span class="label">Sites indexed</span></div>
+    </section>
+
+    <!-- Stats bar -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-number" id="stat-total">—</span>
+        <span class="stat-label">Sites</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="stat-live">—</span>
+        <span class="stat-label">Live</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="stat-cats">—</span>
+        <span class="stat-label">Categories</span>
       </div>
     </div>
 
-    <div class="hero-right">
-      <div class="orbit-card">
-        <div class="orbit-ring r1"></div>
-        <div class="orbit-ring r2"></div>
-        <div class="orbit-ring r3"></div>
-        <div class="orbit-core">
-          <span class="core-tag">NEXOSITES</span>
-          <span class="core-sub">est. network</span>
+    <!-- About strip -->
+    <section class="section">
+      <div class="about-grid">
+        <div>
+          <span class="section-eyebrow">// about the network</span>
+          <h2 class="section-title">One identity.<br>Many nodes.</h2>
+          <p style="color:var(--text-secondary);margin-top:1rem;line-height:1.8;max-width:480px;">
+            Nexoria Network is the connective layer between everything we build. Each site lives independently, designed for its own purpose — but together they share infrastructure, identity, and intent.
+          </p>
+          <p style="color:var(--text-secondary);margin-top:1rem;line-height:1.8;max-width:480px;">
+            This hub is where you can explore, navigate, and understand the full scope of the network.
+          </p>
+          <button class="btn-ghost" style="margin-top:2rem;" onclick="navigateTo('network')">
+            Browse all sites →
+          </button>
         </div>
-        <div class="orbit-node n1" style="--icon-color:#ff2b3d">N1</div>
-        <div class="orbit-node n2" style="--icon-color:#ff6b3d">N2</div>
-        <div class="orbit-node n3" style="--icon-color:#ff2b3d">N3</div>
-        <div class="orbit-node n4" style="--icon-color:#ff6b3d">N4</div>
-      </div>
-      <div class="terminal">
-        <div class="terminal-bar"><span></span><span></span><span></span></div>
-        <div class="terminal-body">
-          <p><span class="prompt">$</span> whoami</p>
-          <p class="out">nxrealm08 — builder, Nexosites</p>
-          <p><span class="prompt">$</span> status</p>
-          <p class="out type-line">shipping<span class="cursor-blink">_</span></p>
+        <div class="about-visual">
+          <div class="hexagon-grid" id="hex-grid">
+            <!-- 25 dots generated by JS -->
+            <div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div>
+            <div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div>
+            <div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot lit"></div><div class="hex-dot"></div><div class="hex-dot"></div>
+            <div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div>
+            <div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div><div class="hex-dot"></div>
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- Featured sites -->
+    <section class="section" style="padding-top:0;">
+      <div class="section-header">
+        <span class="section-eyebrow">// featured</span>
+        <h2 class="section-title">Across the network</h2>
+        <p class="section-sub">A selection of what's live and active right now.</p>
+      </div>
+      <div class="network-grid" id="featured-grid">
+        <div class="loading">Loading sites…</div>
+      </div>
+      <div style="margin-top:2rem;text-align:center;">
+        <button class="btn-ghost" onclick="navigateTo('network')">View all sites →</button>
+      </div>
+    </section>
+
+  </div><!-- /page-home -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE: NETWORK
+  ═══════════════════════════════════════════════════════ -->
+  <div class="page" id="page-network">
+    <section class="section">
+      <div class="section-header">
+        <span class="section-eyebrow">// the network</span>
+        <h2 class="section-title">All sites</h2>
+        <p class="section-sub">Every node in the Nexoria ecosystem. Filter by category, or browse everything.</p>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar" id="filter-bar"></div>
+
+      <!-- Cards grid -->
+      <div class="network-grid" id="all-cards-grid">
+        <div class="loading">Loading…</div>
+      </div>
+    </section>
+  </div><!-- /page-network -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE: CONTACT
+  ═══════════════════════════════════════════════════════ -->
+  <div class="page" id="page-contact">
+    <section class="section">
+      <div class="section-header">
+        <span class="section-eyebrow">// contact</span>
+        <h2 class="section-title">Get in touch</h2>
+      </div>
+      <div class="contact-layout">
+
+        <!-- Left: info -->
+        <div class="contact-info">
+          <p>
+            Have a question about the network, want to collaborate, or just want to say hello?
+            Drop a message and we'll get back to you.
+          </p>
+          <div class="contact-links" id="contact-links">
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div>
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="input-name">Name</label>
+              <input class="form-input" id="input-name" type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="input-email">Email</label>
+              <input class="form-input" id="input-email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="input-subject">Subject</label>
+              <input class="form-input" id="input-subject" type="text" placeholder="What's this about?" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="input-message">Message</label>
+              <textarea class="form-textarea" id="input-message" placeholder="Your message…" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;margin-top:0.5rem;">
+              Send message →
+            </button>
+          </form>
+
+          <div id="form-confirm" style="display:none;padding:2.5rem;border:1px solid rgba(60,240,160,0.3);background:rgba(60,240,160,0.04);border-radius:8px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:1rem;">✓</div>
+            <h3 style="font-family:var(--font-display);margin-bottom:0.5rem;">Message sent</h3>
+            <p style="color:var(--text-secondary);font-size:0.9rem;">We'll get back to you at the email you provided.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div><!-- /page-contact -->
+
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-copy">© <span id="footer-year"></span> <span data-brand-name>Nexoria Network</span></span>
+    <div class="footer-links">
+      <a href="#home"    data-nav="home">Home</a>
+      <a href="#network" data-nav="network">Network</a>
+      <a href="#contact" data-nav="contact">Contact</a>
     </div>
-  </div>
-</header>
+  </footer>
 
-<div class="marquee">
-  <div class="marquee-track">
-    <span>Nexosites <i>·</i> Web Design <i>·</i> Branding <i>·</i> Growth <i>·</i> Directories <i>·</i> Nexosites <i>·</i> Web Design <i>·</i> Branding <i>·</i> Growth <i>·</i> Directories</span>
-    <span>Nexosites <i>·</i> Web Design <i>·</i> Branding <i>·</i> Growth <i>·</i> Directories <i>·</i> Nexosites <i>·</i> Web Design <i>·</i> Branding <i>·</i> Growth <i>·</i> Directories</span>
-  </div>
-</div>
-
-<section id="work">
-  <div class="section-head reveal">
-    <div>
-      <div class="section-num">01 / Builds</div>
-      <div class="section-title">What I've Shipped</div>
-    </div>
-    <div class="section-desc">Live products under the Nexosites umbrella — built, designed and maintained end to end.</div>
-  </div>
-
-  <div class="builds reveal stagger" id="buildsGrid">
-
-    <div class="build-card">
-      <div class="build-icon" style="--c:#ff2b3d">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5L12 3l9 6.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></svg>
-      </div>
-      <span class="build-index">NX—01</span>
-      <h3>NexoSites</h3>
-      <p>The agency hub — premium, fast websites for businesses and creators, built first, paid for only once approved.</p>
-      <a class="build-link" href="https://nexosites.xyz" target="_blank" rel="noopener">nexosites.xyz
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-      </a>
-    </div>
-
-    <div class="build-card">
-      <div class="build-icon" style="--c:#ff6b3d">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-      </div>
-      <span class="build-index">NX—02</span>
-      <h3>Nexo Hub</h3>
-      <p>A curated, searchable directory of 460+ essential websites across AI, gaming, dev tools, design and finance.</p>
-      <a class="build-link" href="https://app.nexosites.xyz" target="_blank" rel="noopener">app.nexosites.xyz
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-      </a>
-    </div>
-
-    <div class="build-card">
-      <div class="build-icon" style="--c:#ff2b3d">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
-      </div>
-      <span class="build-index">NX—03</span>
-      <h3>Next Boost</h3>
-      <p>Earn points by completing tasks, then spend them on real followers, likes and views across TikTok, Instagram, YouTube and Discord.</p>
-      <a class="build-link" href="https://boost.nexosites.xyz" target="_blank" rel="noopener">boost.nexosites.xyz
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-      </a>
-    </div>
-
-    <div class="build-card">
-      <div class="build-icon" style="--c:#ff6b3d">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
-      </div>
-      <span class="build-index">NX—04</span>
-      <h3>Nexo List</h3>
-      <p>A growing listings &amp; discovery layer for the Nexosites network — built to help new sites and tools get found.</p>
-      <a class="build-link" href="https://list.nexosites.xyz" target="_blank" rel="noopener">list.nexosites.xyz
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<section id="social">
-  <div class="section-head reveal">
-    <div>
-      <div class="section-num">02 / Elsewhere</div>
-      <div class="section-title">Find Me Online</div>
-    </div>
-    <div class="section-desc">Process, builds, streams and everything in between — posted across every platform that matters.</div>
-  </div>
-
-  <div class="social-list reveal stagger">
-
-    <a class="social-row" href="https://www.tiktok.com/@nxrealm08" target="_blank" rel="noopener">
-      <div class="social-left">
-        <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.59c.26 0 .53.04.78.13V9.4a5.61 5.61 0 0 0-.78-.05A5.65 5.65 0 0 0 4.21 15a5.65 5.65 0 0 0 5.65 5.65 5.65 5.65 0 0 0 5.65-5.65V9.01a7.31 7.31 0 0 0 4.28 1.36V7.3a4.28 4.28 0 0 1-3.19-1.48Z"/></svg></span>
-        <span class="social-name">TikTok</span>
-      </div>
-      <span class="social-handle">@nxrealm08</span><span class="social-arrow">↗</span>
-    </a>
-
-    <a class="social-row" href="https://www.instagram.com/nxrealm08/" target="_blank" rel="noopener">
-      <div class="social-left">
-        <span class="social-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></span>
-        <span class="social-name">Instagram</span>
-      </div>
-      <span class="social-handle">@nxrealm08</span><span class="social-arrow">↗</span>
-    </a>
-
-    <a class="social-row" href="https://www.linkedin.com/in/nexosites/" target="_blank" rel="noopener">
-      <div class="social-left">
-        <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9Z"/></svg></span>
-        <span class="social-name">LinkedIn</span>
-      </div>
-      <span class="social-handle">in/nexosites</span><span class="social-arrow">↗</span>
-    </a>
-
-    <a class="social-row" href="https://www.youtube.com/@nxrealm08" target="_blank" rel="noopener">
-      <div class="social-left">
-        <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.21-1.5-.86-2.16c-.82-.86-1.74-.86-2.16-.91C15.6 4 12 4 12 4h-.01s-3.59 0-6.57.13c-.42.05-1.34.05-2.16.91C2.61 5.7 2.4 7.2 2.4 7.2S2.18 8.96 2.18 10.72v1.55c0 1.76.22 3.52.22 3.52s.21 1.5.86 2.16c.82.86 1.9.83 2.38.92C7.34 19.05 12 19.1 12 19.1s3.6-.01 6.58-.14c.42-.05 1.34-.05 2.16-.91.65-.66.86-2.16.86-2.16s.22-1.76.22-3.52v-1.55c0-1.76-.22-3.52-.22-3.52ZM9.95 14.6V8.8l5.6 2.9-5.6 2.9Z"/></svg></span>
-        <span class="social-name">YouTube</span>
-      </div>
-      <span class="social-handle">@nxrealm08</span><span class="social-arrow">↗</span>
-    </a>
-
-    <a class="social-row" href="https://discord.gg/NTFhj44pXR" target="_blank" rel="noopener">
-      <div class="social-left">
-        <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 5.4A17.8 17.8 0 0 0 15.9 4l-.3.5a13 13 0 0 1 3.7 1.3 13.6 13.6 0 0 0-11.5 0A13 13 0 0 1 11.5 4.5L11.2 4a17.7 17.7 0 0 0-4.4 1.4C4 9.6 3.2 13.6 3.6 17.6a17.9 17.9 0 0 0 5.3 2.6l.7-1.1a11.6 11.6 0 0 1-1.9-.9l.5-.4a12.8 12.8 0 0 0 10.6 0l.5.4a11.6 11.6 0 0 1-1.9.9l.7 1.1a17.8 17.8 0 0 0 5.3-2.6c.5-4.6-.7-8.6-3.1-12.2ZM9.7 14.9c-.9 0-1.7-.9-1.7-2s.7-2 1.7-2 1.7.9 1.7 2-.8 2-1.7 2Zm5.6 0c-.9 0-1.7-.9-1.7-2s.7-2 1.7-2 1.7.9 1.7 2-.7 2-1.7 2Z"/></svg></span>
-        <span class="social-name">Discord</span>
-      </div>
-      <span class="social-handle">/NTFhj44pXR</span><span class="social-arrow">↗</span>
-    </a>
-
-    <a class="social-row" href="https://x.com/w050g" target="_blank" rel="noopener">
-      <div class="social-left">
-        <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7.2 8.2L23 21h-6.6l-5.2-6.6L5.2 21H2l7.7-8.8L1.5 3h6.8l4.7 6.1L18.9 3Zm-1.2 16.2h1.7L7.4 4.7H5.6l12.1 14.5Z"/></svg></span>
-        <span class="social-name">X</span>
-      </div>
-      <span class="social-handle">@w050g</span><span class="social-arrow">↗</span>
-    </a>
-
-    <a class="social-row" href="https://www.twitch.tv/nxrealm08" target="_blank" rel="noopener">
-      <div class="social-left">
-        <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 2 2 6.5V19h5v3l3-3h3.5L19 13.5V2H4Zm13.3 10.6-2.8 2.8h-3l-2.4 2.4v-2.4H5.7V3.7h11.6v8.9Z"/><rect x="9.3" y="6.5" width="1.8" height="4.3"/><rect x="13.5" y="6.5" width="1.8" height="4.3"/></svg></span>
-        <span class="social-name">Twitch</span>
-      </div>
-      <span class="social-handle">nxrealm08</span><span class="social-arrow">↗</span>
-    </a>
-
-    <a class="social-row" href="https://paypal.me/nxrealm08" target="_blank" rel="noopener">
-      <div class="social-left">
-        <span class="social-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 21 8.9 13H12c3.9 0 6.6-1.9 7.2-5.3.5-3-1.2-5.2-4.8-5.2H8.4c-.4 0-.8.3-.9.7L4.4 20.2c-.1.4.2.8.6.8H7.5Zm2-6.4L11 7.3h2.5c1.8 0 2.6.7 2.4 2.1-.3 1.7-1.6 2.6-3.6 2.6H9.3c-.1.6.2.6.2.6Z"/></svg></span>
-        <span class="social-name">PayPal</span>
-      </div>
-      <span class="social-handle">paypal.me/nxrealm08</span><span class="social-arrow">↗</span>
-    </a>
-
-  </div>
-</section>
-
-<section id="contact">
-  <div class="contact-wrap reveal">
-    <div>
-      <div class="section-num" style="margin-bottom:18px;">03 / Get in touch</div>
-      <div class="contact-title">Let's build<br>something <span class="grad">worth</span><br>shipping.</div>
-    </div>
-    <div class="contact-row">
-      <a href="https://nexosites.xyz" target="_blank" rel="noopener" class="btn">Visit Nexosites</a>
-      <a href="https://discord.gg/NTFhj44pXR" target="_blank" rel="noopener" class="btn ghost">Join the Discord</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div>nxrealm08 <span class="dot">/</span> Nexosites &copy; 2026</div>
-  <div>Designed &amp; built by hand <span class="dot">·</span> no templates</div>
-</footer>
-
-<script src="script.js"></script>
+  <script>
+    // Set footer year immediately
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+  <script src="js/app.js"></script>
 </body>
 </html>

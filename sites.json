@@ -1,0 +1,65 @@
+{
+  "network": {
+    "name": "Nexoria Network",
+    "tagline": "A connected ecosystem of digital ventures",
+    "description": "Nexoria Network is the umbrella connecting a growing portfolio of digital platforms, tools, and communities. Each node is built with purpose — together they form something greater."
+  },
+  "sites": [
+    {
+      "id": "site-1",
+      "name": "Nexoria Core",
+      "category": "Platform",
+      "description": "The central hub powering the Nexoria ecosystem — infrastructure, APIs, and integrations.",
+      "url": "https://nexoria.com",
+      "icon": "⬡",
+      "status": "live",
+      "tags": ["infrastructure", "platform", "core"]
+    },
+    {
+      "id": "site-2",
+      "name": "Nexoria Labs",
+      "category": "R&D",
+      "description": "Experimental projects and early-stage builds from the Nexoria innovation arm.",
+      "url": "https://labs.nexoria.com",
+      "icon": "⚗",
+      "status": "live",
+      "tags": ["experiments", "innovation", "builds"]
+    },
+    {
+      "id": "site-3",
+      "name": "Nexoria Studio",
+      "category": "Creative",
+      "description": "Design, branding, and creative direction for Nexoria ventures and external clients.",
+      "url": "https://studio.nexoria.com",
+      "icon": "◈",
+      "status": "live",
+      "tags": ["design", "branding", "creative"]
+    },
+    {
+      "id": "site-4",
+      "name": "Nexoria Vault",
+      "category": "Tools",
+      "description": "A curated toolkit and resource library for builders in the Nexoria ecosystem.",
+      "url": "https://vault.nexoria.com",
+      "icon": "◉",
+      "status": "beta",
+      "tags": ["tools", "resources", "library"]
+    },
+    {
+      "id": "site-5",
+      "name": "Nexoria Community",
+      "category": "Community",
+      "description": "Where the Nexoria network gathers — forums, events, and collaborative spaces.",
+      "url": "https://community.nexoria.com",
+      "icon": "⬟",
+      "status": "coming-soon",
+      "tags": ["community", "events", "collaboration"]
+    }
+  ],
+  "contact": {
+    "email": "hello@nexoria.com",
+    "twitter": "https://twitter.com/nexorianet",
+    "github": "https://github.com/nexoria",
+    "linkedin": "https://linkedin.com/company/nexoria"
+  }
+}
