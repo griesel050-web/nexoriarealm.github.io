@@ -7,59 +7,30 @@
   "sites": [
     {
       "id": "site-1",
-      "name": "Nexoria Core",
+      "name": "Nexo Sites",
       "category": "Platform",
-      "description": "The central hub powering the Nexoria ecosystem — infrastructure, APIs, and integrations.",
-      "url": "https://nexoria.com",
-      "icon": "⬡",
+      "description": "The main Nexo Sites platform — your home base for the entire ecosystem.",
+      "url": "https://nexosites.xyz",
       "status": "live",
-      "tags": ["infrastructure", "platform", "core"]
+      "tags": ["platform", "home", "core"]
     },
     {
       "id": "site-2",
-      "name": "Nexoria Labs",
-      "category": "R&D",
-      "description": "Experimental projects and early-stage builds from the Nexoria innovation arm.",
-      "url": "https://labs.nexoria.com",
-      "icon": "⚗",
+      "name": "Nexo Hub",
+      "category": "App",
+      "description": "The central app hub connecting all Nexo tools and services in one place.",
+      "url": "https://app.nexosites.xyz",
       "status": "live",
-      "tags": ["experiments", "innovation", "builds"]
+      "tags": ["app", "hub", "tools"]
     },
     {
       "id": "site-3",
-      "name": "Nexoria Studio",
-      "category": "Creative",
-      "description": "Design, branding, and creative direction for Nexoria ventures and external clients.",
-      "url": "https://studio.nexoria.com",
-      "icon": "◈",
+      "name": "Next Boost",
+      "category": "Growth",
+      "description": "Boost your reach and accelerate growth with Nexo's performance tools.",
+      "url": "https://boost.nexosites.xyz",
       "status": "live",
-      "tags": ["design", "branding", "creative"]
-    },
-    {
-      "id": "site-4",
-      "name": "Nexoria Vault",
-      "category": "Tools",
-      "description": "A curated toolkit and resource library for builders in the Nexoria ecosystem.",
-      "url": "https://vault.nexoria.com",
-      "icon": "◉",
-      "status": "beta",
-      "tags": ["tools", "resources", "library"]
-    },
-    {
-      "id": "site-5",
-      "name": "Nexoria Community",
-      "category": "Community",
-      "description": "Where the Nexoria network gathers — forums, events, and collaborative spaces.",
-      "url": "https://community.nexoria.com",
-      "icon": "⬟",
-      "status": "coming-soon",
-      "tags": ["community", "events", "collaboration"]
+      "tags": ["growth", "boost", "performance"]
     }
-  ],
-  "contact": {
-    "email": "hello@nexoria.com",
-    "twitter": "https://twitter.com/nexorianet",
-    "github": "https://github.com/nexoria",
-    "linkedin": "https://linkedin.com/company/nexoria"
-  }
+  ]
 }

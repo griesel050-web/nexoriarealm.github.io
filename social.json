@@ -1,0 +1,40 @@
+{
+  "socials": [
+    {
+      "platform": "Twitter / X",
+      "handle": "@w050g",
+      "url": "https://x.com/w050g",
+      "icon": "x"
+    },
+    {
+      "platform": "Instagram",
+      "handle": "@nxrealm08",
+      "url": "https://instagram.com/nxrealm08",
+      "icon": "instagram"
+    },
+    {
+      "platform": "GitHub",
+      "handle": "griesel050-web",
+      "url": "https://github.com/griesel050-web",
+      "icon": "github"
+    },
+    {
+      "platform": "LinkedIn",
+      "handle": "Nexo Sites",
+      "url": "https://linkedin.com/in/nexosites",
+      "icon": "linkedin"
+    },
+    {
+      "platform": "YouTube",
+      "handle": "@nxrealm08",
+      "url": "https://youtube.com/@nxrealm08",
+      "icon": "youtube"
+    },
+    {
+      "platform": "Discord",
+      "handle": "Nexo Community",
+      "url": "https://discord.gg/JFz3mVpCUm",
+      "icon": "discord"
+    }
+  ]
+}
