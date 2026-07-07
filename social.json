@@ -2,38 +2,38 @@
   "socials": [
     {
       "platform": "Twitter / X",
-      "handle": "@w050g",
-      "url": "https://x.com/w050g",
+      "handle": "@nexosites",
+      "url": "https://twitter.com/nexosites",
       "icon": "x"
     },
     {
       "platform": "Instagram",
-      "handle": "@nxrealm08",
-      "url": "https://instagram.com/nxrealm08",
+      "handle": "@nexosites",
+      "url": "https://instagram.com/nexosites",
       "icon": "instagram"
     },
     {
       "platform": "GitHub",
-      "handle": "griesel050-web",
-      "url": "https://github.com/griesel050-web",
+      "handle": "nexosites",
+      "url": "https://github.com/nexosites",
       "icon": "github"
     },
     {
       "platform": "LinkedIn",
       "handle": "Nexo Sites",
-      "url": "https://linkedin.com/in/nexosites",
+      "url": "https://linkedin.com/company/nexosites",
       "icon": "linkedin"
     },
     {
       "platform": "YouTube",
-      "handle": "@nxrealm08",
-      "url": "https://youtube.com/@nxrealm08",
+      "handle": "@nexosites",
+      "url": "https://youtube.com/@nexosites",
       "icon": "youtube"
     },
     {
       "platform": "Discord",
       "handle": "Nexo Community",
-      "url": "https://discord.gg/JFz3mVpCUm",
+      "url": "https://discord.gg/nexosites",
       "icon": "discord"
     }
   ]
